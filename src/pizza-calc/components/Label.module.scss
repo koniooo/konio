@@ -1,0 +1,26 @@
+section.labelSec {
+  display: flex;
+  width: 100%;
+  div {
+    position: relative;
+    width: var(--other-column-width);
+
+    &.base {
+      width: var(--base-column-width);
+    }
+
+    h2,
+    label {
+      font-size: 1.6vh;
+      line-height: 1.75;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+  }
+}
+
+section.row {
+  height: var(--row-height);
+}

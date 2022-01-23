@@ -1,0 +1,19 @@
+header.header {
+  border-bottom: 2px solid var(--main-border-color);
+  height: var(--header-height);
+  width: 100%;
+  position: relative;
+  section.logoSec {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+      font-size: 6vh;
+      line-height: 1.25;
+    }
+    p {
+      font-size: 1.75vh;
+    }
+  }
+}

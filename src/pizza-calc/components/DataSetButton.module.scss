@@ -1,0 +1,59 @@
+div.div {
+  position: relative;
+  button {
+    border-radius: 1.5vh;
+    border-width: var(--button-border);
+    border-style: solid;
+    border-right-color: var(--background-color);
+    border-bottom-color: var(--background-color);
+    color: #ffffff;
+    font-size: 1.6vh;
+    height: calc(var(--button-body-height) / 2);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vmin;
+
+    &:active {
+      border-top-color: var(--background-color) !important;
+      border-left-color: var(--background-color) !important;
+    }
+    @mixin buttons($base-color) {
+      background-color: $base-color;
+      border-top-color: desaturate($base-color, $amount: 60%);
+      border-left-color: desaturate($base-color, $amount: 60%);
+      text-shadow: 0 0 var(--button-text-shadow-blur) #000000;
+      &:hover {
+        background-color: darken($base-color, $amount: 5%);
+      }
+      &:active {
+        background-color: lighten($base-color, $amount: 10%);
+        border-right-color: desaturate($base-color, $amount: 60%);
+        border-bottom-color: desaturate($base-color, $amount: 60%);
+      }
+    }
+    &.dominos {
+      @include buttons(rgb(0, 105, 145));
+    }
+    &.pizaLa {
+      @include buttons(rgb(205, 0, 0));
+    }
+
+    &.pizzaHut {
+      @include buttons(rgb(255, 203, 9));
+    }
+    &.nappoli {
+      background-color: #000000;
+      border-top-color: var(--gray64);
+      border-left-color: var(--gray64);
+      &:hover {
+        background-color: var(--gray32);
+      }
+      &:active {
+        background-color: var(--gray64);
+        border-right-color: var(--gray64);
+        border-bottom-color: var(--gray64);
+      }
+    }
+  }
+}

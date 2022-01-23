@@ -1,0 +1,62 @@
+.pizzaCalcTop {
+  --background-color: rgb(33, 36, 45);
+  /* catnoseさんの旧ブログからお借りしました*/
+  --gray32: rgb(32, 32, 32);
+  --gray64: rgb(64, 64, 64);
+  --gray128: rgb(128, 128, 128);
+  --gray160: rgb(160, 160, 160);
+  --main-border-color: rgba(255, 255, 255, 0.5);
+
+  --base-column-width: calc(100% - (var(--other-column-width) * 4));
+  --body-max-width: 1000px;
+  --button-border: 3px;
+  --button-sec-height: calc(var(--main-height) / 4);
+  --button-copy-height: calc(var(--button-sec-height) / 4);
+  --button-body-height: calc(var(--button-sec-height) * 3 / 4);
+  --button-text-shadow-blur: 5px;
+  --calc-sec-height: calc(var(--main-height) * 3 / 4);
+  --footer-height: 7.5vh;
+  --footer-height: calc(var(--vh, 1vh) * 7.5);
+  --header-height: 12.5vh;
+  --header-height: calc(var(--vh, 1vh) * 12.5);
+  --header-logo-height: calc(var(--header-height) * 2 / 3);
+  --header-copy-height: calc(var(--header-height) / 3);
+  --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+  --main-height: calc(
+    var(--vh, 1vh) * 100 - var(--header-height) - var(--footer-height)
+  );
+  --other-column-width: 22.5%;
+  --row-height: calc(var(--calc-sec-height) / 6);
+
+  * {
+    font-weight: 700;
+  }
+
+  color: #ffffff;
+  width: 100%;
+  background-color: var(--background-color);
+  font-family: sans-serif;
+  white-space: nowrap;
+  .article {
+    margin: 0 auto;
+    width: 100vw;
+    max-width: var(--body-max-width);
+    text-align: center;
+    button {
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+      appearance: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

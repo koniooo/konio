@@ -1,0 +1,27 @@
+main.main {
+  width: 100%;
+  section.calcSec {
+    width: 100%;
+
+    section.pizzaSec {
+      width: 100%;
+    }
+  }
+  section.buttonSec {
+    width: 100%;
+    height: var(--button-sec-height);
+    section.buttonCopy {
+      width: 100%;
+      height: var(--button-copy-height);
+      p {
+        font-size: 1.6vh;
+        line-height: var(--button-copy-height);
+      }
+    }
+    section.button {
+      height: var(--button-body-height);
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

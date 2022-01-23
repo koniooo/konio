@@ -1,0 +1,29 @@
+.footer {
+  border-top: 2px solid var(--main-border-color);
+  height: var(--footer-height);
+  section.linkWrapper {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    div {
+      height: 100%;
+      position: relative;
+      a {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        // font-weight: normal;
+
+        font-size: 1.2vh;
+        img {
+          &.twitter {
+            height: calc(var(--footer-height) / 3);
+          }
+          // &#github {
+          //   height: calc(var(--footer-height) * 0.4);
+          // }
+        }
+      }
+    }
+  }
+}
