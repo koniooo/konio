@@ -1,5 +1,5 @@
 import { getRoundedNum } from "../lib/getRoundedNum";
-import styles from "pizza-calc/components/eachColumn.module.scss";
+import styles from "pizza-calc/components/EachColumn.module.scss";
 
 export const PricePerArea = (props) => {
   const pricePerArea = props.pricePerArea;

@@ -7,7 +7,7 @@ div.div {
     border-right-color: var(--background-color);
     border-bottom-color: var(--background-color);
     color: #ffffff;
-    font-size: 1.6vh;
+    font-size: 1.8vh;
     height: calc(var(--button-body-height) / 2);
     position: absolute;
     top: 50%;
@@ -24,7 +24,7 @@ div.div {
       border-left-color: desaturate($base-color, $amount: 60%);
       text-shadow: 0 0 var(--button-text-shadow-blur) #000000;
       &:hover {
-        background-color: darken($base-color, $amount: 5%);
+        background-color: darken($base-color, $amount: 7.5%);
       }
       &:active {
         background-color: lighten($base-color, $amount: 10%);

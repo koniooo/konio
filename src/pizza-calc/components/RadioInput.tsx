@@ -1,4 +1,4 @@
-import styles from "pizza-calc/components/eachColumn.module.scss";
+import styles from "pizza-calc/components/EachColumn.module.scss";
 
 export const RadioInput = (props) => {
   const radioOnClicked = () => {
@@ -11,7 +11,7 @@ export const RadioInput = (props) => {
           className={styles.base}
           type="radio"
           name="base"
-          onClick={radioOnClicked}
+          onChange={radioOnClicked}
           checked={props.index === props.baseIndex}
         />
       </div>

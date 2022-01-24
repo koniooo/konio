@@ -15,7 +15,7 @@ export const PriceInput = (props) => {
         <input
           className={styles.price}
           type="number"
-          inputMode="numeric"
+          inputMode="decimal"
           name="price"
           // placeholder="価格"
           min="0"

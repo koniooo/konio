@@ -9,7 +9,7 @@
 
   --base-column-width: calc(100% - (var(--other-column-width) * 4));
   --body-max-width: 1000px;
-  --button-border: 3px;
+  --button-border: 0.5vh;
   --button-sec-height: calc(var(--main-height) / 4);
   --button-copy-height: calc(var(--button-sec-height) / 4);
   --button-body-height: calc(var(--button-sec-height) * 3 / 4);
@@ -35,7 +35,6 @@
   color: #ffffff;
   width: 100%;
   background-color: var(--background-color);
-  font-family: sans-serif;
   white-space: nowrap;
   .article {
     margin: 0 auto;
@@ -43,7 +42,7 @@
     max-width: var(--body-max-width);
     text-align: center;
     button {
-      border: none;
+      // border: none;
       cursor: pointer;
       outline: none;
       padding: 0;

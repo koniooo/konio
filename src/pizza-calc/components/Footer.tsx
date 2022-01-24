@@ -1,5 +1,3 @@
-import twitterLogo from "../../../public/pizza-calc/twitter.svg";
-import githubLogo from "../github.svg";
 import styles from "pizza-calc/components/Footer.module.scss";
 
 export const Footer = () => {
@@ -48,7 +46,11 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img className={styles.twitter} src={twitterLogo} alt="" />
+            <img
+              className={styles.twitter}
+              src="pizza-calc/twitter.svg"
+              alt=""
+            />
           </a>
         </div>
         {/* <div>

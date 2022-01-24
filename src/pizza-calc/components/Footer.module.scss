@@ -12,9 +12,8 @@
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        // font-weight: normal;
 
-        font-size: 1.2vh;
+        font-size: 1.5vh;
         img {
           &.twitter {
             height: calc(var(--footer-height) / 3);

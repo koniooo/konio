@@ -8,7 +8,7 @@ export const Comparison = (props) => {
   const multiple = props.pricePerArea / baseAreaPerPrice;
   let content;
   if (props.index === props.baseIndex || Number.isNaN(multiple)) {
-    content = "-";
+    content = <p>-</p>;
   } else if (multiple > 1) {
     const comparePercent = (multiple - 1) * 100;
     const comparePercentRounded = getRoundedNum(comparePercent, 10);
