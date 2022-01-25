@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "pizza-calc/components/header.module.scss";
+import styles from "pizza-calc/components/Header.module.scss";
 export const Header = () => {
   return (
     <header className={styles.header}>
