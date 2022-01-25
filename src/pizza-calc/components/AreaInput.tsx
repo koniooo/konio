@@ -1,8 +1,8 @@
 import { getRoundedNum } from "../lib/getRoundedNum";
 
-export const AreaInput = (props) => {
+export const AreaInput = (props: any) => {
   const areaRounded = getRoundedNum(props.area, 10);
-  const areaOnChange = (event) => {
+  const areaOnChange = (event: any) => {
     const input: number = Number(event.target.value);
     const diameterFromArea = Math.sqrt(input / Math.PI) * 2;
     const diameterFromAreaRounded = getRoundedNum(diameterFromArea, 10000);
