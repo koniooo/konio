@@ -2,8 +2,11 @@ import "styles/reset.css";
 import "styles/global.css";
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
+import { usePageView, GoogleAnalytics } from "lib/gtag";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  usePageView();
+
   useEffect(() => {
     const setFillHeight = () => {
       const vh = window.innerHeight * 0.01;
@@ -11,8 +14,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
     window.addEventListener("resize", setFillHeight);
     setFillHeight();
-  });
-  return <Component {...pageProps} />;
+  }, []);
+
+  return (
+    <>
+      <GoogleAnalytics />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;

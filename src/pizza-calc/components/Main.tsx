@@ -28,7 +28,7 @@ export const Main = () => {
 
   const [baseIndex, setBaseIndex] = useState(0);
 
-  let calcList = [];
+  let calcList: any = [];
   for (let i = 0; i < 5; i++) {
     calcList.push(
       <Calc
@@ -45,7 +45,7 @@ export const Main = () => {
       />
     );
   }
-  let buttonList = [];
+  let buttonList: any = [];
   for (let i = 0; i < 4; i++) {
     buttonList.push(
       <DataSetButton
