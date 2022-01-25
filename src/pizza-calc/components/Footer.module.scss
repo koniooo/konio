@@ -16,7 +16,7 @@
         font-size: 1.5vh;
         img {
           &.twitter {
-            height: calc(var(--footer-height) / 3);
+            height: calc(var(--footer-height) * 0.375);
           }
           // &#github {
           //   height: calc(var(--footer-height) * 0.4);

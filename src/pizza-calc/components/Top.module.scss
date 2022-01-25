@@ -1,14 +1,11 @@
 .pizzaCalcTop {
-  --background-color: rgb(33, 36, 45);
-  /* catnoseさんの旧ブログからお借りしました*/
   --gray32: rgb(32, 32, 32);
   --gray64: rgb(64, 64, 64);
   --gray128: rgb(128, 128, 128);
   --gray160: rgb(160, 160, 160);
-  --main-border-color: rgba(255, 255, 255, 0.5);
-
+  --main-border-color: rgba(255, 255, 255, 0.3);
   --base-column-width: calc(100% - (var(--other-column-width) * 4));
-  --body-max-width: 1000px;
+  --body-max-width: 1080px;
   --button-border: 0.5vh;
   --button-sec-height: calc(var(--main-height) / 4);
   --button-copy-height: calc(var(--button-sec-height) / 4);
@@ -34,28 +31,26 @@
 
   color: #ffffff;
   width: 100%;
-  background-color: var(--background-color);
   white-space: nowrap;
-  .article {
-    margin: 0 auto;
-    width: 100vw;
-    max-width: var(--body-max-width);
-    text-align: center;
-    button {
-      // border: none;
-      cursor: pointer;
-      outline: none;
-      padding: 0;
-      appearance: none;
-    }
+  margin: 0 auto;
+  width: 100vw;
+  max-width: var(--body-max-width);
+  text-align: center;
 
-    a {
-      text-decoration: none;
-      color: #ffffff;
-    }
+  button {
+    // border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }

@@ -23,7 +23,7 @@ section.eachColumn {
         border-radius: 1.5vh;
       }
       &.diameter {
-        width: 4em;
+        width: 3.5em;
       }
       &.price {
         width: 4em;
@@ -49,14 +49,6 @@ section.eachColumn {
           border-width: 1.2vh;
           transition: 0.2s all linear;
         }
-
-        // &.inactive {
-        //   border-color: rgba(255, 255, 255, 0.2);
-        //   cursor: not-allowed;
-        //   &:hover {
-        //     border-width: 2px;
-        //   }
-        // }
       }
     }
     span {

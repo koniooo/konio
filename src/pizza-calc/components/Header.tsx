@@ -6,7 +6,11 @@ export const Header = () => {
       <section className={styles.logoSec}>
         <Link href="/pizza-calc">
           <a>
-            <h1>🍕Pizza Calc</h1>
+            <img
+              src="pizza-calc/logo.svg"
+              alt="🍕Pizza Calc"
+              draggable="false"
+            />
           </a>
         </Link>
         <p>ピザのコスパを簡単に比較できる計算器</p>

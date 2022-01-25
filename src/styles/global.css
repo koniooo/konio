@@ -1,8 +1,15 @@
+:root {
+  /* catnoseさんの旧ブログからお借りしました*/
+  --background-color: rgb(33, 36, 45);
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  background-color: var(--background-color);
+  color: #ffffff;
   /* prettier-ignore */
   font-family:
       "Helvetica Neue",             /* Apple en */
@@ -10,6 +17,5 @@ body {
       "Hiragino Kaku Gothic ProN",  /* Apple ja */
       "Hiragino Sans",              /* Apple ja */
       "Yu Gothic",                  /* Windows ja */
-      Meiryo,                       /* Windows ja */
       sans-serif;
 }

@@ -32,6 +32,7 @@ export const Main = () => {
   for (let i = 0; i < 5; i++) {
     calcList.push(
       <Calc
+        key={i}
         index={i}
         baseIndex={baseIndex}
         baseDiameter={diameters[baseIndex]}
@@ -48,6 +49,7 @@ export const Main = () => {
   for (let i = 0; i < 4; i++) {
     buttonList.push(
       <DataSetButton
+        key={i}
         index={i}
         onDiameterChange={[setDiameter0, setDiameter1, setDiameter2]}
         onPriceChange={[setPrice0, setPrice1, setPrice2]}
@@ -63,7 +65,7 @@ export const Main = () => {
       </section>
       <section className={styles.buttonSec}>
         <section className={styles.buttonCopy}>
-          <p>下のボタンは各店のマルゲリータのデータを反映させます🍅</p>
+          <p>下のボタンは各店のマルゲリータのデータを自動入力します🍅</p>
         </section>
         <section className={styles.button}>{buttonList}</section>
       </section>
