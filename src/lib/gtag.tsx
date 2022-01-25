@@ -53,11 +53,13 @@ export const GoogleAnalytics = () => (
     {existsGaId && (
       <>
         <Script
+          id="my-script1"
           defer
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
         />
         <Script
+          id="my-script2"
           defer
           dangerouslySetInnerHTML={{
             __html: `
