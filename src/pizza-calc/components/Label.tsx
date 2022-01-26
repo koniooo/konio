@@ -4,12 +4,7 @@ export const Label = () => {
   return (
     <section className={`${styles.labelSec} ${styles.row}`}>
       <div>
-        <label
-          htmlFor="
-            diameter"
-        >
-          直径📐
-        </label>
+        <label htmlFor="diameter">直径📐</label>
       </div>
       <div>
         <label htmlFor="price">価格💰</label>

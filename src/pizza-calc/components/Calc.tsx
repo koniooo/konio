@@ -7,6 +7,7 @@ import { PricePerArea } from "./PricePerArea";
 import { getCircleArea } from "../lib/getCircleArea";
 import styles from "pizza-calc/components/Calc.module.scss";
 interface ItemProps {
+  key: number;
   index: number;
   baseIndex: number | null;
   basePrice: number | null;
@@ -28,11 +29,16 @@ export const Calc = (props: ItemProps) => {
   return (
     <section className={`${styles.eachPizza} ${styles.row}`}>
       <DiameterInput
+        index={props.index}
         diameter={props.diameter}
         onDiameterChange={props.onDiameterChange}
       />
       {/* <AreaInput area={area} onDiameterChange={props.onDiameterChange} /> */}
-      <PriceInput price={props.price} onPriceChange={props.onPriceChange} />
+      <PriceInput
+        index={props.index}
+        price={props.price}
+        onPriceChange={props.onPriceChange}
+      />
       <RadioInput
         index={props.index}
         baseIndex={props.baseIndex}

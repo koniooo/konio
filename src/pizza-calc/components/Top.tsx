@@ -14,14 +14,14 @@ const Top = () => {
         <title>Pizza Calc｜ピザカルク</title>
         <meta
           name="description"
-          content="ピザのコスパ（面積当たりの値段）を簡単に比較できる計算器。ドミノピザ、ピザーラ、ピザハット、ナポリの窯のデモデータを自動入力する機能付き。"
+          content="ピザのコスパ（面積当たりの価格）を簡単に比較できる計算器。ドミノピザ、ピザーラ、ピザハット、ナポリの窯のデモデータを自動入力する機能付き。"
         />
         <meta property="og:url" content="https://koni.ooo/pizza-calc" />
         <meta property="og:title" content="Pizza Calc｜ピザカルク" />
         <meta property="og:type" content="website" />
         <meta
           property="og:description"
-          content="ピザのコスパ（面積当たりの値段）を簡単に比較できる計算器。ドミノピザ、ピザーラ、ピザハット、ナポリの窯のデモデータを自動入力する機能付き。"
+          content="ピザのコスパ（面積当たりの価格）を簡単に比較できる計算器。ドミノピザ、ピザーラ、ピザハット、ナポリの窯のデモデータを自動入力する機能付き。"
         />
         <meta
           property="og:image"

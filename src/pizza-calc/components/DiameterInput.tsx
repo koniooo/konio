@@ -16,7 +16,7 @@ export const DiameterInput = (props) => {
           className={styles.diameter}
           type="number"
           inputMode="decimal"
-          // placeholder="直径"
+          placeholder={props.index === 0 ? "直径" : ""}
           name="diameter"
           min="0"
           step="1"

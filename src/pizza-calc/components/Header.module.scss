@@ -8,11 +8,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    a {
-      img {
-        height: 7vh;
-        height: calc(var(--vh, 1vh) * 7);
-      }
+    img {
+      height: 7vh;
+      height: calc(var(--vh, 1vh) * 7);
     }
     p {
       font-size: 1.75vh;
