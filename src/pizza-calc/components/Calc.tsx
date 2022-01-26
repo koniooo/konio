@@ -1,6 +1,5 @@
 import { RadioInput } from "./RadioInput";
 import { DiameterInput } from "./DiameterInput";
-import { AreaInput } from "./AreaInput";
 import { PriceInput } from "./PriceInput";
 import { Comparison } from "./Comparison";
 import { PricePerArea } from "./PricePerArea";
