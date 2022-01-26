@@ -17,7 +17,7 @@ export const PriceInput = (props) => {
           type="number"
           inputMode="decimal"
           name="price"
-          placeholder={props.index === 0 ? "価格" : ""}
+          placeholder={props.index === 0 ? "1980" : undefined}
           min="0"
           step="1"
           value={props.price}
