@@ -25,7 +25,7 @@ const Top = () => {
         />
         <meta
           property="og:image"
-          content="https://raw.githubusercontent.com/koniooo/konio/main/public/pizza-calc/card.png"
+          content="https://raw.githubusercontent.com/koniooo/konio/main/public/pizza-calc/card2.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@konio_tracy" />
