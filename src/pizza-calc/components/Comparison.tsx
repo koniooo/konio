@@ -16,7 +16,7 @@ export const Comparison = (props) => {
       comparePercentRounded === Infinity ? "∞" : comparePercentRounded;
     content = (
       <p>
-        {percentNumber} %
+        <span className={styles.number}>{percentNumber}</span>%
         <br />
         割高👎
       </p>
@@ -28,7 +28,7 @@ export const Comparison = (props) => {
       comparePercentRounded === Infinity ? "∞" : comparePercentRounded;
     content = (
       <p>
-        {percentNumber} %
+        <span className={styles.number}>{percentNumber}</span>%
         <br />
         お得👍
       </p>

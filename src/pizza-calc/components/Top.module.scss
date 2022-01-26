@@ -7,6 +7,7 @@
   --base-column-width: calc(100% - (var(--other-column-width) * 4));
   --body-max-width: 1080px;
   --button-border: 0.5vh;
+  --button-border: calc(var(--vh, 1vh) * 0.5);
   --button-sec-height: calc(var(--main-height) / 4);
   --button-copy-height: calc(var(--button-sec-height) / 4);
   --button-body-height: calc(var(--button-sec-height) * 3 / 4);

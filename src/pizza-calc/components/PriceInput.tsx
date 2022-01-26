@@ -23,7 +23,7 @@ export const PriceInput = (props) => {
           value={props.price}
           onChange={priceOnChange}
         />
-        <span>円</span>
+        <span className={styles.unit}>円</span>
       </div>
     </section>
   );

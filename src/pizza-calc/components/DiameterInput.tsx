@@ -23,7 +23,7 @@ export const DiameterInput = (props) => {
           value={props.diameter}
           onChange={diameterOnChange}
         />
-        <span>cm</span>
+        <span className={styles.unit}>cm</span>
       </div>
     </section>
   );

@@ -7,10 +7,18 @@ export const PricePerArea = (props) => {
   if (Number.isNaN(pricePerArea)) {
     content = <p>-</p>;
   } else if (pricePerArea === Infinity) {
-    content = <p>∞ 円</p>;
+    content = (
+      <p>
+        <span className={styles.number}>∞ </span>円
+      </p>
+    );
   } else {
     const pricePerAreaRounded = getRoundedNum(pricePerArea, 100);
-    content = <p>{pricePerAreaRounded} 円</p>;
+    content = (
+      <p>
+        <span className={styles.number}>{pricePerAreaRounded} </span>円
+      </p>
+    );
   }
   return (
     <section className={styles.eachColumn}>

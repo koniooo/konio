@@ -2,12 +2,14 @@ div.div {
   position: relative;
   button {
     border-radius: 1.5vh;
+    border-radius: calc(var(--vh, 1vh) * 1.5);
     border-width: var(--button-border);
     border-style: solid;
     border-right-color: var(--background-color);
     border-bottom-color: var(--background-color);
     color: #ffffff;
-    font-size: 1.6vh;
+    font-size: 1.8vh;
+    font-size: calc(var(--vh, 1vh) * 1.8);
     height: calc(var(--button-body-height) / 2);
     position: absolute;
     top: 50%;
