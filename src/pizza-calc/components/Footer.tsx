@@ -49,19 +49,10 @@ export const Footer = () => {
             <img
               className={styles.twitter}
               src="pizza-calc/twitter.svg"
-              alt=""
+              alt="開発者のTwitter"
             />
           </a>
         </div>
-        {/* <div>
-          <a
-            href="https://github.com/koniooo/pizza-calc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img id="github" src={githubLogo} alt="" />
-          </a>
-        </div> */}
       </section>
     </footer>
   );
