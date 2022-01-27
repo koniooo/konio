@@ -9,7 +9,7 @@ div.div {
     border-bottom-color: var(--background-color);
     color: #ffffff;
     font-size: 1.8vh;
-    font-size: calc(var(--vh, 1vh) * 1.8);
+    font-size: max(calc(var(--vh, 1vh) * 1.8), 12px);
     height: calc(var(--button-body-height) / 2);
     position: absolute;
     top: 50%;

@@ -14,7 +14,7 @@
         transform: translate(-50%, -50%);
 
         font-size: 1.5vh;
-        font-size: calc(var(--vh, 1vh) * 1.5);
+        font-size: max(calc(var(--vh, 1vh) * 1.5), 9px);
         img {
           &.twitter {
             height: calc(var(--footer-height) * 0.375);
