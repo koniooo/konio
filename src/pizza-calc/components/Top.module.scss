@@ -1,13 +1,10 @@
 .pizzaCalcTop {
-  --gray32: rgb(32, 32, 32);
   --gray64: rgb(64, 64, 64);
-  --gray128: rgb(128, 128, 128);
-  --gray160: rgb(160, 160, 160);
   --main-border-color: rgba(255, 255, 255, 0.3);
   --base-column-width: calc(100% - (var(--other-column-width) * 4));
   --body-max-width: 1080px;
-  --button-border: 0.5vh;
-  --button-border: calc(var(--vh, 1vh) * 0.5);
+  --button-border: 0.4vh;
+  --button-border: calc(var(--vh, 1vh) * 0.4);
   --button-sec-height: calc(var(--main-height) / 4);
   --button-copy-height: calc(var(--button-sec-height) / 4);
   --button-body-height: calc(var(--button-sec-height) * 3 / 4);
