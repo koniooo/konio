@@ -16,6 +16,7 @@ const Top = () => {
           name="description"
           content="ピザのコスパ（面積当たりの価格）を簡単に比較できる計算器。ドミノピザ、ピザーラ、ピザハット、ナポリの窯のデモデータを自動入力する機能付き。"
         />
+        <meta name="theme-color" content="#21242d" />
         <meta property="og:url" content="https://koni.ooo/pizza-calc" />
         <meta property="og:title" content="Pizza Calc｜ピザカルク" />
         <meta property="og:type" content="website" />
