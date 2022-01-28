@@ -32,11 +32,17 @@ const Top = () => {
         <meta name="twitter:site" content="@konio_tracy" />
         <link
           rel="icon"
+          href="pizza-calc/favicon_32.png"
+          type="image/png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
           href="pizza-calc/pizza.svg"
           type="image/svg+xml"
           sizes="any"
         />
-        <link rel="apple-touch-icon" href="pizza-calc\apple_192.png" />
+        <link rel="apple-touch-icon" href="pizza-calc/apple_192.png" />
       </Head>
       <Header />
       <Main />
