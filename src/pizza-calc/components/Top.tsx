@@ -30,8 +30,13 @@ const Top = () => {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@konio_tracy" />
-        <link rel="icon" href="pizza-calc/pizza.svg" />
-        <link rel="apple-touch-icon" href="pizza-calc/pizza.svg" />
+        <link
+          rel="icon"
+          href="pizza-calc/pizza.svg"
+          type="image/svg+xml"
+          sizes="any"
+        />
+        <link rel="apple-touch-icon" href="pizza-calc\favicon_192.png" />
       </Head>
       <Header />
       <Main />
