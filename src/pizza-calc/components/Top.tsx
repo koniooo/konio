@@ -36,7 +36,7 @@ const Top = () => {
           type="image/svg+xml"
           sizes="any"
         />
-        <link rel="apple-touch-icon" href="pizza-calc\favicon_192.png" />
+        <link rel="apple-touch-icon" href="pizza-calc\apple_192.png" />
       </Head>
       <Header />
       <Main />
