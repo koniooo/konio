@@ -30,6 +30,9 @@ section.eachColumn {
         text-align: center;
         border-radius: 1.5vh;
         border-radius: calc(var(--vh, 1vh) * 1.5);
+        &::placeholder {
+          color: rgb(192, 192, 192);
+        }
       }
       &.diameter {
         width: 3.5em;
