@@ -5,20 +5,20 @@ import { Comparison } from "./Comparison";
 import { PricePerArea } from "./PricePerArea";
 import { getCircleArea } from "../lib/getCircleArea";
 import styles from "pizza-calc/components/Calc.module.scss";
-interface ItemProps {
+type Props = {
   key: number;
   index: number;
-  baseIndex: number | null;
-  basePrice: number | null;
-  baseDiameter: number | null;
-  onBaseIndexChange: any;
-  diameter: number | null;
-  price: number | null;
-  onDiameterChange: any;
-  onPriceChange: any;
-}
+  baseIndex: number;
+  basePrice: number | undefined;
+  baseDiameter: number | undefined;
+  setBaseIndex: React.Dispatch<React.SetStateAction<number>>;
+  diameter: number | undefined;
+  price: number | undefined;
+  setDiameter: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
 
-export const Calc = (props: ItemProps) => {
+export const Calc = (props: Props) => {
   const diameter = props.diameter;
   const price = props.price;
   const area = typeof diameter === "number" ? getCircleArea(diameter) : NaN;
@@ -30,18 +30,17 @@ export const Calc = (props: ItemProps) => {
       <DiameterInput
         index={props.index}
         diameter={props.diameter}
-        onDiameterChange={props.onDiameterChange}
+        setDiameter={props.setDiameter}
       />
-      {/* <AreaInput area={area} onDiameterChange={props.onDiameterChange} /> */}
       <PriceInput
         index={props.index}
         price={props.price}
-        onPriceChange={props.onPriceChange}
+        setPrice={props.setPrice}
       />
       <RadioInput
         index={props.index}
         baseIndex={props.baseIndex}
-        onBaseIndexChange={props.onBaseIndexChange}
+        setBaseIndex={props.setBaseIndex}
         diameter={props.diameter}
         price={props.price}
       />

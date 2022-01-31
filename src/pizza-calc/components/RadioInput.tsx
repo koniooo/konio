@@ -1,8 +1,16 @@
 import styles from "pizza-calc/components/EachColumn.module.scss";
 
-export const RadioInput = (props) => {
+type Props = {
+  index: number;
+  baseIndex: number;
+  setBaseIndex: React.Dispatch<React.SetStateAction<number>>;
+  diameter: number | undefined;
+  price: number | undefined;
+};
+
+export const RadioInput = (props: Props) => {
   const radioOnClicked = () => {
-    props.onBaseIndexChange(props.index);
+    props.setBaseIndex(props.index);
   };
   return (
     <section className={`${styles.eachColumn} ${styles.base}`}>

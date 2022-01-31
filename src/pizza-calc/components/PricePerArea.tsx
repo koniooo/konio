@@ -1,7 +1,11 @@
 import { getRoundedNum } from "../lib/getRoundedNum";
 import styles from "pizza-calc/components/EachColumn.module.scss";
 
-export const PricePerArea = (props) => {
+type Props = {
+  pricePerArea: number;
+};
+
+export const PricePerArea = (props: Props) => {
   const pricePerArea = props.pricePerArea;
   let content;
   if (Number.isNaN(pricePerArea)) {

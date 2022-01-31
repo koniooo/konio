@@ -1,8 +1,15 @@
 import { getCircleArea } from "../lib/getCircleArea";
 import { getRoundedNum } from "../lib/getRoundedNum";
 import styles from "pizza-calc/components/EachColumn.module.scss";
-export const Comparison = (props) => {
-  const baseIsNumber: boolean = props.baseDiameter > 0 && props.basePrice > 0;
+
+type Props = {
+  index: number;
+  baseIndex: number;
+  pricePerArea: number;
+  baseDiameter: number | undefined;
+  basePrice: number | undefined;
+};
+export const Comparison = (props: Props) => {
   const baseArea = getCircleArea(props.baseDiameter);
   const baseAreaPerPrice = props.basePrice / baseArea;
   const multiple = props.pricePerArea / baseAreaPerPrice;

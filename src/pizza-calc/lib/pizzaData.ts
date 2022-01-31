@@ -1,8 +1,8 @@
-interface pizzaStore {
+type pizzaStore = {
   name: string;
   diameter: number[];
   price: number[];
-}
+};
 
 export const pizzaData: readonly pizzaStore[] = [
   {

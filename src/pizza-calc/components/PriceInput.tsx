@@ -1,12 +1,18 @@
 import styles from "pizza-calc/components/EachColumn.module.scss";
 
-export const PriceInput = (props) => {
-  const priceOnChange = (event) => {
+type Props = {
+  index: number;
+  price: number | undefined;
+  setPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+export const PriceInput = (props: Props) => {
+  const priceOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
     if (input === "") {
-      props.onPriceChange(null);
+      props.setPrice(undefined);
     } else {
-      props.onPriceChange(Number(input));
+      props.setPrice(Number(input));
     }
   };
   return (

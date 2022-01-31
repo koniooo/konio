@@ -1,12 +1,20 @@
 import styles from "pizza-calc/components/EachColumn.module.scss";
 
-export const DiameterInput = (props) => {
-  const diameterOnChange = (event) => {
+type Props = {
+  index: number;
+  diameter: number | undefined;
+  setDiameter: React.Dispatch<React.SetStateAction<number | undefined>>;
+};
+
+export const DiameterInput = (props: Props) => {
+  const diameterOnChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const input = event.target.value;
     if (input === "") {
-      props.onDiameterChange(null);
+      props.setDiameter(undefined);
     } else {
-      props.onDiameterChange(Number(input));
+      props.setDiameter(Number(input));
     }
   };
   return (
