@@ -10,8 +10,12 @@ type Props = {
   basePrice: number | undefined;
 };
 export const Comparison = (props: Props) => {
-  const baseArea = getCircleArea(props.baseDiameter);
-  const baseAreaPerPrice = props.basePrice / baseArea;
+  const baseArea =
+    typeof props.baseDiameter === "undefined"
+      ? NaN
+      : getCircleArea(props.baseDiameter);
+  const baseAreaPerPrice =
+    typeof props.basePrice === "undefined" ? NaN : props.basePrice / baseArea;
   const multiple = props.pricePerArea / baseAreaPerPrice;
   let content;
   if (props.index === props.baseIndex || Number.isNaN(multiple)) {
