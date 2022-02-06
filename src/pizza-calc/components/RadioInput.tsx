@@ -4,13 +4,11 @@ type Props = {
   index: number;
   baseIndex: number;
   setBaseIndex: React.Dispatch<React.SetStateAction<number>>;
-  diameter: number | undefined;
-  price: number | undefined;
 };
 
-export const RadioInput = (props: Props) => {
+export const RadioInput = ({ index, baseIndex, setBaseIndex }: Props) => {
   const radioOnClicked = () => {
-    props.setBaseIndex(props.index);
+    setBaseIndex(index);
   };
   return (
     <section className={`${styles.eachColumn} ${styles.base}`}>
@@ -20,7 +18,7 @@ export const RadioInput = (props: Props) => {
           type="radio"
           name="base"
           onChange={radioOnClicked}
-          checked={props.index === props.baseIndex}
+          checked={index === baseIndex}
         />
       </div>
     </section>

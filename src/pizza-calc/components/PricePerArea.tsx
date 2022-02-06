@@ -5,8 +5,7 @@ type Props = {
   pricePerArea: number;
 };
 
-export const PricePerArea = (props: Props) => {
-  const pricePerArea = props.pricePerArea;
+export const PricePerArea = ({ pricePerArea }: Props) => {
   let content;
   if (Number.isNaN(pricePerArea)) {
     content = <p>-</p>;

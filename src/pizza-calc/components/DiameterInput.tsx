@@ -6,15 +6,15 @@ type Props = {
   setDiameter: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-export const DiameterInput = (props: Props) => {
+export const DiameterInput = ({ index, diameter, setDiameter }: Props) => {
   const diameterOnChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     const input = event.target.value;
     if (input === "") {
-      props.setDiameter(undefined);
+      setDiameter(undefined);
     } else {
-      props.setDiameter(Number(input));
+      setDiameter(Number(input));
     }
   };
   return (
@@ -24,11 +24,11 @@ export const DiameterInput = (props: Props) => {
           className={styles.diameter}
           type="number"
           inputMode="decimal"
-          placeholder={props.index === 0 ? "23" : undefined}
+          placeholder={index === 0 ? "23" : undefined}
           name="diameter"
           min="0"
           step="1"
-          value={props.diameter}
+          value={diameter}
           onChange={diameterOnChange}
         />
         <span className={styles.unit}>cm</span>

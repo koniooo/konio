@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "pizza-calc/components/Header.module.scss";
 export const Header = () => {
   return (

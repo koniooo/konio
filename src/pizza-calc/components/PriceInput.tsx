@@ -6,13 +6,13 @@ type Props = {
   setPrice: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-export const PriceInput = (props: Props) => {
+export const PriceInput = ({ index, price, setPrice }: Props) => {
   const priceOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
     if (input === "") {
-      props.setPrice(undefined);
+      setPrice(undefined);
     } else {
-      props.setPrice(Number(input));
+      setPrice(Number(input));
     }
   };
   return (
@@ -23,10 +23,10 @@ export const PriceInput = (props: Props) => {
           type="number"
           inputMode="decimal"
           name="price"
-          placeholder={props.index === 0 ? "1980" : undefined}
+          placeholder={index === 0 ? "1980" : undefined}
           min="0"
           step="1"
-          value={props.price}
+          value={price}
           onChange={priceOnChange}
         />
         <span className={styles.unit}>円</span>
