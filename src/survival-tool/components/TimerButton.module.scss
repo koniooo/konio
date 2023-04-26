@@ -1,0 +1,13 @@
+.timerButton {
+  &.green {
+    background-color: var(--myGreen);
+  }
+
+  &.yellow {
+    background-color: var(--myYellow);
+  }
+
+  &.red {
+    background-color: var(--myRed);
+  }
+}

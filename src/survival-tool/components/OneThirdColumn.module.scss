@@ -1,0 +1,6 @@
+.oneThirdColumn {
+  width: var(--oneThirdWidth);
+  &:not(:last-child) {
+    margin-right: var(--paddingX);
+  }
+}

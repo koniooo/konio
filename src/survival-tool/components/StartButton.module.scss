@@ -1,0 +1,8 @@
+.startButton {
+  &.green {
+    background-color: var(--myGreen);
+  }
+  &.yellow {
+    background-color: var(--myYellow);
+  }
+}

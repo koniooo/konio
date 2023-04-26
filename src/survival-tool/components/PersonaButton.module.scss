@@ -1,0 +1,10 @@
+.button {
+  font-size: 2vh;
+  &.red {
+    background-color: var(--myRed);
+  }
+
+  &.green {
+    background-color: var(--myGreen);
+  }
+}

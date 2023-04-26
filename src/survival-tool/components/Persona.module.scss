@@ -1,0 +1,35 @@
+.persona {
+  margin-top: var(--paddingY);
+  height: var(--personaHeight);
+  .vertical {
+    height: var(--hunterSelectHeight);
+    margin-bottom: var(--halfPaddingY);
+    &.top {
+      display: flex;
+      .confinedSpace {
+        margin-right: var(--halfPaddingX);
+        width: calc(
+          var(--oneThirdWidth) - var(--wantedOrderWidth) - var(--halfPaddingX)
+        );
+      }
+
+      .wantedOrder {
+        width: var(--wantedOrderWidth);
+        button {
+          font-size: 1.5vh;
+        }
+      }
+    }
+  }
+  .flexContainer {
+    display: flex;
+    .horizontal {
+      height: calc(var(--hunterSelectHeight) * 2);
+      width: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 2);
+      margin-bottom: var(--halfPaddingY);
+      &.left {
+        margin-right: var(--halfPaddingX);
+      }
+    }
+  }
+}
