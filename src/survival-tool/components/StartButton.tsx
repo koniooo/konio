@@ -1,8 +1,7 @@
-import { start } from "repl";
 import { Props } from "./FirstRow";
-import styles from "./StartButton.module.scss";
+import colors from "./ButtonColor.module.scss";
 import {
-  gameStartTime,
+  readyTime,
   accelerateDecodingTime,
   defaultStartTime,
   defaultHunterId,
@@ -16,7 +15,6 @@ const ultraLongDefaultTime = 30;
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
 const quenchingEffectEndTime = 55;
-const trumpCardTime = 120;
 const detentionTime = 120;
 
 export const StartButton = ({
@@ -61,6 +59,8 @@ export const StartButton = ({
     -120 < startTime && startTime <= 0 && isStartTimerActive;
   const isFifthStatus = startTime === -detentionTime && !isStartTimerActive;
 
+  const timeFromGameStart = accelerateDecodingTime - startTime;
+
   const triggerTimer = (
     isTimerActive: boolean,
     timerId: number | NodeJS.Timer,
@@ -71,13 +71,13 @@ export const StartButton = ({
   ) => {
     if (isTimerActive) {
       clearInterval(timerId);
-      setTime(defaultTime);
+      setTime(defaultTime + readyTime);
       const id = setInterval(() => {
         setTime((t) => t - 1);
       }, 1000);
       setTimerId(id);
     } else {
-      setTime(defaultTime);
+      setTime(defaultTime + readyTime);
       setIsTimerActive(true);
     }
   };
@@ -86,8 +86,39 @@ export const StartButton = ({
   if (isFirstStatus) {
     content = "START";
   } else if (isSecondStatus) {
-    if (startTime) {
+    if (timeFromGameStart < 0) {
+      content = `推理開始まで${-timeFromGameStart}秒`;
+    } else if (0 <= timeFromGameStart && timeFromGameStart < constrainTime) {
+      content = `【封鎖】解除まで
+      ${constrainTime - timeFromGameStart}秒`;
+    } else if (
+      constrainTime <= timeFromGameStart &&
+      timeFromGameStart < quenchingEffectStartTime
+    ) {
+      content = `【焼き入れ効果・フライホイール効果】まで${
+        quenchingEffectStartTime - timeFromGameStart
+      }秒`;
+    } else if (
+      quenchingEffectStartTime <= timeFromGameStart &&
+      timeFromGameStart < quenchingEffectEndTime
+    ) {
+      content = `【焼き入れ効果】終了まで${
+        quenchingEffectEndTime - timeFromGameStart
+      }`;
+    } else if (
+      quenchingEffectEndTime <= timeFromGameStart &&
+      timeFromGameStart < accelerateDecodingTime
+    ) {
+      content = `【解読加速】まで${
+        accelerateDecodingTime - timeFromGameStart
+      }秒`;
     }
+  } else if (isThirdStatus) {
+    content = "【引き留める】";
+  } else if (isFourthStatus) {
+    content = `【引き留める】終了まで${detentionTime + startTime}秒`;
+  } else if (isFifthStatus) {
+    content = `@konio_tracy`;
   }
   return (
     <button
@@ -142,9 +173,7 @@ export const StartButton = ({
             setIsUltraLongTimerActive
           );
         } else if (isSecondStatus) {
-          clearInterval(startTimerId);
-          setStartTime(0);
-          setIsStartTimerActive(false);
+          setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
         } else if (isThirdStatus) {
           const id = setInterval(() => {
             setStartTime((t) => t - 1);
@@ -152,18 +181,14 @@ export const StartButton = ({
           setStartTimerId(id);
           setIsStartTimerActive(true);
         } else if (isFourthStatus) {
-          clearInterval(startTimerId);
-          setStartTime(-120);
-          setIsStartTimerActive(false);
+          setStartTime(-120); // 上に同じ
         } else if (isFifthStatus) {
           setStartTime(defaultStartTime);
         }
       }}
-      className={`${styles.startButton} ${
-        isStartTimerActive ? styles.yellow : styles.green
-      }`}
+      className={isStartTimerActive ? colors.yellow : colors.green}
     >
-      {`${startTime} ${content}`}
+      {content}
     </button>
   );
 };

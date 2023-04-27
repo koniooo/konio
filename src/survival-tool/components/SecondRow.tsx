@@ -6,6 +6,8 @@ import { OneThirdColumn } from "./OneThirdColumn";
 import { Persona } from "./Persona";
 import { HunterSelect } from "./HunterSelect";
 export type Props = {
+  startTime: number;
+  isStartTimerActive: boolean;
   hunterId: number;
   setHunterId: React.Dispatch<React.SetStateAction<number>>;
   hasConfinedSpace: boolean;
@@ -21,7 +23,10 @@ export type Props = {
   primaryTime: number;
   secondaryTime: number;
 };
+
 export const SecondRow = ({
+  startTime,
+  isStartTimerActive,
   hasConfinedSpace,
   setHasConfinedSpace,
   hasWantedOrder,
@@ -42,6 +47,8 @@ export const SecondRow = ({
       <OneThirdColumn>
         <HunterSelect hunterId={hunterId} setHunterId={setHunterId} />
         <Persona
+          startTime={startTime}
+          isStartTimerActive={isStartTimerActive}
           hasConfinedSpace={hasConfinedSpace}
           setHasConfinedSpace={setHasConfinedSpace}
           hasWantedOrder={hasWantedOrder}

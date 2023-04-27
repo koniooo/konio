@@ -25,8 +25,8 @@ export const useTimer = (
     if (time !== 0) return;
     else {
       clearInterval(timerId);
-      setTime(coolTime);
       setIsTimerActive(false);
+      setTime(coolTime);
     }
   }, [time]);
 };

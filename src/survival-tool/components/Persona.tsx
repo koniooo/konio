@@ -1,7 +1,13 @@
 import styles from "./Persona.module.scss";
+import colors from "./ButtonColor.module.scss";
 import { PersonaButton } from "./PersonaButton";
+import { accelerateDecodingTime } from "./Main";
+
+const insolenceTime = 53;
 
 type Props = {
+  startTime: number;
+  isStartTimerActive: boolean;
   hasConfinedSpace: boolean;
   setHasConfinedSpace: React.Dispatch<React.SetStateAction<boolean>>;
   hasWantedOrder: boolean;
@@ -15,6 +21,8 @@ type Props = {
 };
 
 export const Persona = ({
+  startTime,
+  isStartTimerActive,
   hasConfinedSpace,
   setHasConfinedSpace,
   hasWantedOrder,
@@ -26,6 +34,9 @@ export const Persona = ({
   hasTrumpCard,
   setHasTrumpCard,
 }: Props) => {
+  const timeFromGameStart = accelerateDecodingTime - startTime;
+  const isInsolenceTimerActive =
+    isStartTimerActive && timeFromGameStart < insolenceTime;
   return (
     <section className={`${styles.persona}`}>
       <div className={`${styles.vertical} ${styles.top}`}>
@@ -50,12 +61,21 @@ export const Persona = ({
       </div>
       <div className={styles.flexContainer}>
         <div className={`${styles.horizontal} ${styles.left}`}>
-          <PersonaButton
-            hasPersona={hasInsolence}
-            setHasPersona={setHasInsolence}
+          <button
+            className={`${
+              hasInsolence
+                ? colors.red
+                : isInsolenceTimerActive
+                ? colors.yellow
+                : colors.green
+            } ${styles.button}`}
+            onClick={() => {
+              setHasInsolence(!hasInsolence);
+            }}
           >
+            {isInsolenceTimerActive && insolenceTime - timeFromGameStart}
             傲慢
-          </PersonaButton>
+          </button>
         </div>
         <div className={`${styles.horizontal} ${styles.right}`}>
           <PersonaButton

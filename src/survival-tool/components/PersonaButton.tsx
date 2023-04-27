@@ -1,4 +1,5 @@
 import styles from "survival-tool/components/PersonaButton.module.scss";
+import colors from "./ButtonColor.module.scss";
 
 type Props = {
   hasPersona: boolean;
@@ -13,7 +14,7 @@ export const PersonaButton = ({
 }: Props) => {
   return (
     <button
-      className={`${hasPersona ? styles.red : styles.green} ${styles.button}`}
+      className={`${hasPersona ? colors.red : colors.green} ${styles.button}`}
       onClick={() => {
         setHasPersona(!hasPersona);
       }}

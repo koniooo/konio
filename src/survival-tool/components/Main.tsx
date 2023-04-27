@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "survival-tool/components/Main.module.scss";
 import { FirstRow } from "./FirstRow";
 import { SecondRow } from "./SecondRow";
@@ -11,9 +11,9 @@ export const teleportCoolTime = 100;
 export const blinkCoolTime = 150;
 export const ultraLongCoolTime = 150;
 
-export const gameStartTime = 5;
+export const readyTime = 5;
 export const accelerateDecodingTime = 202;
-export const defaultStartTime = gameStartTime + accelerateDecodingTime;
+export const defaultStartTime = readyTime + accelerateDecodingTime;
 export const defaultHunterId = 13; // bloody queen
 
 export const Main = () => {
@@ -47,10 +47,17 @@ export const Main = () => {
   const [hasTrumpCard, setHasTrumpCard] = useState<boolean>(false);
   const [hasInsolence, setHasInsolence] = useState(false);
   const [hasDetention, setHasDetention] = useState(false);
-
   const [hunterId, setHunterId] = useState(defaultHunterId);
   const [primaryTime, setPrimaryTime] = useState(0);
   const [secondaryTime, setSecondaryTime] = useState(0);
+
+  useEffect(() => {
+    if (startTime !== 0 && startTime !== -120) return;
+    else {
+      clearInterval(startTimerId);
+      setIsStartTimerActive(false);
+    }
+  }, [startTime]);
 
   useTimer(
     patrollerCoolTime,
@@ -129,6 +136,8 @@ export const Main = () => {
         setHunterId={setHunterId}
       />
       <SecondRow
+        startTime={startTime}
+        isStartTimerActive={isStartTimerActive}
         hasConfinedSpace={hasConfinedSpace}
         setHasConfinedSpace={setHasConfinedSpace}
         hasWantedOrder={hasWantedOrder}
@@ -172,6 +181,8 @@ export const Main = () => {
         isUltraLongTimerActive={isUltraLongTimerActive}
         setIsUltraLongTimerActive={setIsUltraLongTimerActive}
         setHasTrumpCard={setHasTrumpCard}
+        startTime={startTime}
+        isStartTimerActive={isStartTimerActive}
       />
     </main>
   );

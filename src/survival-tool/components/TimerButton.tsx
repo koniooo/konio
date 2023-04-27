@@ -1,4 +1,4 @@
-import styles from "./TimerButton.module.scss";
+import colors from "./ButtonColor.module.scss";
 
 type Args = {
   isTimerActive: boolean;
@@ -14,8 +14,8 @@ export const TimerButton = ({
 }: Args) => {
   return (
     <button
-      className={`${styles.timerButton} ${
-        !isTimerActive ? styles.green : time > 3 ? styles.yellow : styles.red
+      className={`${
+        !isTimerActive ? colors.green : time > 3 ? colors.yellow : colors.red
       }`}
       onClick={() => {
         setIsTimerActive(!isTimerActive);

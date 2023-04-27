@@ -1,12 +1,7 @@
 import { RowContainer } from "./RowContainer";
 import { TimerButton } from "./TimerButton";
 import styles from "./FourthRow.module.scss";
-import {
-  patrollerCoolTime,
-  teleportCoolTime,
-  blinkCoolTime,
-  ultraLongCoolTime,
-} from "./Main";
+import { TrumpCardButton } from "./TrumpCardButton";
 
 type Props = {
   patrollerTime: number;
@@ -25,6 +20,8 @@ type Props = {
   isUltraLongTimerActive: boolean;
   setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
+  startTime: number;
+  isStartTimerActive: boolean;
 };
 export const FourthRow = ({
   patrollerTime,
@@ -43,6 +40,8 @@ export const FourthRow = ({
   isUltraLongTimerActive,
   setIsUltraLongTimerActive,
   setHasTrumpCard,
+  startTime,
+  isStartTimerActive,
 }: Props) => {
   const trumpCardFunc = (
     sourceTraitTime: number,
@@ -60,73 +59,23 @@ export const FourthRow = ({
   return (
     <RowContainer isEdgeRow={true}>
       <section className={styles.trump}>
-        <button
-          onClick={() => {
-            const activeTraitList = [
-              isPatrollerTimerActive,
-              isTeleportTimerActive,
-              isBlinkTimerActive,
-            ].filter((isActive) => {
-              return isActive;
-            });
-            const numberOfActiveTrait = activeTraitList.length;
-
-            if (numberOfActiveTrait === 1) {
-              setHasTrumpCard(true);
-              if (isPatrollerTimerActive) {
-                trumpCardFunc(
-                  patrollerTime,
-                  patrollerCoolTime,
-                  teleportCoolTime,
-                  setTeleportTime,
-                  setIsTeleportTimerActive
-                );
-
-                trumpCardFunc(
-                  patrollerTime,
-                  patrollerCoolTime,
-                  blinkCoolTime,
-                  setBlinkTime,
-                  setIsBlinkTimerActive
-                );
-              } else if (isTeleportTimerActive) {
-                trumpCardFunc(
-                  teleportTime,
-                  teleportCoolTime,
-                  patrollerCoolTime,
-                  setPatrollerTime,
-                  setIsPatrollerTimerActive
-                );
-
-                trumpCardFunc(
-                  teleportTime,
-                  teleportCoolTime,
-                  blinkCoolTime,
-                  setBlinkTime,
-                  setIsBlinkTimerActive
-                );
-              } else {
-                trumpCardFunc(
-                  blinkTime,
-                  blinkCoolTime,
-                  patrollerCoolTime,
-                  setPatrollerTime,
-                  setIsPatrollerTimerActive
-                );
-
-                trumpCardFunc(
-                  blinkTime,
-                  blinkCoolTime,
-                  teleportCoolTime,
-                  setTeleportTime,
-                  setIsTeleportTimerActive
-                );
-              }
-            }
-          }}
-        >
-          裏向きカード
-        </button>
+        <TrumpCardButton
+          patrollerTime={patrollerTime}
+          setPatrollerTime={setPatrollerTime}
+          isPatrollerTimerActive={isPatrollerTimerActive}
+          setIsPatrollerTimerActive={setIsPatrollerTimerActive}
+          teleportTime={teleportTime}
+          setTeleportTime={setTeleportTime}
+          isTeleportTimerActive={isTeleportTimerActive}
+          setIsTeleportTimerActive={setIsTeleportTimerActive}
+          blinkTime={blinkTime}
+          setBlinkTime={setBlinkTime}
+          isBlinkTimerActive={isBlinkTimerActive}
+          setIsBlinkTimerActive={setIsBlinkTimerActive}
+          setHasTrumpCard={setHasTrumpCard}
+          startTime={startTime}
+          isStartTimerActive={isStartTimerActive}
+        />
       </section>
       <section className={styles.priestess}>
         <TimerButton
