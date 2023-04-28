@@ -1,4 +1,5 @@
 import { Props } from "./FirstRow";
+import { useRef, useEffect } from "react";
 import colors from "./ButtonColor.module.scss";
 import {
   readyTime,
@@ -22,16 +23,10 @@ export const StartButton = ({
   isTeleportTimerActive,
   isBlinkTimerActive,
   isUltraLongTimerActive,
-  setPatrollerTimerId,
-  setTeleportTimerId,
-  setBlinkTimerId,
-  setUltraLongTimerId,
   startTime,
   setStartTime,
   isStartTimerActive,
   setIsStartTimerActive,
-  startTimerId,
-  setStartTimerId,
   patrollerTimerId,
   teleportTimerId,
   blinkTimerId,
@@ -51,6 +46,8 @@ export const StartButton = ({
   setHasTrumpCard,
   setHunterId,
 }: Props) => {
+  const startTimerId = useRef<number>(0);
+
   const isFirstStatus = startTime === defaultStartTime && !isStartTimerActive;
   const isSecondStatus =
     0 < startTime && startTime <= defaultStartTime && isStartTimerActive;
@@ -61,21 +58,29 @@ export const StartButton = ({
 
   const timeFromGameStart = accelerateDecodingTime - startTime;
 
+  useEffect(() => {
+    if (startTime !== 0 && startTime !== -120) return;
+    else {
+      clearInterval(startTimerId.current);
+      setIsStartTimerActive(false);
+    }
+  }, [startTime]);
+
   const triggerTimer = (
     isTimerActive: boolean,
-    timerId: number | NodeJS.Timer,
+    timerId: number,
     defaultTime: number,
     setTime: React.Dispatch<React.SetStateAction<number>>,
-    setTimerId: React.Dispatch<React.SetStateAction<number | NodeJS.Timer>>,
     setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     if (isTimerActive) {
       clearInterval(timerId);
       setTime(defaultTime + readyTime);
-      const id = setInterval(() => {
-        setTime((t) => t - 1);
-      }, 1000);
-      setTimerId(id);
+      timerId = Number(
+        setInterval(() => {
+          setTime((t) => t - 1);
+        }, 1000)
+      );
     } else {
       setTime(defaultTime + readyTime);
       setIsTimerActive(true);
@@ -131,10 +136,11 @@ export const StartButton = ({
           setHasTrumpCard(false);
           setHasDetention(false);
 
-          const id = setInterval(() => {
-            setStartTime((t) => t - 1);
-          }, 1000);
-          setStartTimerId(id);
+          startTimerId.current = Number(
+            setInterval(() => {
+              setStartTime((t) => t - 1);
+            }, 1000)
+          );
           setIsStartTimerActive(true);
 
           triggerTimer(
@@ -142,7 +148,6 @@ export const StartButton = ({
             patrollerTimerId,
             patrollerDefaultTime,
             setPatrollerTime,
-            setPatrollerTimerId,
             setIsPatrollerTimerActive
           );
 
@@ -151,7 +156,6 @@ export const StartButton = ({
             teleportTimerId,
             teleportDefaultTime,
             setTeleportTime,
-            setTeleportTimerId,
             setIsTeleportTimerActive
           );
 
@@ -160,7 +164,6 @@ export const StartButton = ({
             blinkTimerId,
             blinkDefaultTime,
             setBlinkTime,
-            setBlinkTimerId,
             setIsBlinkTimerActive
           );
 
@@ -169,16 +172,16 @@ export const StartButton = ({
             ultraLongTimerId,
             ultraLongDefaultTime,
             setUltraLongTime,
-            setUltraLongTimerId,
             setIsUltraLongTimerActive
           );
         } else if (isSecondStatus) {
           setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
         } else if (isThirdStatus) {
-          const id = setInterval(() => {
-            setStartTime((t) => t - 1);
-          }, 1000);
-          setStartTimerId(id);
+          startTimerId.current = Number(
+            setInterval(() => {
+              setStartTime((t) => t - 1);
+            }, 1000)
+          );
           setIsStartTimerActive(true);
         } else if (isFourthStatus) {
           setStartTime(-120); // 上に同じ

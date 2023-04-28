@@ -1,5 +1,4 @@
-import styles from "./Main.module.scss";
-import { useState } from "react";
+import colors from "./ButtonColor.module.scss";
 import { RowContainer } from "./RowContainer";
 import { OneThirdColumn } from "./OneThirdColumn";
 
@@ -21,7 +20,10 @@ export type Props = {
   hasTrumpCard: boolean;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   primaryTime: number;
+  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
   secondaryTime: number;
+  isPrimaryTimerActive: boolean;
+  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const SecondRow = ({
@@ -41,6 +43,8 @@ export const SecondRow = ({
   setHunterId,
   primaryTime,
   secondaryTime,
+  isPrimaryTimerActive,
+  setIsPrimaryTimerActive,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={false}>
@@ -62,7 +66,20 @@ export const SecondRow = ({
         />
       </OneThirdColumn>
       <OneThirdColumn>
-        <button>{primaryTime}</button>
+        <button
+          className={`${
+            !isPrimaryTimerActive
+              ? colors.green
+              : primaryTime > 3
+              ? colors.yellow
+              : colors.red
+          }`}
+          onClick={() => {
+            setIsPrimaryTimerActive(!isPrimaryTimerActive);
+          }}
+        >
+          {primaryTime}
+        </button>
       </OneThirdColumn>
       <OneThirdColumn>
         <button>{secondaryTime}</button>

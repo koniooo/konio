@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "survival-tool/components/Main.module.scss";
 import { FirstRow } from "./FirstRow";
 import { SecondRow } from "./SecondRow";
-import { useTimer } from "survival-tool/lib/useTimer";
 import { ThirdRow } from "./ThirdRow";
 import { FourthRow } from "./FourthRow";
 
@@ -18,46 +17,60 @@ export const defaultHunterId = 13; // bloody queen
 
 export const Main = () => {
   const [startTime, setStartTime] = useState(defaultStartTime);
-  const [isStartTimerActive, setIsStartTimerActive] = useState<boolean>(false);
-  const [startTimerId, setStartTimerId] = useState<number | NodeJS.Timer>(0);
-  const [patrollerTime, setPatrollerTime] = useState<number>(patrollerCoolTime);
-  const [teleportTime, setTeleportTime] = useState<number>(teleportCoolTime);
-  const [blinkTime, setBlinkTime] = useState<number>(blinkCoolTime);
-  const [ultraLongTime, setUltraLongTime] = useState<number>(ultraLongCoolTime);
-  const [isPatrollerTimerActive, setIsPatrollerTimerActive] =
-    useState<boolean>(false);
-  const [isTeleportTimerActive, setIsTeleportTimerActive] =
-    useState<boolean>(false);
-  const [isBlinkTimerActive, setIsBlinkTimerActive] = useState<boolean>(false);
-  const [isUltraLongTimerActive, setIsUltraLongTimerActive] =
-    useState<boolean>(false);
-  const [patrollerTimerId, setPatrollerTimerId] = useState<
-    number | NodeJS.Timer
-  >(0);
-  const [teleportTimerId, setTeleportTimerId] = useState<number | NodeJS.Timer>(
-    0
-  );
-  const [blinkTimerId, setBlinkTimerId] = useState<number | NodeJS.Timer>(0);
-  const [ultraLongTimerId, setUltraLongTimerId] = useState<
-    number | NodeJS.Timer
-  >(0);
+  const [isStartTimerActive, setIsStartTimerActive] = useState(false);
+  const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
+  const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
+  const [blinkTime, setBlinkTime] = useState(blinkCoolTime);
+  const [ultraLongTime, setUltraLongTime] = useState(ultraLongCoolTime);
+  const [isPatrollerTimerActive, setIsPatrollerTimerActive] = useState(false);
+  const [isTeleportTimerActive, setIsTeleportTimerActive] = useState(false);
+  const [isBlinkTimerActive, setIsBlinkTimerActive] = useState(false);
+  const [isUltraLongTimerActive, setIsUltraLongTimerActive] = useState(false);
   const [hasConfinedSpace, setHasConfinedSpace] = useState(false);
-
   const [hasWantedOrder, setHasWantedOrder] = useState(false);
-  const [hasTrumpCard, setHasTrumpCard] = useState<boolean>(false);
+  const [hasTrumpCard, setHasTrumpCard] = useState(false);
   const [hasInsolence, setHasInsolence] = useState(false);
   const [hasDetention, setHasDetention] = useState(false);
   const [hunterId, setHunterId] = useState(defaultHunterId);
-  const [primaryTime, setPrimaryTime] = useState(0);
+  const [primaryTime, setPrimaryTime] = useState(30);
   const [secondaryTime, setSecondaryTime] = useState(0);
+  const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
 
-  useEffect(() => {
-    if (startTime !== 0 && startTime !== -120) return;
-    else {
-      clearInterval(startTimerId);
-      setIsStartTimerActive(false);
-    }
-  }, [startTime]);
+  const patrollerTimerId = useRef<number>(0);
+  const teleportTimerId = useRef<number>(0);
+  const blinkTimerId = useRef<number>(0);
+  const ultraLongTimerId = useRef<number>(0);
+
+  const useTimer = (
+    coolTime: number,
+    time: number,
+    setTime: React.Dispatch<React.SetStateAction<number>>,
+    isTimerActive: boolean,
+    setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
+    timerId: React.MutableRefObject<number>
+  ) => {
+    useEffect(() => {
+      if (isTimerActive) {
+        timerId.current = Number(
+          setInterval(() => {
+            setTime((t) => t - 1);
+          }, 1000)
+        );
+      } else {
+        clearInterval(timerId.current);
+        setTime(coolTime);
+      }
+    }, [isTimerActive]);
+
+    useEffect(() => {
+      if (time !== 0) return;
+      else {
+        clearInterval(timerId.current);
+        setIsTimerActive(false);
+        setTime(coolTime);
+      }
+    }, [time]);
+  };
 
   useTimer(
     patrollerCoolTime,
@@ -65,8 +78,7 @@ export const Main = () => {
     setPatrollerTime,
     isPatrollerTimerActive,
     setIsPatrollerTimerActive,
-    patrollerTimerId,
-    setPatrollerTimerId
+    patrollerTimerId
   );
 
   useTimer(
@@ -75,8 +87,7 @@ export const Main = () => {
     setTeleportTime,
     isTeleportTimerActive,
     setIsTeleportTimerActive,
-    teleportTimerId,
-    setTeleportTimerId
+    teleportTimerId
   );
 
   useTimer(
@@ -85,8 +96,7 @@ export const Main = () => {
     setBlinkTime,
     isBlinkTimerActive,
     setIsBlinkTimerActive,
-    blinkTimerId,
-    setBlinkTimerId
+    blinkTimerId
   );
 
   useTimer(
@@ -95,9 +105,9 @@ export const Main = () => {
     setUltraLongTime,
     isUltraLongTimerActive,
     setIsUltraLongTimerActive,
-    ultraLongTimerId,
-    setUltraLongTimerId
+    ultraLongTimerId
   );
+
 
   return (
     <main className={styles.main}>
@@ -106,20 +116,14 @@ export const Main = () => {
         isTeleportTimerActive={isTeleportTimerActive}
         isBlinkTimerActive={isBlinkTimerActive}
         isUltraLongTimerActive={isUltraLongTimerActive}
-        setPatrollerTimerId={setPatrollerTimerId}
-        setTeleportTimerId={setTeleportTimerId}
-        setBlinkTimerId={setBlinkTimerId}
-        setUltraLongTimerId={setUltraLongTimerId}
         startTime={startTime}
         setStartTime={setStartTime}
         isStartTimerActive={isStartTimerActive}
         setIsStartTimerActive={setIsStartTimerActive}
-        startTimerId={startTimerId}
-        patrollerTimerId={patrollerTimerId}
-        teleportTimerId={teleportTimerId}
-        blinkTimerId={blinkTimerId}
-        ultraLongTimerId={ultraLongTimerId}
-        setStartTimerId={setStartTimerId}
+        patrollerTimerId={patrollerTimerId.current}
+        teleportTimerId={teleportTimerId.current}
+        blinkTimerId={blinkTimerId.current}
+        ultraLongTimerId={ultraLongTimerId.current}
         setPatrollerTime={setPatrollerTime}
         setTeleportTime={setTeleportTime}
         setBlinkTime={setBlinkTime}
@@ -152,6 +156,9 @@ export const Main = () => {
         setHunterId={setHunterId}
         primaryTime={primaryTime}
         secondaryTime={secondaryTime}
+        isPrimaryTimerActive={isPrimaryTimerActive}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        setPrimaryTime={setPrimaryTime}
       />
       <ThirdRow
         patrollerTime={patrollerTime}

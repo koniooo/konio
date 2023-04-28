@@ -55,6 +55,7 @@ export const TrumpCardButton = ({
     setTargetTraitTime(targetTraitTime);
     setIsTargetTraitTimerActive(true);
   };
+
   return (
     <button
       className={isTrumpCardTimerActive ? colors.yellow : colors.green}
@@ -103,6 +104,7 @@ export const TrumpCardButton = ({
               setIsBlinkTimerActive
             );
           } else {
+            setIsBlinkTimerActive(false);
             trumpCardFunc(
               blinkTime,
               blinkCoolTime,
