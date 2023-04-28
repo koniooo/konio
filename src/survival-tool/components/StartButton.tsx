@@ -7,6 +7,7 @@ import {
   defaultStartTime,
   defaultHunterId,
 } from "./Main";
+import { start } from "repl";
 
 const patrollerDefaultTime = 30;
 const teleportDefaultTime = 45;
@@ -16,6 +17,7 @@ const ultraLongDefaultTime = 30;
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
 const quenchingEffectEndTime = 55;
+const claustrophobiaTime = 20; // 幽閉の恐怖
 const detentionTime = 120;
 
 export const StartButton = ({
@@ -68,19 +70,18 @@ export const StartButton = ({
 
   const triggerTimer = (
     isTimerActive: boolean,
-    timerId: number,
+    timerId: React.MutableRefObject<number>,
     defaultTime: number,
     setTime: React.Dispatch<React.SetStateAction<number>>,
     setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     if (isTimerActive) {
-      clearInterval(timerId);
+      clearInterval(timerId.current);
       setTime(defaultTime + readyTime);
-      timerId = Number(
-        setInterval(() => {
-          setTime((t) => t - 1);
-        }, 1000)
-      );
+      const id = setInterval(() => {
+        setTime((t) => t - 1);
+      }, 1000);
+      timerId.current = Number(id);
     } else {
       setTime(defaultTime + readyTime);
       setIsTimerActive(true);
@@ -110,18 +111,19 @@ export const StartButton = ({
       content = `【焼き入れ効果】終了まで${
         quenchingEffectEndTime - timeFromGameStart
       }`;
-    } else if (
-      quenchingEffectEndTime <= timeFromGameStart &&
-      timeFromGameStart < accelerateDecodingTime
-    ) {
+    } else {
       content = `【解読加速】まで${
         accelerateDecodingTime - timeFromGameStart
       }秒`;
     }
   } else if (isThirdStatus) {
-    content = "【引き留める】";
+    content = "【通電】";
   } else if (isFourthStatus) {
-    content = `【引き留める】終了まで${detentionTime + startTime}秒`;
+    if (startTime > -20) {
+      content = `【幽閉の恐怖】解除まで${claustrophobiaTime + startTime}秒`;
+    } else {
+      content = `【引き留める】終了まで${detentionTime + startTime}秒`;
+    }
   } else if (isFifthStatus) {
     content = `@konio_tracy`;
   }
@@ -136,11 +138,10 @@ export const StartButton = ({
           setHasTrumpCard(false);
           setHasDetention(false);
 
-          startTimerId.current = Number(
-            setInterval(() => {
-              setStartTime((t) => t - 1);
-            }, 1000)
-          );
+          const id = setInterval(() => {
+            setStartTime((t) => t - 1);
+          }, 1000);
+          startTimerId.current = Number(id);
           setIsStartTimerActive(true);
 
           triggerTimer(
@@ -177,11 +178,10 @@ export const StartButton = ({
         } else if (isSecondStatus) {
           setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
         } else if (isThirdStatus) {
-          startTimerId.current = Number(
-            setInterval(() => {
-              setStartTime((t) => t - 1);
-            }, 1000)
-          );
+          const id = setInterval(() => {
+            setStartTime((t) => t - 1);
+          }, 1000);
+          startTimerId.current = Number(id);
           setIsStartTimerActive(true);
         } else if (isFourthStatus) {
           setStartTime(-120); // 上に同じ

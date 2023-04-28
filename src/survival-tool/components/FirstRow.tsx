@@ -5,10 +5,10 @@ export type Props = {
   setStartTime: React.Dispatch<React.SetStateAction<number>>;
   isStartTimerActive: boolean;
   setIsStartTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  patrollerTimerId: number;
-  teleportTimerId: number;
-  blinkTimerId: number;
-  ultraLongTimerId: number;
+  patrollerTimerId: React.MutableRefObject<number>;
+  teleportTimerId: React.MutableRefObject<number>;
+  blinkTimerId: React.MutableRefObject<number>;
+  ultraLongTimerId: React.MutableRefObject<number>;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
   setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
   setBlinkTime: React.Dispatch<React.SetStateAction<number>>;

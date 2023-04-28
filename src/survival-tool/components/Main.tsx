@@ -51,11 +51,10 @@ export const Main = () => {
   ) => {
     useEffect(() => {
       if (isTimerActive) {
-        timerId.current = Number(
-          setInterval(() => {
-            setTime((t) => t - 1);
-          }, 1000)
-        );
+        const id = setInterval(() => {
+          setTime((t) => t - 1);
+        }, 1000);
+        timerId.current = Number(id);
       } else {
         clearInterval(timerId.current);
         setTime(coolTime);
@@ -108,7 +107,6 @@ export const Main = () => {
     ultraLongTimerId
   );
 
-
   return (
     <main className={styles.main}>
       <FirstRow
@@ -120,10 +118,10 @@ export const Main = () => {
         setStartTime={setStartTime}
         isStartTimerActive={isStartTimerActive}
         setIsStartTimerActive={setIsStartTimerActive}
-        patrollerTimerId={patrollerTimerId.current}
-        teleportTimerId={teleportTimerId.current}
-        blinkTimerId={blinkTimerId.current}
-        ultraLongTimerId={ultraLongTimerId.current}
+        patrollerTimerId={patrollerTimerId}
+        teleportTimerId={teleportTimerId}
+        blinkTimerId={blinkTimerId}
+        ultraLongTimerId={ultraLongTimerId}
         setPatrollerTime={setPatrollerTime}
         setTeleportTime={setTeleportTime}
         setBlinkTime={setBlinkTime}
