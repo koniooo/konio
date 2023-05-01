@@ -1,0 +1,30 @@
+.secondRowRightDiv {
+  width: calc(var(--oneThirdWidth) * 2 + var(--paddingX));
+  .hunterSelectAndLanguage {
+    height: var(--hunterSelectHeight);
+    margin-bottom: var(--halfPaddingY);
+    display: flex;
+    .hunterSelectSec {
+      width: var(--oneThirdWidth);
+      height: 100%;
+      margin-right: var(--paddingX);
+    }
+    .languageLink {
+      width: var(--oneThirdWidth);
+      a {
+        display: block;
+        height: 100%;
+        background-color: var(--myGreen);
+        border-radius: 0.5vh;
+        text-decoration: none;
+        color: var(--myGray);
+        &:active {
+          color: var(--myGray);
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

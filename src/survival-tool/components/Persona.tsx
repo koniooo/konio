@@ -1,9 +1,6 @@
 import styles from "./Persona.module.scss";
-import colors from "./ButtonColor.module.scss";
 import { PersonaButton } from "./PersonaButton";
-import { accelerateDecodingTime } from "./Main";
-
-const insolenceTime = 53;
+import { PersonaButtonWithTimer } from "./PersonaButtonWithTimer";
 
 type Props = {
   startTime: number;
@@ -34,9 +31,6 @@ export const Persona = ({
   hasTrumpCard,
   setHasTrumpCard,
 }: Props) => {
-  const timeFromGameStart = accelerateDecodingTime - startTime;
-  const isInsolenceTimerActive =
-    isStartTimerActive && timeFromGameStart < insolenceTime;
   return (
     <section className={`${styles.persona}`}>
       <div className={`${styles.vertical} ${styles.top}`}>
@@ -61,40 +55,32 @@ export const Persona = ({
       </div>
       <div className={styles.flexContainer}>
         <div className={`${styles.horizontal} ${styles.left}`}>
-          <button
-            className={`${
-              hasInsolence
-                ? colors.red
-                : isInsolenceTimerActive
-                ? colors.yellow
-                : colors.green
-            } ${styles.button}`}
-            onClick={() => {
-              setHasInsolence(!hasInsolence);
-            }}
-          >
-            {isInsolenceTimerActive && insolenceTime - timeFromGameStart}
-            傲慢
-          </button>
+          <PersonaButtonWithTimer
+            persona="insolence"
+            hasTrait={hasInsolence}
+            setHasTrait={setHasInsolence}
+            isStartTimerActive={isStartTimerActive}
+            startTime={startTime}
+          />
         </div>
         <div className={`${styles.horizontal} ${styles.right}`}>
-          <PersonaButton
-            hasPersona={hasTrumpCard}
-            setHasPersona={setHasTrumpCard}
-          >
-            裏向き
-            <br />
-            カード
-          </PersonaButton>
+          <PersonaButtonWithTimer
+            persona="trumpCard"
+            hasTrait={hasTrumpCard}
+            setHasTrait={setHasTrumpCard}
+            isStartTimerActive={isStartTimerActive}
+            startTime={startTime}
+          />
         </div>
       </div>
       <div className={`${styles.vertical} ${styles.bottom}`}>
-        <PersonaButton
-          hasPersona={hasDetention}
-          setHasPersona={setHasDetention}
-        >
-          引き留める
-        </PersonaButton>
+        <PersonaButtonWithTimer
+          persona="detention"
+          hasTrait={hasDetention}
+          setHasTrait={setHasDetention}
+          isStartTimerActive={isStartTimerActive}
+          startTime={startTime}
+        />
       </div>
     </section>
   );

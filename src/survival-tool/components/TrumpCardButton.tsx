@@ -2,7 +2,7 @@ import { patrollerCoolTime, teleportCoolTime, blinkCoolTime } from "./Main";
 import colors from "./ButtonColor.module.scss";
 import { accelerateDecodingTime } from "./Main";
 
-const trumpCardTime = 120;
+export const trumpCardTime = 120;
 
 type Props = {
   patrollerTime: number;
@@ -41,7 +41,9 @@ export const TrumpCardButton = ({
 }: Props) => {
   const timeFromGameStart = accelerateDecodingTime - startTime;
   const isTrumpCardTimerActive =
-    isStartTimerActive && timeFromGameStart < trumpCardTime;
+    isStartTimerActive &&
+    0 <= timeFromGameStart &&
+    timeFromGameStart < trumpCardTime;
   const trumpCardFunc = (
     sourceTraitTime: number,
     sourceTraitCoolTime: number,

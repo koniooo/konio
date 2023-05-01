@@ -13,11 +13,12 @@ export const ultraLongCoolTime = 150;
 
 export const readyTime = 5;
 export const accelerateDecodingTime = 202;
-export const defaultStartTime = readyTime + accelerateDecodingTime;
 export const defaultHunterId = 13; // bloody queen
 
 export const Main = () => {
-  const [startTime, setStartTime] = useState(defaultStartTime);
+  const [startTime, setStartTime] = useState(
+    readyTime + accelerateDecodingTime
+  );
   const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
   const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
   const [blinkTime, setBlinkTime] = useState(blinkCoolTime);
@@ -184,6 +185,7 @@ export const Main = () => {
         teleportTimerId={teleportTimerId}
         blinkTimerId={blinkTimerId}
         ultraLongTimerId={ultraLongTimerId}
+        primaryTimerId={primaryTimerId}
         setPatrollerTime={setPatrollerTime}
         setTeleportTime={setTeleportTime}
         setBlinkTime={setBlinkTime}
@@ -200,6 +202,10 @@ export const Main = () => {
         setHunterId={setHunterId}
         setPrimaryTime={setPrimaryTime}
         setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        isPrimaryTimerActive={isPrimaryTimerActive}
+        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+        hunterId={hunterId}
       />
       <SecondRow
         startTime={startTime}

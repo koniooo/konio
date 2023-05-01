@@ -1,7 +1,7 @@
 .main {
-  --myRed: #ff0080;
-  --myYellow: #ffff00;
-  --myGreen: #00ffff;
+  --myRed: #e74c3c;
+  --myYellow: #f1c40f;
+  --myGreen: #2ecc71;
   --myGray: #292b2f;
 
   --paddingX: 2.5vw;
@@ -13,10 +13,7 @@
   --oneThirdWidth: calc((100vw - var(--paddingX) * 4) / 3);
 
   --hunterSelectHeight: calc(
-    (var(--middleHeight) - var(--paddingY) - var(--halfPaddingY) * 2) / 5
-  );
-  --personaHeight: calc(
-    var(--middleHeight) - var(--hunterSelectHeight) - var(--paddingY)
+    (var(--middleHeight) - var(--halfPaddingY) * 2) / 4
   );
   --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 3);
 

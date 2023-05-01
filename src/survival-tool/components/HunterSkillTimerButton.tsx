@@ -23,7 +23,7 @@ export const HunterSkillTimerButton = ({
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
   const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
-  const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime || [0, 0]; // undefined となる可能性があるため undefined の場合は [0, 0] というデフォルト値を設定する
+  const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
   const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime || [0, 0];
 
   const haveSingleStatus =
@@ -80,7 +80,7 @@ export const HunterSkillTimerButton = ({
             time > selectedTertiaryCoolTime[1]
               ? time - selectedTertiaryCoolTime[1]
               : time
-          } ${selectedHunter.secondaryNameJa}`}
+          } ${selectedHunter.tertiaryNameJa}`}
       </DualStatusTimerButton>
     );
   }

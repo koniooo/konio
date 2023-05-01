@@ -1,4 +1,4 @@
-import colors from "./ButtonColor.module.scss";
+import styles from "./SecondRow.module.scss";
 import { RowContainer } from "./RowContainer";
 import { OneThirdColumn } from "./OneThirdColumn";
 import { HunterSkillTimer } from "./HunterSkillTimer";
@@ -71,7 +71,6 @@ export const SecondRow = ({
   return (
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
-        <HunterSelect hunterId={hunterId} setHunterId={setHunterId} />
         <Persona
           startTime={startTime}
           isStartTimerActive={isStartTimerActive}
@@ -87,24 +86,38 @@ export const SecondRow = ({
           setHasDetention={setHasDetention}
         />
       </OneThirdColumn>
-      <HunterSkillTimer
-        hunterId={hunterId}
-        primaryTime={primaryTime}
-        secondaryTime={secondaryTime}
-        tertiaryTime={tertiaryTime}
-        setPrimaryTime={setPrimaryTime}
-        setSecondaryTime={setSecondaryTime}
-        setTertiaryTime={setTertiaryTime}
-        isPrimaryTimerActive={isPrimaryTimerActive}
-        isSecondaryTimerActive={isSecondaryTimerActive}
-        isTertiaryTimerActive={isTertiaryTimerActive}
-        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-        primaryTimerId={primaryTimerId}
-        secondaryTimerId={secondaryTimerId}
-        tertiaryTimerId={tertiaryTimerId}
-      />
+      <div className={styles.secondRowRightDiv}>
+        <div className={styles.hunterSelectAndLanguage}>
+          <section className={styles.hunterSelectSec}>
+            <HunterSelect hunterId={hunterId} setHunterId={setHunterId} />
+          </section>
+          <section className={styles.languageLink}>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              English
+            </a>
+          </section>
+        </div>
+        <div>
+          <HunterSkillTimer
+            hunterId={hunterId}
+            primaryTime={primaryTime}
+            secondaryTime={secondaryTime}
+            tertiaryTime={tertiaryTime}
+            setPrimaryTime={setPrimaryTime}
+            setSecondaryTime={setSecondaryTime}
+            setTertiaryTime={setTertiaryTime}
+            isPrimaryTimerActive={isPrimaryTimerActive}
+            isSecondaryTimerActive={isSecondaryTimerActive}
+            isTertiaryTimerActive={isTertiaryTimerActive}
+            setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+            setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+            setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+            primaryTimerId={primaryTimerId}
+            secondaryTimerId={secondaryTimerId}
+            tertiaryTimerId={tertiaryTimerId}
+          />
+        </div>
+      </div>
     </RowContainer>
   );
 };

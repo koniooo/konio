@@ -8,24 +8,23 @@ type Props = {
 
 export const HunterSelect = ({ hunterId, setHunterId }: Props) => {
   return (
-    <section className={styles.hunterSelect}>
-      <select
-        name="hunter"
-        id="hunter-select"
-        value={hunterId}
-        onChange={(event) => {
-          const targetValue = Number(event.target.value);
-          setHunterId(targetValue);
-        }}
-      >
-        {hunterData.map((hunterDatum, index) => {
-          return (
-            <option value={index} key={index}>
-              {hunterDatum.nameJa}
-            </option>
-          );
-        })}
-      </select>
-    </section>
+    <select
+      className={styles.hunterSelect}
+      name="hunter"
+      id="hunter-select"
+      value={hunterId}
+      onChange={(event) => {
+        const targetValue = Number(event.target.value);
+        setHunterId(targetValue);
+      }}
+    >
+      {hunterData.map((hunterDatum, index) => {
+        return (
+          <option value={index} key={index}>
+            {hunterDatum.nameJa}
+          </option>
+        );
+      })}
+    </select>
   );
 };

@@ -1,9 +1,8 @@
 import { hunterData } from "survival-tool/lib/hunterData";
 import { OneThirdColumn } from "./OneThirdColumn";
 import { TwoThirdColumn } from "./TwoThirdColumn";
-import { TimerButton } from "./TimerButton";
-import { DualStatusTimerButton } from "./DualStatusTimerButton";
 import { HunterSkillTimerButton } from "./HunterSkillTimerButton";
+import styles from "./HunterSkillTimer.module.scss";
 
 type Props = {
   hunterId: number;
@@ -59,7 +58,28 @@ export const HunterSkillTimer = ({
           />
         </OneThirdColumn>
         <OneThirdColumn>
-          <button></button>
+          <section className={styles.halfHeightButton}>
+            <HunterSkillTimerButton
+              skill="secondary"
+              hunterId={hunterId}
+              time={secondaryTime}
+              setTime={setSecondaryTime}
+              isTimerActive={isSecondaryTimerActive}
+              setIsTimerActive={setIsSecondaryTimerActive}
+              timerId={secondaryTimerId}
+            />
+          </section>
+          <section className={styles.halfHeightButton}>
+            <HunterSkillTimerButton
+              skill="tertiary"
+              hunterId={hunterId}
+              time={tertiaryTime}
+              setTime={setTertiaryTime}
+              isTimerActive={isTertiaryTimerActive}
+              setIsTimerActive={setIsTertiaryTimerActive}
+              timerId={tertiaryTimerId}
+            />
+          </section>
         </OneThirdColumn>
       </>
     );

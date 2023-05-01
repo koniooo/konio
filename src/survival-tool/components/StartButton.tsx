@@ -1,12 +1,7 @@
 import { Props } from "./FirstRow";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, ReactNode } from "react";
 import colors from "./ButtonColor.module.scss";
-import {
-  readyTime,
-  accelerateDecodingTime,
-  defaultStartTime,
-  defaultHunterId,
-} from "./Main";
+import { readyTime, accelerateDecodingTime, defaultHunterId } from "./Main";
 
 const patrollerDefaultTime = 30;
 const teleportDefaultTime = 45;
@@ -33,6 +28,7 @@ export const StartButton = ({
   teleportTimerId,
   blinkTimerId,
   ultraLongTimerId,
+  primaryTimerId,
   setPatrollerTime,
   setTeleportTime,
   setBlinkTime,
@@ -48,27 +44,13 @@ export const StartButton = ({
   setHasTrumpCard,
   setHunterId,
   setPrimaryTime,
+  isPrimaryTimerActive,
   setIsPrimaryTimerActive,
+  setIsSecondaryTimerActive,
+  setIsTertiaryTimerActive,
+  hunterId,
 }: Props) => {
   const startTimerId = useRef<number>(0);
-
-  const isFirstStatus = startTime === defaultStartTime && !isStartTimerActive;
-  const isSecondStatus =
-    0 < startTime && startTime <= defaultStartTime && isStartTimerActive;
-  const isThirdStatus = startTime === 0 && !isStartTimerActive;
-  const isFourthStatus =
-    -120 < startTime && startTime <= 0 && isStartTimerActive;
-  const isFifthStatus = startTime === -detentionTime && !isStartTimerActive;
-
-  const timeFromGameStart = accelerateDecodingTime - startTime;
-
-  useEffect(() => {
-    if (startTime !== 0 && startTime !== -120) return;
-    else {
-      clearInterval(startTimerId.current);
-      setIsStartTimerActive(false);
-    }
-  }, [startTime]);
 
   const triggerTimer = (
     isTimerActive: boolean,
@@ -79,52 +61,143 @@ export const StartButton = ({
   ) => {
     if (isTimerActive) {
       clearInterval(timerId.current);
-      setTime(defaultTime + readyTime);
+      setTime(defaultTime);
       const id = setInterval(() => {
         setTime((t) => t - 1);
       }, 1000);
       timerId.current = Number(id);
     } else {
-      setTime(defaultTime + readyTime);
+      setTime(defaultTime);
       setIsTimerActive(true);
     }
   };
 
+  useEffect(() => {
+    if (
+      startTime !== accelerateDecodingTime &&
+      startTime !== 0 &&
+      startTime !== -detentionTime
+    )
+      return;
+    else if (startTime === accelerateDecodingTime) {
+      if (hunterId === defaultHunterId) {
+        // 画面が回転してる間にハンターを特定している可能性があるため
+        triggerTimer(
+          isPrimaryTimerActive,
+          primaryTimerId,
+          bloodyQueenDefaultTime,
+          setPrimaryTime,
+          setIsPrimaryTimerActive
+        );
+      }
+
+      triggerTimer(
+        isPatrollerTimerActive,
+        patrollerTimerId,
+        patrollerDefaultTime,
+        setPatrollerTime,
+        setIsPatrollerTimerActive
+      );
+
+      triggerTimer(
+        isTeleportTimerActive,
+        teleportTimerId,
+        teleportDefaultTime,
+        setTeleportTime,
+        setIsTeleportTimerActive
+      );
+
+      triggerTimer(
+        isBlinkTimerActive,
+        blinkTimerId,
+        blinkDefaultTime,
+        setBlinkTime,
+        setIsBlinkTimerActive
+      );
+
+      triggerTimer(
+        isUltraLongTimerActive,
+        ultraLongTimerId,
+        ultraLongDefaultTime,
+        setUltraLongTime,
+        setIsUltraLongTimerActive
+      );
+    } else {
+      clearInterval(startTimerId.current);
+      setIsStartTimerActive(false);
+    }
+  }, [startTime]);
+
+  const isFirstStatus =
+    startTime === readyTime + accelerateDecodingTime && !isStartTimerActive;
+  const isSecondStatus =
+    0 < startTime &&
+    startTime <= readyTime + accelerateDecodingTime &&
+    isStartTimerActive;
+  const isThirdStatus = startTime === 0 && !isStartTimerActive;
+  const isFourthStatus =
+    -120 < startTime && startTime <= 0 && isStartTimerActive;
+  const isFifthStatus = startTime === -detentionTime && !isStartTimerActive;
+
+  const timeFromGameStart = accelerateDecodingTime - startTime;
+
   let content;
   if (isFirstStatus) {
-    content = "START";
+    content = (
+      <>
+        <p>START</p>
+        <br />
+        <p>画面が割れて視点が回り始める瞬間にタップ</p>
+      </>
+    );
   } else if (isSecondStatus) {
     if (timeFromGameStart < 0) {
-      content = `推理開始まで${-timeFromGameStart}秒`;
+      content = <p>推理開始まで {-timeFromGameStart} 秒</p>;
     } else if (0 <= timeFromGameStart && timeFromGameStart < constrainTime) {
-      content = `【封鎖】解除まで
-      ${constrainTime - timeFromGameStart}秒`;
+      content = (
+        <>
+          <p>【封鎖】解除まで {constrainTime - timeFromGameStart} 秒</p>
+          <br />
+          <p>
+            【焼き入れ効果・フライホイール効果】まで{` `}
+            {quenchingEffectStartTime - timeFromGameStart} 秒
+          </p>
+        </>
+      );
     } else if (
       constrainTime <= timeFromGameStart &&
       timeFromGameStart < quenchingEffectStartTime
     ) {
-      content = `【焼き入れ効果・フライホイール効果】まで${
-        quenchingEffectStartTime - timeFromGameStart
-      }秒`;
+      content = (
+        <p>
+          【焼き入れ効果・フライホイール効果】まで{` `}
+          {quenchingEffectStartTime - timeFromGameStart} 秒
+        </p>
+      );
     } else if (
       quenchingEffectStartTime <= timeFromGameStart &&
       timeFromGameStart < quenchingEffectEndTime
     ) {
-      content = `【焼き入れ効果】終了まで${
-        quenchingEffectEndTime - timeFromGameStart
-      }`;
+      content = (
+        <p>
+          【焼き入れ効果】終了まで {quenchingEffectEndTime - timeFromGameStart}{" "}
+          秒
+        </p>
+      );
     } else {
-      content = `【解読加速】まで${
-        accelerateDecodingTime - timeFromGameStart
-      }秒`;
+      content = (
+        <p>【解読加速】まで {accelerateDecodingTime - timeFromGameStart} 秒</p>
+      );
     }
   } else if (isThirdStatus) {
-    content = "【通電】";
+    content = <p>【通電】</p>;
   } else if (isFourthStatus) {
     if (startTime > -20) {
-      content = `【幽閉の恐怖】解除まで${claustrophobiaTime + startTime}秒`;
+      content = (
+        <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}秒</p>
+      );
     } else {
-      content = `【引き留める】終了まで${detentionTime + startTime}秒`;
+      content = <p>【引き留める】終了まで {detentionTime + startTime}秒</p>;
     }
   } else if (isFifthStatus) {
     content = `@konio_tracy`;
@@ -134,7 +207,13 @@ export const StartButton = ({
     <button
       onClick={() => {
         if (isFirstStatus) {
-          setHunterId(defaultHunterId);
+          setIsPatrollerTimerActive(false);
+          setIsTeleportTimerActive(false);
+          setIsBlinkTimerActive(false);
+          setIsUltraLongTimerActive(false);
+          setIsPrimaryTimerActive(false);
+          setIsSecondaryTimerActive(false);
+          setIsTertiaryTimerActive(false);
 
           setHasConfinedSpace(false);
           setHasWantedOrder(false);
@@ -142,46 +221,13 @@ export const StartButton = ({
           setHasTrumpCard(false);
           setHasDetention(false);
 
+          setHunterId(defaultHunterId);
+
           const id = setInterval(() => {
             setStartTime((t) => t - 1);
           }, 1000);
           startTimerId.current = Number(id);
           setIsStartTimerActive(true);
-
-          triggerTimer(
-            isPatrollerTimerActive,
-            patrollerTimerId,
-            patrollerDefaultTime,
-            setPatrollerTime,
-            setIsPatrollerTimerActive
-          );
-
-          triggerTimer(
-            isTeleportTimerActive,
-            teleportTimerId,
-            teleportDefaultTime,
-            setTeleportTime,
-            setIsTeleportTimerActive
-          );
-
-          triggerTimer(
-            isBlinkTimerActive,
-            blinkTimerId,
-            blinkDefaultTime,
-            setBlinkTime,
-            setIsBlinkTimerActive
-          );
-
-          triggerTimer(
-            isUltraLongTimerActive,
-            ultraLongTimerId,
-            ultraLongDefaultTime,
-            setUltraLongTime,
-            setIsUltraLongTimerActive
-          );
-
-          setPrimaryTime(bloodyQueenDefaultTime);
-          setIsPrimaryTimerActive(true);
         } else if (isSecondStatus) {
           setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
         } else if (isThirdStatus) {
@@ -193,7 +239,7 @@ export const StartButton = ({
         } else if (isFourthStatus) {
           setStartTime(-120); // 上に同じ
         } else if (isFifthStatus) {
-          setStartTime(defaultStartTime);
+          setStartTime(readyTime + accelerateDecodingTime);
         }
       }}
       className={isStartTimerActive ? colors.yellow : colors.green}

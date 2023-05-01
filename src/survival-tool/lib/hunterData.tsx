@@ -99,7 +99,7 @@ export const hunterData: readonly hunterDatum[] = [
     nameEn: "Dream Witch",
     primaryNameJa: "寄生",
     primaryNameEn: "Leech",
-    primaryCoolTime: [75], // オリジナル信者（寄生信者は含まない）で殴るたびにクールタイムが40%短くなる（例えば残り60秒のときに殴れば残りが60×0.6=36秒になる。）
+    primaryCoolTime: [75], // オリジナル信者（寄生信者は含まない）で殴るたびにクールタイムが40%短くなる（例えば残り時間が60秒のときに殴れば残り時間が60×0.6=36秒になる）
     secondaryNameJa: "同化",
     secondaryNameEn: "Assimilation",
     secondaryCoolTime: [45], // 上に同じ

@@ -1,6 +1,5 @@
 .persona {
-  margin-top: var(--paddingY);
-  height: var(--personaHeight);
+  height: var(--middleHeight);
   .vertical {
     height: var(--hunterSelectHeight);
     margin-bottom: var(--halfPaddingY);
@@ -21,6 +20,7 @@
       }
     }
   }
+
   .flexContainer {
     display: flex;
     .horizontal {

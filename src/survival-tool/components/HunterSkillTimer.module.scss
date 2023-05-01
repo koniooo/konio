@@ -1,0 +1,4 @@
+.halfHeightButton {
+  height: calc((var(--middleHeight) - var(--paddingY)) / 2);
+  margin-bottom: var(--paddingY);
+}
