@@ -27,6 +27,8 @@ export type Props = {
   isTeleportTimerActive: boolean;
   isBlinkTimerActive: boolean;
   isUltraLongTimerActive: boolean;
+  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const FirstRow = ({
@@ -56,6 +58,8 @@ export const FirstRow = ({
   setHasDetention,
   setHasTrumpCard,
   setHunterId,
+  setPrimaryTime,
+  setIsPrimaryTimerActive,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={true}>
@@ -86,6 +90,8 @@ export const FirstRow = ({
         setHasTrumpCard={setHasTrumpCard}
         setHasDetention={setHasDetention}
         setHunterId={setHunterId}
+        setPrimaryTime={setPrimaryTime}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
       />
     </RowContainer>
   );

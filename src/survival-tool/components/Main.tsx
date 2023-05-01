@@ -4,6 +4,7 @@ import { FirstRow } from "./FirstRow";
 import { SecondRow } from "./SecondRow";
 import { ThirdRow } from "./ThirdRow";
 import { FourthRow } from "./FourthRow";
+import { hunterData } from "survival-tool/lib/hunterData";
 
 export const patrollerCoolTime = 90;
 export const teleportCoolTime = 100;
@@ -17,11 +18,11 @@ export const defaultHunterId = 13; // bloody queen
 
 export const Main = () => {
   const [startTime, setStartTime] = useState(defaultStartTime);
-  const [isStartTimerActive, setIsStartTimerActive] = useState(false);
   const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
   const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
   const [blinkTime, setBlinkTime] = useState(blinkCoolTime);
   const [ultraLongTime, setUltraLongTime] = useState(ultraLongCoolTime);
+  const [isStartTimerActive, setIsStartTimerActive] = useState(false);
   const [isPatrollerTimerActive, setIsPatrollerTimerActive] = useState(false);
   const [isTeleportTimerActive, setIsTeleportTimerActive] = useState(false);
   const [isBlinkTimerActive, setIsBlinkTimerActive] = useState(false);
@@ -32,14 +33,20 @@ export const Main = () => {
   const [hasInsolence, setHasInsolence] = useState(false);
   const [hasDetention, setHasDetention] = useState(false);
   const [hunterId, setHunterId] = useState(defaultHunterId);
-  const [primaryTime, setPrimaryTime] = useState(30);
+  const [primaryTime, setPrimaryTime] = useState(0);
   const [secondaryTime, setSecondaryTime] = useState(0);
+  const [tertiaryTime, setTertiaryTime] = useState(0);
   const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
+  const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
+  const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
 
-  const patrollerTimerId = useRef<number>(0);
-  const teleportTimerId = useRef<number>(0);
-  const blinkTimerId = useRef<number>(0);
-  const ultraLongTimerId = useRef<number>(0);
+  const patrollerTimerId = useRef(0);
+  const teleportTimerId = useRef(0);
+  const blinkTimerId = useRef(0);
+  const ultraLongTimerId = useRef(0);
+  const primaryTimerId = useRef(0);
+  const secondaryTimerId = useRef(0);
+  const tertiaryTimerId = useRef(0);
 
   const useTimer = (
     coolTime: number,
@@ -107,6 +114,61 @@ export const Main = () => {
     ultraLongTimerId
   );
 
+  const selectedHunter = hunterData[hunterId];
+  const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
+  const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime;
+  const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime;
+  const sum = (array: number[]) => {
+    return array.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+  };
+  const primaryTotalCoolTime = sum(selectedPrimaryCoolTime);
+  const secondaryTotalCoolTime = selectedSecondaryCoolTime
+    ? sum(selectedSecondaryCoolTime)
+    : 0;
+
+  const tertiaryTotalCoolTime = selectedTertiaryCoolTime
+    ? sum(selectedTertiaryCoolTime)
+    : 0;
+
+  useTimer(
+    primaryTotalCoolTime,
+    primaryTime,
+    setPrimaryTime,
+    isPrimaryTimerActive,
+    setIsPrimaryTimerActive,
+    primaryTimerId
+  );
+
+  useTimer(
+    secondaryTotalCoolTime,
+    secondaryTime,
+    setSecondaryTime,
+    isSecondaryTimerActive,
+    setIsSecondaryTimerActive,
+    secondaryTimerId
+  );
+
+  useTimer(
+    tertiaryTotalCoolTime,
+    tertiaryTime,
+    setTertiaryTime,
+    isTertiaryTimerActive,
+    setIsTertiaryTimerActive,
+    tertiaryTimerId
+  );
+
+  useEffect(() => {
+    setIsPrimaryTimerActive(false);
+    setIsSecondaryTimerActive(false);
+    setIsTertiaryTimerActive(false);
+
+    setPrimaryTime(primaryTotalCoolTime);
+    setSecondaryTime(secondaryTotalCoolTime);
+    setTertiaryTime(tertiaryTotalCoolTime);
+  }, [hunterId]);
+
   return (
     <main className={styles.main}>
       <FirstRow
@@ -136,6 +198,8 @@ export const Main = () => {
         setHasTrumpCard={setHasTrumpCard}
         setHasDetention={setHasDetention}
         setHunterId={setHunterId}
+        setPrimaryTime={setPrimaryTime}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
       />
       <SecondRow
         startTime={startTime}
@@ -154,9 +218,19 @@ export const Main = () => {
         setHunterId={setHunterId}
         primaryTime={primaryTime}
         secondaryTime={secondaryTime}
-        isPrimaryTimerActive={isPrimaryTimerActive}
-        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        tertiaryTime={tertiaryTime}
         setPrimaryTime={setPrimaryTime}
+        setSecondaryTime={setSecondaryTime}
+        setTertiaryTime={setTertiaryTime}
+        isPrimaryTimerActive={isPrimaryTimerActive}
+        isSecondaryTimerActive={isSecondaryTimerActive}
+        isTertiaryTimerActive={isTertiaryTimerActive}
+        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+        primaryTimerId={primaryTimerId}
+        secondaryTimerId={secondaryTimerId}
+        tertiaryTimerId={tertiaryTimerId}
       />
       <ThirdRow
         patrollerTime={patrollerTime}

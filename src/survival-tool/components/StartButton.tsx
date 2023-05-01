@@ -7,12 +7,12 @@ import {
   defaultStartTime,
   defaultHunterId,
 } from "./Main";
-import { start } from "repl";
 
 const patrollerDefaultTime = 30;
 const teleportDefaultTime = 45;
 const blinkDefaultTime = 60;
 const ultraLongDefaultTime = 30;
+const bloodyQueenDefaultTime = 8;
 
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
@@ -47,6 +47,8 @@ export const StartButton = ({
   setHasDetention,
   setHasTrumpCard,
   setHunterId,
+  setPrimaryTime,
+  setIsPrimaryTimerActive,
 }: Props) => {
   const startTimerId = useRef<number>(0);
 
@@ -127,11 +129,13 @@ export const StartButton = ({
   } else if (isFifthStatus) {
     content = `@konio_tracy`;
   }
+
   return (
     <button
       onClick={() => {
         if (isFirstStatus) {
           setHunterId(defaultHunterId);
+
           setHasConfinedSpace(false);
           setHasWantedOrder(false);
           setHasInsolence(false);
@@ -175,6 +179,9 @@ export const StartButton = ({
             setUltraLongTime,
             setIsUltraLongTimerActive
           );
+
+          setPrimaryTime(bloodyQueenDefaultTime);
+          setIsPrimaryTimerActive(true);
         } else if (isSecondStatus) {
           setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
         } else if (isThirdStatus) {

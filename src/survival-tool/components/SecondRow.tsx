@@ -1,6 +1,7 @@
 import colors from "./ButtonColor.module.scss";
 import { RowContainer } from "./RowContainer";
 import { OneThirdColumn } from "./OneThirdColumn";
+import { HunterSkillTimer } from "./HunterSkillTimer";
 
 import { Persona } from "./Persona";
 import { HunterSelect } from "./HunterSelect";
@@ -21,9 +22,19 @@ export type Props = {
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   primaryTime: number;
   setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
-  secondaryTime: number;
   isPrimaryTimerActive: boolean;
   setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  secondaryTime: number;
+  setSecondaryTime: React.Dispatch<React.SetStateAction<number>>;
+  isSecondaryTimerActive: boolean;
+  setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  tertiaryTime: number;
+  setTertiaryTime: React.Dispatch<React.SetStateAction<number>>;
+  isTertiaryTimerActive: boolean;
+  setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  primaryTimerId: React.MutableRefObject<number>;
+  secondaryTimerId: React.MutableRefObject<number>;
+  tertiaryTimerId: React.MutableRefObject<number>;
 };
 
 export const SecondRow = ({
@@ -43,8 +54,19 @@ export const SecondRow = ({
   setHunterId,
   primaryTime,
   secondaryTime,
+  tertiaryTime,
+  setPrimaryTime,
+  setSecondaryTime,
+  setTertiaryTime,
   isPrimaryTimerActive,
+  isSecondaryTimerActive,
+  isTertiaryTimerActive,
   setIsPrimaryTimerActive,
+  setIsSecondaryTimerActive,
+  setIsTertiaryTimerActive,
+  primaryTimerId,
+  secondaryTimerId,
+  tertiaryTimerId,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={false}>
@@ -65,25 +87,24 @@ export const SecondRow = ({
           setHasDetention={setHasDetention}
         />
       </OneThirdColumn>
-      <OneThirdColumn>
-        <button
-          className={`${
-            !isPrimaryTimerActive
-              ? colors.green
-              : primaryTime > 3
-              ? colors.yellow
-              : colors.red
-          }`}
-          onClick={() => {
-            setIsPrimaryTimerActive(!isPrimaryTimerActive);
-          }}
-        >
-          {primaryTime}
-        </button>
-      </OneThirdColumn>
-      <OneThirdColumn>
-        <button>{secondaryTime}</button>
-      </OneThirdColumn>
+      <HunterSkillTimer
+        hunterId={hunterId}
+        primaryTime={primaryTime}
+        secondaryTime={secondaryTime}
+        tertiaryTime={tertiaryTime}
+        setPrimaryTime={setPrimaryTime}
+        setSecondaryTime={setSecondaryTime}
+        setTertiaryTime={setTertiaryTime}
+        isPrimaryTimerActive={isPrimaryTimerActive}
+        isSecondaryTimerActive={isSecondaryTimerActive}
+        isTertiaryTimerActive={isTertiaryTimerActive}
+        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+        primaryTimerId={primaryTimerId}
+        secondaryTimerId={secondaryTimerId}
+        tertiaryTimerId={tertiaryTimerId}
+      />
     </RowContainer>
   );
 };

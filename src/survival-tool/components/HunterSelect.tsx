@@ -16,7 +16,6 @@ export const HunterSelect = ({ hunterId, setHunterId }: Props) => {
         onChange={(event) => {
           const targetValue = Number(event.target.value);
           setHunterId(targetValue);
-          //   setPrimaryTime(hunterData[targetValue].primaryTime);
         }}
       >
         {hunterData.map((hunterDatum, index) => {

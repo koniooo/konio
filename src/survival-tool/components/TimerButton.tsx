@@ -1,6 +1,6 @@
 import colors from "./ButtonColor.module.scss";
 
-type Args = {
+type Props = {
   isTimerActive: boolean;
   time: number;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,7 +11,7 @@ export const TimerButton = ({
   isTimerActive,
   setIsTimerActive,
   children,
-}: Args) => {
+}: Props) => {
   return (
     <button
       className={`${
