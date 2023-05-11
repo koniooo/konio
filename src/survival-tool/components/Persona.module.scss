@@ -1,5 +1,10 @@
 .persona {
   height: var(--middleHeight);
+  p {
+    display: inline-block;
+    font-size: 2.25vh;
+    line-height: 1.8;
+  }
   .vertical {
     height: var(--hunterSelectHeight);
     margin-bottom: var(--halfPaddingY);
@@ -14,6 +19,9 @@
 
       .wantedOrder {
         width: var(--wantedOrderWidth);
+        p {
+          font-size: 2vh;
+        }
       }
     }
   }
@@ -26,6 +34,9 @@
       margin-bottom: var(--halfPaddingY);
       &.left {
         margin-right: var(--halfPaddingX);
+        .insolenceValueText {
+          font-size: 3vh;
+        }
       }
     }
   }
