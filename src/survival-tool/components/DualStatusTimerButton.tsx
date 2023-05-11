@@ -21,6 +21,7 @@ export const DualStatusTimerButton = ({
 }: Props) => {
   return (
     <button
+      type="button"
       className={`${
         !isTimerActive
           ? colors.green

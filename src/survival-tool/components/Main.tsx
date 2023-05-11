@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "survival-tool/components/Main.module.scss";
+import styles from "src/survival-tool/components/Main.module.scss";
 import { FirstRow } from "./FirstRow";
 import { SecondRow } from "./SecondRow";
 import { ThirdRow } from "./ThirdRow";
 import { FourthRow } from "./FourthRow";
-import { hunterData } from "survival-tool/lib/hunterData";
+import { hunterData } from "src/survival-tool/lib/hunterData";
 
 export const patrollerCoolTime = 90;
 export const teleportCoolTime = 100;
@@ -40,6 +40,8 @@ export const Main = () => {
   const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
   const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
+  const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
+  const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
 
   const patrollerTimerId = useRef(0);
   const teleportTimerId = useRef(0);
@@ -119,18 +121,21 @@ export const Main = () => {
   const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
   const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime;
   const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime;
-  const sum = (array: number[]) => {
-    return array.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue;
-    }, 0);
+
+  const calculateTotalCooltime = (array: number[]) => {
+    if (array.length === 1) {
+      return array[0];
+    } else {
+      return array[0] + array[1];
+    }
   };
-  const primaryTotalCoolTime = sum(selectedPrimaryCoolTime);
+  const primaryTotalCoolTime = calculateTotalCooltime(selectedPrimaryCoolTime);
   const secondaryTotalCoolTime = selectedSecondaryCoolTime
-    ? sum(selectedSecondaryCoolTime)
+    ? calculateTotalCooltime(selectedSecondaryCoolTime)
     : 0;
 
   const tertiaryTotalCoolTime = selectedTertiaryCoolTime
-    ? sum(selectedTertiaryCoolTime)
+    ? calculateTotalCooltime(selectedTertiaryCoolTime)
     : 0;
 
   useTimer(
@@ -206,6 +211,8 @@ export const Main = () => {
         setIsSecondaryTimerActive={setIsSecondaryTimerActive}
         setIsTertiaryTimerActive={setIsTertiaryTimerActive}
         hunterId={hunterId}
+        setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
+        setIsTrumpCardUsed={setIsTrumpCardUsed}
       />
       <SecondRow
         startTime={startTime}
@@ -268,6 +275,10 @@ export const Main = () => {
         setHasTrumpCard={setHasTrumpCard}
         startTime={startTime}
         isStartTimerActive={isStartTimerActive}
+        isTrumpCardUsed={isTrumpCardUsed}
+        setIsTrumpCardUsed={setIsTrumpCardUsed}
+        isTrumpCardAlertOn={isTrumpCardAlertOn}
+        setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
       />
     </main>
   );

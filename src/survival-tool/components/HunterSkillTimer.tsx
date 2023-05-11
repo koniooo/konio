@@ -1,8 +1,10 @@
-import { hunterData } from "survival-tool/lib/hunterData";
+import { hunterData } from "src/survival-tool/lib/hunterData";
 import { OneThirdColumn } from "./OneThirdColumn";
-import { TwoThirdColumn } from "./TwoThirdColumn";
 import { HunterSkillTimerButton } from "./HunterSkillTimerButton";
+import { DreamWitchSkillTimerButton } from "./DreamWitchSkillTimerButton";
 import styles from "./HunterSkillTimer.module.scss";
+
+const dreamWitchHunterId = 10;
 
 type Props = {
   hunterId: number;
@@ -42,11 +44,35 @@ export const HunterSkillTimer = ({
   tertiaryTimerId,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
-
-  if (selectedHunter.tertiaryCoolTime) {
+  if (hunterId === dreamWitchHunterId) {
     return (
       <>
         <OneThirdColumn>
+          <DreamWitchSkillTimerButton
+            time={primaryTime}
+            setTime={setPrimaryTime}
+            isTimerActive={isPrimaryTimerActive}
+            setIsTimerActive={setIsPrimaryTimerActive}
+          >
+            {selectedHunter.primaryNameJa} {primaryTime}
+          </DreamWitchSkillTimerButton>
+        </OneThirdColumn>
+        <OneThirdColumn>
+          <DreamWitchSkillTimerButton
+            time={secondaryTime}
+            setTime={setSecondaryTime}
+            isTimerActive={isSecondaryTimerActive}
+            setIsTimerActive={setIsSecondaryTimerActive}
+          >
+            {selectedHunter.secondaryNameJa} {secondaryTime}
+          </DreamWitchSkillTimerButton>
+        </OneThirdColumn>
+      </>
+    );
+  } else if (selectedHunter.tertiaryCoolTime) {
+    return (
+      <>
+        <section className={styles.tripleSkillTimer}>
           <HunterSkillTimerButton
             skill="primary"
             hunterId={hunterId}
@@ -56,31 +82,29 @@ export const HunterSkillTimer = ({
             setIsTimerActive={setIsPrimaryTimerActive}
             timerId={primaryTimerId}
           />
-        </OneThirdColumn>
-        <OneThirdColumn>
-          <section className={styles.halfHeightButton}>
-            <HunterSkillTimerButton
-              skill="secondary"
-              hunterId={hunterId}
-              time={secondaryTime}
-              setTime={setSecondaryTime}
-              isTimerActive={isSecondaryTimerActive}
-              setIsTimerActive={setIsSecondaryTimerActive}
-              timerId={secondaryTimerId}
-            />
-          </section>
-          <section className={styles.halfHeightButton}>
-            <HunterSkillTimerButton
-              skill="tertiary"
-              hunterId={hunterId}
-              time={tertiaryTime}
-              setTime={setTertiaryTime}
-              isTimerActive={isTertiaryTimerActive}
-              setIsTimerActive={setIsTertiaryTimerActive}
-              timerId={tertiaryTimerId}
-            />
-          </section>
-        </OneThirdColumn>
+        </section>
+        <section className={styles.tripleSkillTimer}>
+          <HunterSkillTimerButton
+            skill="secondary"
+            hunterId={hunterId}
+            time={secondaryTime}
+            setTime={setSecondaryTime}
+            isTimerActive={isSecondaryTimerActive}
+            setIsTimerActive={setIsSecondaryTimerActive}
+            timerId={secondaryTimerId}
+          />
+        </section>
+        <section className={styles.tripleSkillTimer}>
+          <HunterSkillTimerButton
+            skill="tertiary"
+            hunterId={hunterId}
+            time={tertiaryTime}
+            setTime={setTertiaryTime}
+            isTimerActive={isTertiaryTimerActive}
+            setIsTimerActive={setIsTertiaryTimerActive}
+            timerId={tertiaryTimerId}
+          />
+        </section>
       </>
     );
   } else if (selectedHunter.secondaryCoolTime) {
@@ -112,17 +136,15 @@ export const HunterSkillTimer = ({
     );
   } else {
     return (
-      <TwoThirdColumn>
-        <HunterSkillTimerButton
-          skill="primary"
-          hunterId={hunterId}
-          time={primaryTime}
-          setTime={setPrimaryTime}
-          isTimerActive={isPrimaryTimerActive}
-          setIsTimerActive={setIsPrimaryTimerActive}
-          timerId={primaryTimerId}
-        />
-      </TwoThirdColumn>
+      <HunterSkillTimerButton
+        skill="primary"
+        hunterId={hunterId}
+        time={primaryTime}
+        setTime={setPrimaryTime}
+        isTimerActive={isPrimaryTimerActive}
+        setIsTimerActive={setIsPrimaryTimerActive}
+        timerId={primaryTimerId}
+      />
     );
   }
 };

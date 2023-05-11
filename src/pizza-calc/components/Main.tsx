@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Label } from "./Label";
 import { Calc } from "./Calc";
 import { DataSetButton } from "./DataSetButton";
-import styles from "pizza-calc/components/Main.module.scss";
+import styles from "src/pizza-calc/components/Main.module.scss";
 
 export type DataSetButtonProps = {
   key: number;

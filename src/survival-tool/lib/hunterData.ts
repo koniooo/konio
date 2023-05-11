@@ -28,6 +28,9 @@ export const hunterData: readonly hunterDatum[] = [
     primaryNameJa: "ロケットダッシュ",
     primaryNameEn: "Rocket Dash",
     primaryCoolTime: [12],
+    secondaryCoolTime: [6],
+    secondaryNameJa: "ロケットダッシュ【抵抗】",
+    secondaryNameEn: "Rocket Dash【Resistance】",
   },
   {
     nameJa: "断罪狩人",

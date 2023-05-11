@@ -2,9 +2,11 @@ import styles from "./SecondRow.module.scss";
 import { RowContainer } from "./RowContainer";
 import { OneThirdColumn } from "./OneThirdColumn";
 import { HunterSkillTimer } from "./HunterSkillTimer";
-
 import { Persona } from "./Persona";
 import { HunterSelect } from "./HunterSelect";
+import Image from "next/image";
+import TranslationIcon from "public/survival-tool/translation.svg";
+
 export type Props = {
   startTime: number;
   isStartTimerActive: boolean;
@@ -93,29 +95,33 @@ export const SecondRow = ({
           </section>
           <section className={styles.languageLink}>
             <a href="" target="_blank" rel="noopener noreferrer">
-              English
+              <div className={styles.svgContainer}>
+                <Image src={TranslationIcon} alt="translation-icon" fill />
+              </div>
             </a>
           </section>
         </div>
         <div>
-          <HunterSkillTimer
-            hunterId={hunterId}
-            primaryTime={primaryTime}
-            secondaryTime={secondaryTime}
-            tertiaryTime={tertiaryTime}
-            setPrimaryTime={setPrimaryTime}
-            setSecondaryTime={setSecondaryTime}
-            setTertiaryTime={setTertiaryTime}
-            isPrimaryTimerActive={isPrimaryTimerActive}
-            isSecondaryTimerActive={isSecondaryTimerActive}
-            isTertiaryTimerActive={isTertiaryTimerActive}
-            setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-            setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-            setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-            primaryTimerId={primaryTimerId}
-            secondaryTimerId={secondaryTimerId}
-            tertiaryTimerId={tertiaryTimerId}
-          />
+          <section className={styles.hunterSkillTimerSec}>
+            <HunterSkillTimer
+              hunterId={hunterId}
+              primaryTime={primaryTime}
+              secondaryTime={secondaryTime}
+              tertiaryTime={tertiaryTime}
+              setPrimaryTime={setPrimaryTime}
+              setSecondaryTime={setSecondaryTime}
+              setTertiaryTime={setTertiaryTime}
+              isPrimaryTimerActive={isPrimaryTimerActive}
+              isSecondaryTimerActive={isSecondaryTimerActive}
+              isTertiaryTimerActive={isTertiaryTimerActive}
+              setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+              setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+              setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+              primaryTimerId={primaryTimerId}
+              secondaryTimerId={secondaryTimerId}
+              tertiaryTimerId={tertiaryTimerId}
+            />
+          </section>
         </div>
       </div>
     </RowContainer>

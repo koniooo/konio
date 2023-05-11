@@ -22,6 +22,10 @@ type Props = {
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   startTime: number;
   isStartTimerActive: boolean;
+  isTrumpCardUsed: boolean;
+  setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
+  isTrumpCardAlertOn: boolean;
+  setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const FourthRow = ({
   patrollerTime,
@@ -42,20 +46,11 @@ export const FourthRow = ({
   setHasTrumpCard,
   startTime,
   isStartTimerActive,
+  isTrumpCardUsed,
+  setIsTrumpCardUsed,
+  isTrumpCardAlertOn,
+  setIsTrumpCardAlertOn,
 }: Props) => {
-  const trumpCardFunc = (
-    sourceTraitTime: number,
-    sourceTraitCoolTime: number,
-    targetTraitCoolTime: number,
-    setTargetTraitTime: React.Dispatch<React.SetStateAction<number>>,
-    setIsTargetTraitTimerActive: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {
-    const targetTraitTime = Math.round(
-      targetTraitCoolTime * (sourceTraitTime / sourceTraitCoolTime)
-    );
-    setTargetTraitTime(targetTraitTime);
-    setIsTargetTraitTimerActive(true);
-  };
   return (
     <RowContainer isEdgeRow={true}>
       <section className={styles.trump}>
@@ -75,6 +70,10 @@ export const FourthRow = ({
           setHasTrumpCard={setHasTrumpCard}
           startTime={startTime}
           isStartTimerActive={isStartTimerActive}
+          isTrumpCardUsed={isTrumpCardUsed}
+          setIsTrumpCardUsed={setIsTrumpCardUsed}
+          isTrumpCardAlertOn={isTrumpCardAlertOn}
+          setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
         />
       </section>
       <section className={styles.priestess}>

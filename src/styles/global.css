@@ -5,11 +5,7 @@
 
 * {
   box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-color);
-  color: #ffffff;
+  object-fit: contain;
   /* prettier-ignore */
   font-family:
       "Helvetica Neue",             /* Apple en */
@@ -18,4 +14,8 @@ body {
       "Hiragino Sans",              /* Apple ja */
       "Yu Gothic",                  /* Windows ja */
       sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
 }

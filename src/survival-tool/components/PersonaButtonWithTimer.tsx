@@ -34,6 +34,7 @@ export const PersonaButtonWithTimer = ({
       : isStartTimerActive && startTime <= 0;
   return (
     <button
+      type="button"
       className={
         hasTrait
           ? colors.red

@@ -34,6 +34,8 @@ export type Props = {
   setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   hunterId: number;
+  setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const FirstRow = ({
@@ -70,44 +72,48 @@ export const FirstRow = ({
   setIsSecondaryTimerActive,
   setIsTertiaryTimerActive,
   hunterId,
+  setIsTrumpCardAlertOn,
+  setIsTrumpCardUsed,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={true}>
-        <StartButton
-          isPatrollerTimerActive={isPatrollerTimerActive}
-          isTeleportTimerActive={isTeleportTimerActive}
-          isBlinkTimerActive={isBlinkTimerActive}
-          isUltraLongTimerActive={isUltraLongTimerActive}
-          startTime={startTime}
-          setStartTime={setStartTime}
-          isStartTimerActive={isStartTimerActive}
-          setIsStartTimerActive={setIsStartTimerActive}
-          patrollerTimerId={patrollerTimerId}
-          teleportTimerId={teleportTimerId}
-          blinkTimerId={blinkTimerId}
-          ultraLongTimerId={ultraLongTimerId}
-          primaryTimerId={primaryTimerId}
-          setPatrollerTime={setPatrollerTime}
-          setTeleportTime={setTeleportTime}
-          setBlinkTime={setBlinkTime}
-          setUltraLongTime={setUltraLongTime}
-          setIsPatrollerTimerActive={setIsPatrollerTimerActive}
-          setIsTeleportTimerActive={setIsTeleportTimerActive}
-          setIsBlinkTimerActive={setIsBlinkTimerActive}
-          setIsUltraLongTimerActive={setIsUltraLongTimerActive}
-          setHasConfinedSpace={setHasConfinedSpace}
-          setHasWantedOrder={setHasWantedOrder}
-          setHasInsolence={setHasInsolence}
-          setHasTrumpCard={setHasTrumpCard}
-          setHasDetention={setHasDetention}
-          setHunterId={setHunterId}
-          setPrimaryTime={setPrimaryTime}
-          setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-          isPrimaryTimerActive={isPrimaryTimerActive}
-          setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-          setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-          hunterId={hunterId}
-        />
+      <StartButton
+        isPatrollerTimerActive={isPatrollerTimerActive}
+        isTeleportTimerActive={isTeleportTimerActive}
+        isBlinkTimerActive={isBlinkTimerActive}
+        isUltraLongTimerActive={isUltraLongTimerActive}
+        startTime={startTime}
+        setStartTime={setStartTime}
+        isStartTimerActive={isStartTimerActive}
+        setIsStartTimerActive={setIsStartTimerActive}
+        patrollerTimerId={patrollerTimerId}
+        teleportTimerId={teleportTimerId}
+        blinkTimerId={blinkTimerId}
+        ultraLongTimerId={ultraLongTimerId}
+        primaryTimerId={primaryTimerId}
+        setPatrollerTime={setPatrollerTime}
+        setTeleportTime={setTeleportTime}
+        setBlinkTime={setBlinkTime}
+        setUltraLongTime={setUltraLongTime}
+        setIsPatrollerTimerActive={setIsPatrollerTimerActive}
+        setIsTeleportTimerActive={setIsTeleportTimerActive}
+        setIsBlinkTimerActive={setIsBlinkTimerActive}
+        setIsUltraLongTimerActive={setIsUltraLongTimerActive}
+        setHasConfinedSpace={setHasConfinedSpace}
+        setHasWantedOrder={setHasWantedOrder}
+        setHasInsolence={setHasInsolence}
+        setHasTrumpCard={setHasTrumpCard}
+        setHasDetention={setHasDetention}
+        setHunterId={setHunterId}
+        setPrimaryTime={setPrimaryTime}
+        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
+        isPrimaryTimerActive={isPrimaryTimerActive}
+        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
+        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
+        hunterId={hunterId}
+        setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
+        setIsTrumpCardUsed={setIsTrumpCardUsed}
+      />
     </RowContainer>
   );
 };

@@ -39,7 +39,7 @@ export const Persona = ({
             hasPersona={hasConfinedSpace}
             setHasPersona={setHasConfinedSpace}
           >
-            閉鎖空間
+            <p>閉鎖空間</p>
           </PersonaButton>
         </div>
         <div className={styles.wantedOrder}>
@@ -47,9 +47,11 @@ export const Persona = ({
             hasPersona={hasWantedOrder}
             setHasPersona={setHasWantedOrder}
           >
-            指名
-            <br />
-            手配
+            <p>
+              指名
+              <br />
+              手配
+            </p>
           </PersonaButton>
         </div>
       </div>

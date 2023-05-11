@@ -1,13 +1,17 @@
+import { type } from "os";
 import colors from "./ButtonColor.module.scss";
 
 type Props = {
-  isTimerActive: boolean;
   time: number;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
+  isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
 };
-export const TimerButton = ({
+
+export const DreamWitchSkillTimerButton = ({
   time,
+  setTime,
   isTimerActive,
   setIsTimerActive,
   children,
@@ -19,7 +23,12 @@ export const TimerButton = ({
         !isTimerActive ? colors.green : time > 3 ? colors.yellow : colors.red
       }
       onClick={() => {
-        setIsTimerActive(!isTimerActive);
+        if (isTimerActive) {
+          const nextTime = Math.round(time * ((100 - 40) / 100));
+          setTime(nextTime);
+        } else {
+          setIsTimerActive(true);
+        }
       }}
     >
       {children}

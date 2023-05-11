@@ -1,4 +1,8 @@
-.halfHeightButton {
-  height: calc((var(--middleHeight) - var(--paddingY)) / 2);
-  margin-bottom: var(--paddingY);
+.tripleSkillTimer {
+  width: calc(
+    (var(--oneThirdWidth) * 2 + var(--paddingX) - (var(--paddingX) * 2)) / 3
+  );
+  &:not(:last-child) {
+    margin-right: var(--paddingX);
+  }
 }

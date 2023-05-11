@@ -1,0 +1,28 @@
+.trumpCardButton {
+  &.used {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  .text {
+    position: absolute;
+    left: 28.5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .timeText {
+    font-size: 6vh;
+  }
+
+  .alertText {
+    font-size: min(3.5vw, 3.5vh);
+  }
+
+  .trumpCardSvg {
+    height: 66.7%;
+    max-width: 50%;
+    position: absolute;
+    left: 75%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,4 +1,4 @@
-import Top from "pizza-calc/components/Top";
+import Top from "src/pizza-calc/components/Top";
 
 const pizzaCalc = () => {
   return <Top />;

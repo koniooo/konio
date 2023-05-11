@@ -2,6 +2,9 @@ import { Props } from "./FirstRow";
 import { useRef, useEffect, ReactNode } from "react";
 import colors from "./ButtonColor.module.scss";
 import { readyTime, accelerateDecodingTime, defaultHunterId } from "./Main";
+import Image from "next/image";
+import TwitterIcon from "public/survival-tool/twitter.svg";
+import styles from "./StartButton.module.scss";
 
 const patrollerDefaultTime = 30;
 const teleportDefaultTime = 45;
@@ -49,6 +52,8 @@ export const StartButton = ({
   setIsSecondaryTimerActive,
   setIsTertiaryTimerActive,
   hunterId,
+  setIsTrumpCardAlertOn,
+  setIsTrumpCardUsed,
 }: Props) => {
   const startTimerId = useRef<number>(0);
 
@@ -200,11 +205,25 @@ export const StartButton = ({
       content = <p>【引き留める】終了まで {detentionTime + startTime}秒</p>;
     }
   } else if (isFifthStatus) {
-    content = `@konio_tracy`;
+    content = (
+      <>
+        <p>developed by Konio</p>
+        <a
+          href="https://twitter.com/konio_tracy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className={styles.svgContainer}>
+            <Image src={TwitterIcon} alt="twitter-icon" fill />
+          </div>
+        </a>
+      </>
+    );
   }
 
   return (
     <button
+      type="button"
       onClick={() => {
         if (isFirstStatus) {
           setIsPatrollerTimerActive(false);
@@ -222,6 +241,9 @@ export const StartButton = ({
           setHasDetention(false);
 
           setHunterId(defaultHunterId);
+
+          setIsTrumpCardUsed(false);
+          setIsTrumpCardAlertOn(false);
 
           const id = setInterval(() => {
             setStartTime((t) => t - 1);
