@@ -1,22 +1,20 @@
 .persona {
   height: var(--middleHeight);
   p {
-    display: inline-block;
     font-size: 2.25vh;
-    line-height: 1.8;
   }
   svg {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 90%;
+    max-height: 80%;
   }
   .vertical {
     height: var(--hunterSelectHeight);
     margin-bottom: var(--halfPaddingY);
-    svg {
-      height: 75%;
-    }
+
     &.top {
       display: flex;
       .confinedSpace {
@@ -28,27 +26,32 @@
 
       .wantedOrder {
         width: var(--wantedOrderWidth);
-        p {
-          font-size: 2vh;
-        }
       }
     }
   }
+}
 
-  .flexContainer {
-    display: flex;
-    .horizontal {
-      height: calc(var(--hunterSelectHeight) * 2);
-      width: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 2);
-      margin-bottom: var(--halfPaddingY);
-      svg {
-        width: 85%;
+.flexContainer {
+  display: flex;
+  .horizontal {
+    height: calc(var(--hunterSelectHeight) * 2);
+    width: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 2);
+    margin-bottom: var(--halfPaddingY);
+    svg {
+      max-height: 50%;
+    }
+    &.left {
+      margin-right: var(--halfPaddingX);
+      p {
+        margin-bottom: 1vh;
+        font-size: 3.2vh;
       }
-      &.left {
-        margin-right: var(--halfPaddingX);
-        .insolenceValueText {
-          font-size: 3vh;
-        }
+
+      svg {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: translate(0);
       }
     }
   }
