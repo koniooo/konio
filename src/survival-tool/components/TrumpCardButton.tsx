@@ -165,7 +165,6 @@ export const TrumpCardButton = ({
         </p>
       )}
       <svg
-        className={styles.trumpCardSvg}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 82.84445 68.33504"
         fill="#292b2f"

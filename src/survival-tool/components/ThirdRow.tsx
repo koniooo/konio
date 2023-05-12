@@ -2,11 +2,11 @@ import { RowContainer } from "./RowContainer";
 import { TimerButton } from "./TimerButton";
 import { OneThirdColumn } from "./OneThirdColumn";
 import Image from "next/image";
-import PatrollerIcon from "public/survival-tool/patroller.svg";
-import AbnormalIcon from "public/survival-tool/abnormal.svg";
-import TeleportIcon from "public/survival-tool/teleport.svg";
-import ExcitementIcon from "public/survival-tool/excitement.svg";
-import BlinkIcon from "public/survival-tool/blink.svg";
+import PatrollerIcon from "public/survival-tool/trait/patroller.svg";
+import AbnormalIcon from "public/survival-tool/trait/abnormal.svg";
+import TeleportIcon from "public/survival-tool/trait/teleport.svg";
+import ExcitementIcon from "public/survival-tool/trait/excitement.svg";
+import BlinkIcon from "public/survival-tool/trait/blink.svg";
 
 import styles from "./ThirdRow.module.scss";
 

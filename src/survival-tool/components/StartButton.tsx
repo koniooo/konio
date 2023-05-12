@@ -1,9 +1,9 @@
 import { Props } from "./FirstRow";
-import { useRef, useEffect, ReactNode } from "react";
+import { useRef, useEffect } from "react";
 import colors from "./ButtonColor.module.scss";
 import { readyTime, accelerateDecodingTime, defaultHunterId } from "./Main";
 import Image from "next/image";
-import TwitterIcon from "public/survival-tool/twitter.svg";
+import TwitterIcon from "public/survival-tool/startButton/twitter.svg";
 import styles from "./StartButton.module.scss";
 
 const patrollerDefaultTime = 30;
@@ -152,20 +152,20 @@ export const StartButton = ({
       <>
         <p>START</p>
         <br />
-        <p>画面が割れて視点が回り始める瞬間にタップ</p>
+        <p>※画面が割れて視点が回り始める瞬間にタップ</p>
       </>
     );
   } else if (isSecondStatus) {
     if (timeFromGameStart < 0) {
-      content = <p>推理開始まで {-timeFromGameStart} 秒</p>;
+      content = <p>推理開始まで {-timeFromGameStart}</p>;
     } else if (0 <= timeFromGameStart && timeFromGameStart < constrainTime) {
       content = (
         <>
-          <p>【封鎖】解除まで {constrainTime - timeFromGameStart} 秒</p>
+          <p>【封鎖】解除まで {constrainTime - timeFromGameStart}</p>
           <br />
           <p>
             【焼き入れ効果・フライホイール効果】まで{` `}
-            {quenchingEffectStartTime - timeFromGameStart} 秒
+            {quenchingEffectStartTime - timeFromGameStart}
           </p>
         </>
       );
@@ -176,7 +176,7 @@ export const StartButton = ({
       content = (
         <p>
           【焼き入れ効果・フライホイール効果】まで{` `}
-          {quenchingEffectStartTime - timeFromGameStart} 秒
+          {quenchingEffectStartTime - timeFromGameStart}
         </p>
       );
     } else if (
@@ -185,13 +185,12 @@ export const StartButton = ({
     ) {
       content = (
         <p>
-          【焼き入れ効果】終了まで {quenchingEffectEndTime - timeFromGameStart}{" "}
-          秒
+          【焼き入れ効果】終了まで {quenchingEffectEndTime - timeFromGameStart}
         </p>
       );
     } else {
       content = (
-        <p>【解読加速】まで {accelerateDecodingTime - timeFromGameStart} 秒</p>
+        <p>【解読加速】まで {accelerateDecodingTime - timeFromGameStart}</p>
       );
     }
   } else if (isThirdStatus) {
@@ -199,10 +198,10 @@ export const StartButton = ({
   } else if (isFourthStatus) {
     if (startTime > -20) {
       content = (
-        <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}秒</p>
+        <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}</p>
       );
     } else {
-      content = <p>【引き留める】終了まで {detentionTime + startTime}秒</p>;
+      content = <p>【引き留める】終了まで {detentionTime + startTime}</p>;
     }
   } else if (isFifthStatus) {
     content = (

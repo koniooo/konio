@@ -1,4 +1,3 @@
-import { type } from "os";
 import colors from "./ButtonColor.module.scss";
 
 type Props = {
