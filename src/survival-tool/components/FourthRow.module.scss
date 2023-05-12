@@ -9,7 +9,7 @@
     top: 27.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 6vh;
+    font-size: var(--fourthRowFontSize);
   }
   svg {
     position: absolute;

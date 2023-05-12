@@ -28,9 +28,9 @@ export const hunterData: readonly hunterDatum[] = [
     primaryNameJa: "ロケットダッシュ",
     primaryNameEn: "Rocket Dash",
     primaryCoolTime: [12],
+    secondaryNameJa: "ロケットダッシュ《抵抗》",
+    secondaryNameEn: "Rocket Dash《Resistance》",
     secondaryCoolTime: [6],
-    secondaryNameJa: "ロケットダッシュ【抵抗】",
-    secondaryNameEn: "Rocket Dash【Resistance】",
   },
   {
     nameJa: "断罪狩人",
@@ -38,6 +38,9 @@ export const hunterData: readonly hunterDatum[] = [
     primaryNameJa: "チェーンクロウ",
     primaryNameEn: "Chain Hook",
     primaryCoolTime: [14],
+    secondaryNameJa: "トラバサミ",
+    secondaryNameEn: "Trap",
+    secondaryCoolTime: [8, 5],
   },
   {
     nameJa: "リッパー",
@@ -59,6 +62,9 @@ export const hunterData: readonly hunterDatum[] = [
     primaryNameJa: "刹那生滅",
     primaryNameEn: "Dash Hit",
     primaryCoolTime: [8],
+    secondaryNameJa: "アゲハチャージ時間",
+    secondaryNameEn: "Butterfly Charge Duration",
+    secondaryCoolTime: [17],
   },
   {
     nameJa: "白黒無常",
@@ -93,9 +99,12 @@ export const hunterData: readonly hunterDatum[] = [
   {
     nameJa: "黄衣の王",
     nameEn: "The Feaster",
-    primaryNameJa: "悪夢凝視",
-    primaryNameEn: "Nightmare Gaze",
-    primaryCoolTime: [20, 5],
+    primaryNameJa: "悪夢浸蝕",
+    primaryNameEn: "Nightmare Attack",
+    primaryCoolTime: [5],
+    secondaryNameJa: "悪夢凝視",
+    secondaryNameEn: "Nightmare Gaze",
+    secondaryCoolTime: [20, 5],
   },
   {
     nameJa: "夢の魔女",
@@ -164,9 +173,12 @@ export const hunterData: readonly hunterDatum[] = [
   {
     nameJa: "彫刻師",
     nameEn: "Sculptor",
-    primaryNameJa: "象形墓場",
-    primaryNameEn: "Hieroglyphic Graveyard",
-    primaryCoolTime: [12, 15],
+    primaryNameJa: "彫像チャージ時間",
+    primaryNameEn: "sculptures charge duration",
+    primaryCoolTime: [16],
+    secondaryNameJa: "象形墓場",
+    secondaryNameEn: "Hieroglyphic Graveyard",
+    secondaryCoolTime: [12, 15],
   },
   {
     nameJa: "｢アンデッド｣",

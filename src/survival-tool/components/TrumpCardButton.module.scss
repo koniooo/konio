@@ -10,7 +10,7 @@
     transform: translate(-50%, -50%);
   }
   .timeText {
-    font-size: 6vh;
+    font-size: var(--fourthRowFontSize);
   }
 
   .alertText {

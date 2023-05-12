@@ -8,7 +8,7 @@
   --halfPaddingX: calc(var(--paddingX) / 2);
   --paddingY: 1.5vh;
   --halfPaddingY: calc(var(--paddingY) / 2);
-  --radius: 0.5vh;
+  --radius: 1.5vh;
   --edgeHeight: calc((100vh - var(--paddingY) * 5) / 6);
   --middleHeight: calc(var(--edgeHeight) * 2);
   --oneThirdWidth: calc((100vw - var(--paddingX) * 4) / 3);
@@ -17,6 +17,11 @@
     (var(--middleHeight) - var(--halfPaddingY) * 2) / 4
   );
   --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 3);
+
+  --insolenceValueFontSize: 3.25vh;
+  --hunterSelectFontSize: 2.25vh;
+  --traitFontSize: 7.5vh;
+  --fourthRowFontSize: 6vh;
 
   padding: var(--paddingY) var(--paddingX);
   background-color: var(--myGray);

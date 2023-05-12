@@ -44,6 +44,7 @@ export const HunterSkillTimer = ({
   tertiaryTimerId,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
+
   if (hunterId === dreamWitchHunterId) {
     return (
       <>
@@ -72,7 +73,7 @@ export const HunterSkillTimer = ({
   } else if (selectedHunter.tertiaryCoolTime) {
     return (
       <>
-        <section className={styles.tripleSkillTimer}>
+        <section className={styles.triple}>
           <HunterSkillTimerButton
             skill="primary"
             hunterId={hunterId}
@@ -83,7 +84,7 @@ export const HunterSkillTimer = ({
             timerId={primaryTimerId}
           />
         </section>
-        <section className={styles.tripleSkillTimer}>
+        <section className={styles.triple}>
           <HunterSkillTimerButton
             skill="secondary"
             hunterId={hunterId}
@@ -94,7 +95,7 @@ export const HunterSkillTimer = ({
             timerId={secondaryTimerId}
           />
         </section>
-        <section className={styles.tripleSkillTimer}>
+        <section className={styles.triple}>
           <HunterSkillTimerButton
             skill="tertiary"
             hunterId={hunterId}
@@ -109,7 +110,7 @@ export const HunterSkillTimer = ({
     );
   } else if (selectedHunter.secondaryCoolTime) {
     return (
-      <>
+      <div className={styles.double}>
         <OneThirdColumn>
           <HunterSkillTimerButton
             skill="primary"
@@ -132,19 +133,21 @@ export const HunterSkillTimer = ({
             timerId={secondaryTimerId}
           />
         </OneThirdColumn>
-      </>
+      </div>
     );
   } else {
     return (
-      <HunterSkillTimerButton
-        skill="primary"
-        hunterId={hunterId}
-        time={primaryTime}
-        setTime={setPrimaryTime}
-        isTimerActive={isPrimaryTimerActive}
-        setIsTimerActive={setIsPrimaryTimerActive}
-        timerId={primaryTimerId}
-      />
+      <div className={styles.single}>
+        <HunterSkillTimerButton
+          skill="primary"
+          hunterId={hunterId}
+          time={primaryTime}
+          setTime={setPrimaryTime}
+          isTimerActive={isPrimaryTimerActive}
+          setIsTimerActive={setIsPrimaryTimerActive}
+          timerId={primaryTimerId}
+        />
+      </div>
     );
   }
 };

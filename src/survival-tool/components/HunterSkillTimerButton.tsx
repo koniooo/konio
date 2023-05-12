@@ -1,6 +1,7 @@
 import { TimerButton } from "./TimerButton";
 import { DualStatusTimerButton } from "./DualStatusTimerButton";
 import { hunterData } from "src/survival-tool/lib/hunterData";
+import styles from "./HunterSkillTimerButton.module.scss";
 
 type Props = {
   skill: "primary" | "secondary" | "tertiary";
@@ -40,10 +41,22 @@ export const HunterSkillTimerButton = ({
         isTimerActive={isTimerActive}
         setIsTimerActive={setIsTimerActive}
       >
-        {time}
-        {skill === "primary" && selectedHunter.primaryNameJa}
-        {skill === "secondary" && selectedHunter.secondaryNameJa}
-        {skill === "tertiary" && selectedHunter.tertiaryNameJa}
+        <p className={styles.timeText}>{time}</p>
+        {skill === "primary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.primaryNameJa}</span>
+          </p>
+        )}
+        {skill === "secondary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.secondaryNameJa}</span>
+          </p>
+        )}
+        {skill === "tertiary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.tertiaryNameJa}</span>
+          </p>
+        )}
       </TimerButton>
     );
   } else {
@@ -63,24 +76,44 @@ export const HunterSkillTimerButton = ({
         timerId={timerId}
       >
         {skill === "primary" &&
-          `${
-            time > selectedPrimaryCoolTime[1]
-              ? time - selectedPrimaryCoolTime[1]
-              : time
-          } ${selectedHunter.primaryNameJa}`}
-
+          (time > selectedPrimaryCoolTime[1] ? (
+            <p className={styles.timeText}>
+              {time - selectedPrimaryCoolTime[1]}
+            </p>
+          ) : (
+            <p className={styles.timeText}>{time}</p>
+          ))}
+        {skill === "primary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.primaryNameJa}</span>
+          </p>
+        )}
         {skill === "secondary" &&
-          `${
-            time > selectedSecondaryCoolTime[1]
-              ? time - selectedSecondaryCoolTime[1]
-              : time
-          } ${selectedHunter.secondaryNameJa}`}
+          (time > selectedSecondaryCoolTime[1] ? (
+            <p className={styles.timeText}>
+              {time - selectedSecondaryCoolTime[1]}
+            </p>
+          ) : (
+            <p className={styles.timeText}>{time}</p>
+          ))}
+        {skill === "secondary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.secondaryNameJa}</span>
+          </p>
+        )}
         {skill === "tertiary" &&
-          `${
-            time > selectedTertiaryCoolTime[1]
-              ? time - selectedTertiaryCoolTime[1]
-              : time
-          } ${selectedHunter.tertiaryNameJa}`}
+          (time > selectedTertiaryCoolTime[1] ? (
+            <p className={styles.timeText}>
+              {time - selectedTertiaryCoolTime[1]}
+            </p>
+          ) : (
+            <p className={styles.timeText}>{time}</p>
+          ))}
+        {skill === "tertiary" && (
+          <p className={styles.skillText}>
+            <span>{selectedHunter.tertiaryNameJa}</span>
+          </p>
+        )}
       </DualStatusTimerButton>
     );
   }

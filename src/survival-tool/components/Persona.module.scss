@@ -1,8 +1,5 @@
 .persona {
   height: var(--middleHeight);
-  p {
-    font-size: 2.25vh;
-  }
   svg {
     position: absolute;
     top: 50%;
@@ -44,7 +41,7 @@
       margin-right: var(--halfPaddingX);
       p {
         margin-bottom: 1vh;
-        font-size: 3.2vh;
+        font-size: var(--insolenceValueFontSize);
       }
 
       svg {
