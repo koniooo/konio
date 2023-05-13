@@ -1,0 +1,23 @@
+.a {
+  display: block;
+  position: relative;
+  height: 100%;
+  background-color: var(--myGreen);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--myGray);
+  &:active {
+    color: var(--myGray);
+  }
+  &:focus {
+    outline: none;
+  }
+  svg {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 90%;
+  }
+}

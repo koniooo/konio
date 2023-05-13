@@ -1,11 +1,14 @@
-import colors from "./ButtonColor.module.scss";
-
+import colors from "./Color.module.scss";
+import styles from "./DreamWitchSkillTimerButton.module.scss";
+import common from "./HunterSkillTimerButton.module.scss";
+import { hunterData } from "src/survival-tool/lib/hunterData";
+import { dreamWitchId } from "src/survival-tool/components/HunterSkillTimer";
 type Props = {
+  skill: "primary" | "secondary";
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
   isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  children: React.ReactNode;
 };
 
 export const DreamWitchSkillTimerButton = ({
@@ -13,13 +16,18 @@ export const DreamWitchSkillTimerButton = ({
   setTime,
   isTimerActive,
   setIsTimerActive,
-  children,
+  skill,
 }: Props) => {
+  const selectedHunter = hunterData[dreamWitchId];
   return (
     <button
       type="button"
       className={
-        !isTimerActive ? colors.green : time > 3 ? colors.yellow : colors.red
+        !isTimerActive
+          ? `${colors.green} ${colors.greenText}`
+          : time > 3
+          ? `${colors.yellow} ${colors.yellowText}`
+          : `${colors.red} ${colors.redText}`
       }
       onClick={() => {
         if (isTimerActive) {
@@ -30,7 +38,23 @@ export const DreamWitchSkillTimerButton = ({
         }
       }}
     >
-      {children}
+      <p className={common.timeText}>{time}</p>
+      {skill === "primary" && (
+        <p className={common.skillText}>
+          <span>{selectedHunter.primaryNameJa}</span>
+        </p>
+      )}
+      {skill === "secondary" && (
+        <p className={common.skillText}>
+          <span>{selectedHunter.secondaryNameJa}</span>
+        </p>
+      )}
+      {skill === "primary" && (
+        <div className={styles.description}>※オリジナルの攻撃が</div>
+      )}
+      {skill === "secondary" && (
+        <div className={styles.description}>命中するたびにタップ</div>
+      )}
     </button>
   );
 };

@@ -1,10 +1,9 @@
-import colors from "./ButtonColor.module.scss";
+import colors from "./Color.module.scss";
 
 type Props = {
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
   secondCoolTime: number;
-
   isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   timerId: React.MutableRefObject<number>;
@@ -24,10 +23,10 @@ export const DualStatusTimerButton = ({
       type="button"
       className={`${
         !isTimerActive
-          ? colors.green
+          ? `${colors.green} ${colors.greenText}`
           : time > secondCoolTime || time <= 3
-          ? colors.red
-          : colors.yellow
+          ? `${colors.red} ${colors.redText}`
+          : `${colors.yellow} ${colors.yellowText}`
       }`}
       onClick={() => {
         if (!isTimerActive || time <= secondCoolTime) {

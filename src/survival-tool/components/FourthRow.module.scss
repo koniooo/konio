@@ -2,20 +2,7 @@
   width: calc(var(--oneThirdWidth) * 2 + var(--paddingX));
   margin-right: var(--paddingX);
 }
+
 .ultraLong {
   width: var(--oneThirdWidth);
-  p {
-    position: absolute;
-    top: 27.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: var(--fourthRowFontSize);
-  }
-  svg {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6vh;
-  }
 }

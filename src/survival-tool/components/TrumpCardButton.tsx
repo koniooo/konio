@@ -1,5 +1,5 @@
 import { patrollerCoolTime, teleportCoolTime, blinkCoolTime } from "./Main";
-import colors from "./ButtonColor.module.scss";
+import colors from "./Color.module.scss";
 import { accelerateDecodingTime } from "./Main";
 import styles from "./TrumpCardButton.module.scss";
 

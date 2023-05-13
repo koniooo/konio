@@ -4,7 +4,7 @@ import { HunterSkillTimerButton } from "./HunterSkillTimerButton";
 import { DreamWitchSkillTimerButton } from "./DreamWitchSkillTimerButton";
 import styles from "./HunterSkillTimer.module.scss";
 
-const dreamWitchHunterId = 10;
+export const dreamWitchId = 10;
 
 type Props = {
   hunterId: number;
@@ -44,31 +44,28 @@ export const HunterSkillTimer = ({
   tertiaryTimerId,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
-
-  if (hunterId === dreamWitchHunterId) {
+  if (hunterId === dreamWitchId) {
     return (
-      <>
+      <div className={styles.double}>
         <OneThirdColumn>
           <DreamWitchSkillTimerButton
+            skill="primary"
             time={primaryTime}
             setTime={setPrimaryTime}
             isTimerActive={isPrimaryTimerActive}
             setIsTimerActive={setIsPrimaryTimerActive}
-          >
-            {selectedHunter.primaryNameJa} {primaryTime}
-          </DreamWitchSkillTimerButton>
+          />
         </OneThirdColumn>
         <OneThirdColumn>
           <DreamWitchSkillTimerButton
+            skill="secondary"
             time={secondaryTime}
             setTime={setSecondaryTime}
             isTimerActive={isSecondaryTimerActive}
             setIsTimerActive={setIsSecondaryTimerActive}
-          >
-            {selectedHunter.secondaryNameJa} {secondaryTime}
-          </DreamWitchSkillTimerButton>
+          />
         </OneThirdColumn>
-      </>
+      </div>
     );
   } else if (selectedHunter.tertiaryCoolTime) {
     return (

@@ -1,7 +1,7 @@
-import { Props } from "./FirstRow";
+// import { Props } from "./FirstRow";
 import { useRef, useEffect } from "react";
-import colors from "./ButtonColor.module.scss";
-import { readyTime, accelerateDecodingTime, defaultHunterId } from "./Main";
+import colors from "./Color.module.scss";
+import { readyTime, accelerateDecodingTime, bloodyQueenId } from "./Main";
 import Image from "next/image";
 import TwitterIcon from "public/survival-tool/startButton/twitter.svg";
 import styles from "./StartButton.module.scss";
@@ -17,7 +17,43 @@ const quenchingEffectStartTime = 50;
 const quenchingEffectEndTime = 55;
 const claustrophobiaTime = 20; // 幽閉の恐怖
 const detentionTime = 120;
-
+type Props = {
+  startTime: number;
+  setStartTime: React.Dispatch<React.SetStateAction<number>>;
+  isStartTimerActive: boolean;
+  setIsStartTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  patrollerTimerId: React.MutableRefObject<number>;
+  teleportTimerId: React.MutableRefObject<number>;
+  blinkTimerId: React.MutableRefObject<number>;
+  ultraLongTimerId: React.MutableRefObject<number>;
+  primaryTimerId: React.MutableRefObject<number>;
+  setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
+  setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
+  setBlinkTime: React.Dispatch<React.SetStateAction<number>>;
+  setUltraLongTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsPatrollerTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTeleportTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasConfinedSpace: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasWantedOrder: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasInsolence: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasDetention: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
+  setHunterId: React.Dispatch<React.SetStateAction<number>>;
+  isPatrollerTimerActive: boolean;
+  isTeleportTimerActive: boolean;
+  isBlinkTimerActive: boolean;
+  isUltraLongTimerActive: boolean;
+  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isPrimaryTimerActive: boolean;
+  setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  hunterId: number;
+  setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
+};
 export const StartButton = ({
   isPatrollerTimerActive,
   isTeleportTimerActive,
@@ -85,7 +121,7 @@ export const StartButton = ({
     )
       return;
     else if (startTime === accelerateDecodingTime) {
-      if (hunterId === defaultHunterId) {
+      if (hunterId === bloodyQueenId) {
         // 画面が回転してる間にハンターを特定している可能性があるため
         triggerTimer(
           isPrimaryTimerActive,
@@ -197,9 +233,7 @@ export const StartButton = ({
     content = <p>【通電】</p>;
   } else if (isFourthStatus) {
     if (startTime > -20) {
-      content = (
-        <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}</p>
-      );
+      content = <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}</p>;
     } else {
       content = <p>【引き留める】終了まで {detentionTime + startTime}</p>;
     }
@@ -239,7 +273,7 @@ export const StartButton = ({
           setHasTrumpCard(false);
           setHasDetention(false);
 
-          setHunterId(defaultHunterId);
+          setHunterId(bloodyQueenId);
 
           setIsTrumpCardUsed(false);
           setIsTrumpCardAlertOn(false);

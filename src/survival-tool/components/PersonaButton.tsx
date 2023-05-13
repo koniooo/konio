@@ -1,4 +1,4 @@
-import colors from "./ButtonColor.module.scss";
+import colors from "./Color.module.scss";
 
 type Props = {
   hasPersona: boolean;

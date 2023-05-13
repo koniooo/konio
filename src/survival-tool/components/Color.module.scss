@@ -11,13 +11,19 @@
 }
 
 .greenText {
-  color: var(--myGreen);
+  p span {
+    color: var(--myGreen);
+  }
 }
 
 .yellowText {
-  color: var(--myYellow);
+  p span {
+    color: var(--myYellow);
+  }
 }
 
 .redText {
-  color: var(--myRed);
+  p span {
+    color: var(--myRed);
+  }
 }
