@@ -4,7 +4,7 @@ import { OneThirdColumn } from "./OneThirdColumn";
 import { HunterSkillTimer } from "./HunterSkillTimer";
 import { Persona } from "./Persona";
 import { HunterSelect } from "./HunterSelect";
-import { LanguageSwitch } from "src/survival-tool/components/LanguageSwich";
+import { LanguageSwitch } from "src/survival-tool/components/LanguageSwitch";
 import { hunterData } from "src/survival-tool/lib/hunterData";
 
 export type Props = {
