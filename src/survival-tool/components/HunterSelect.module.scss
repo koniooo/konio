@@ -1,9 +1,12 @@
 .hunterSelect {
-  background-color: var(--myGreen);
-  text-align: center;
-  font-size: var(--hunterSelectFontSize);
   height: 100%;
   width: 100%;
-  border-radius: var(--radius);
+  text-align: center;
+  font-size: var(--hunterSelectFontSize);
+
+  background-color: var(--myGreen);
   border: none;
+  // border: var(--halfPadding) solid var(--myGray);
+  // border-width: 0 var(--halfPadding);
+  color: var(--myGray);
 }

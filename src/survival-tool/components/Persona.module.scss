@@ -10,14 +10,14 @@
   }
   .vertical {
     height: var(--hunterSelectHeight);
-    margin-bottom: var(--halfPaddingY);
+    margin-bottom: var(--halfPadding);
 
     &.top {
       display: flex;
       .confinedSpace {
-        margin-right: var(--halfPaddingX);
+        margin-right: var(--halfPadding);
         width: calc(
-          var(--oneThirdWidth) - var(--wantedOrderWidth) - var(--halfPaddingX)
+          var(--oneThirdWidth) - var(--wantedOrderWidth) - var(--halfPadding)
         );
       }
 
@@ -32,13 +32,13 @@
   display: flex;
   .horizontal {
     height: calc(var(--hunterSelectHeight) * 2);
-    width: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 2);
-    margin-bottom: var(--halfPaddingY);
+    width: calc((var(--oneThirdWidth) - var(--halfPadding)) / 2);
+    margin-bottom: var(--halfPadding);
     svg {
       max-height: 50%;
     }
     &.left {
-      margin-right: var(--halfPaddingX);
+      margin-right: var(--halfPadding);
       p {
         margin-bottom: 1vh;
         font-size: var(--insolenceValueFontSize);

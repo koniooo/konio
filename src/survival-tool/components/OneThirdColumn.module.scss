@@ -2,6 +2,6 @@
   width: var(--oneThirdWidth);
   height: 100%;
   &:not(:last-child) {
-    margin-right: var(--paddingX);
+    margin-right: var(--padding);
   }
 }

@@ -1,19 +1,58 @@
 .secondRowRightDiv {
-  width: calc(var(--oneThirdWidth) * 2 + var(--paddingX));
+  width: calc(var(--oneThirdWidth) * 2 + var(--padding));
 
   .hunterSelectAndLanguage {
     height: var(--hunterSelectHeight);
-    margin-bottom: var(--halfPaddingY);
+    margin-bottom: var(--halfPadding);
     display: flex;
+    .minusHunterId,
+    .plusHunterId {
+      width: var(--wantedOrderWidth);
+
+      &.disabled {
+        button {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      button {
+        background-color: var(--myGreen);
+        font-size: 3vh;
+        // border-color: var(--myGreen);
+        // border-style: solid;
+      }
+    }
+
+    .minusHunterId {
+      margin-right: calc(var(--halfPadding) / 2);
+      button {
+        border-radius: var(--radius) 0 0 var(--radius);
+        // border-width: var(--halfPadding) 0 var(--halfPadding) var(--halfPadding);
+      }
+    }
+    .plusHunterId {
+      margin-right: var(--padding);
+      button {
+        border-radius: 0 var(--radius) var(--radius) 0;
+        // border-width: var(--halfPadding) var(--halfPadding) var(--halfPadding) 0;
+      }
+    }
 
     .hunterSelectSec {
-      width: var(--oneThirdWidth);
+      width: calc(
+        var(--oneThirdWidth) * 2 + var(--padding) -
+          (
+            var(--wantedOrderWidth) * 2 + var(--padding) + var(--halfPadding) +
+              var(--languageSwitchWidth)
+          )
+      );
       height: 100%;
-      margin-right: var(--paddingX);
+      margin-right: calc(var(--halfPadding) / 2);
     }
 
     .languageSwitch {
-      width: var(--oneThirdWidth);
+      width: var(--languageSwitchWidth);
     }
   }
 

@@ -4,30 +4,29 @@
   --myGreen: #2ecc71;
   --myGray: #292b2f;
 
-  --paddingX: 2.5vw;
-  --halfPaddingX: calc(var(--paddingX) / 2);
-  --paddingY: 1.5vh;
-  --halfPaddingY: calc(var(--paddingY) / 2);
+  --padding: 1.25vh;
+  --halfPadding: calc(var(--padding) / 2);
   --radius: 1.5vh;
-  --edgeHeight: calc((100vh - var(--paddingY) * 5) / 6);
+  --edgeHeight: calc((100vh - var(--padding) * 5) / 6);
   --middleHeight: calc(var(--edgeHeight) * 2);
-  --oneThirdWidth: calc((100vw - var(--paddingX) * 4) / 3);
+  --oneThirdWidth: calc((100vw - var(--padding) * 4) / 3);
 
   --hunterSelectHeight: calc(
-    (var(--middleHeight) - var(--halfPaddingY) * 2) / 4
+    (var(--middleHeight) - var(--halfPadding) * 2) / 4
   );
   --hunterTimerHeight: calc(
-    var(--middleHeight) - var(--hunterSelectHeight) - var(--halfPaddingY)
+    var(--middleHeight) - var(--hunterSelectHeight) - var(--halfPadding)
   );
-  --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPaddingX)) / 3);
+  --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPadding)) / 3);
+  --languageSwitchWidth: calc((var(--oneThirdWidth) - var(--padding)) / 2);
 
   --insolenceValueFontSize: 3.25vh;
-  --hunterSelectFontSize: 2.25vh;
+  --hunterSelectFontSize: 2vh;
   --doubleSkillFontSize: 1.75vh;
   --traitFontSize: 7.5vh;
   --fourthRowFontSize: 6vh;
 
-  padding: var(--paddingY) var(--paddingX);
+  padding: var(--padding);
   background-color: var(--myGray);
   font-weight: 900;
   white-space: nowrap;

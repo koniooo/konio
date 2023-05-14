@@ -5,6 +5,7 @@ import { HunterSkillTimer } from "./HunterSkillTimer";
 import { Persona } from "./Persona";
 import { HunterSelect } from "./HunterSelect";
 import { LanguageSwitch } from "src/survival-tool/components/LanguageSwich";
+import { hunterData } from "src/survival-tool/lib/hunterData";
 
 export type Props = {
   startTime: number;
@@ -89,8 +90,40 @@ export const SecondRow = ({
       </OneThirdColumn>
       <div className={styles.secondRowRightDiv}>
         <div className={styles.hunterSelectAndLanguage}>
+          <section
+            className={`${styles.minusHunterId} ${
+              hunterId === 0 && styles.disabled
+            }`}
+          >
+            <button
+              onClick={() => {
+                if (hunterId === 0) {
+                  return;
+                }
+                setHunterId((t) => t - 1);
+              }}
+            >
+              &lt;
+            </button>
+          </section>
           <section className={styles.hunterSelectSec}>
             <HunterSelect hunterId={hunterId} setHunterId={setHunterId} />
+          </section>
+          <section
+            className={`${styles.plusHunterId} ${
+              hunterId === hunterData.length - 1 && styles.disabled
+            }`}
+          >
+            <button
+              onClick={() => {
+                if (hunterId === hunterData.length - 1) {
+                  return;
+                }
+                setHunterId((t) => t + 1);
+              }}
+            >
+              &gt;
+            </button>
           </section>
           <section className={styles.languageSwitch}>
             <LanguageSwitch />

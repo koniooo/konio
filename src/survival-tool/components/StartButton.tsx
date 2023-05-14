@@ -1,4 +1,3 @@
-// import { Props } from "./FirstRow";
 import { useRef, useEffect } from "react";
 import colors from "./Color.module.scss";
 import { readyTime, accelerateDecodingTime, bloodyQueenId } from "./Main";
