@@ -3,10 +3,14 @@ import { PersonaButton } from "./PersonaButton";
 import { accelerateDecodingTime } from "./Main";
 import { trumpCardTime } from "./TrumpCardButton";
 
-const insolenceTime = [24, 53, 83, 113];
+const presenceUnit = 250;
+const maxPresence = 1000;
+const insolenceSwitchTime = 22;
+const insolenceStandardTime = 30;
+const insolenceEndTime = insolenceSwitchTime + insolenceStandardTime * 3;
 
 type Props = {
-  startTime: number;
+  elapsedTime: number;
   isStartTimerActive: boolean;
   hasConfinedSpace: boolean;
   setHasConfinedSpace: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,7 +25,7 @@ type Props = {
 };
 
 export const Persona = ({
-  startTime,
+  elapsedTime,
   isStartTimerActive,
   hasConfinedSpace,
   setHasConfinedSpace,
@@ -34,34 +38,41 @@ export const Persona = ({
   hasTrumpCard,
   setHasTrumpCard,
 }: Props) => {
-  const timeFromGameStart = accelerateDecodingTime - startTime;
-
   const isInsolenceTimerActive =
-    isStartTimerActive &&
-    0 <= timeFromGameStart &&
-    timeFromGameStart <= insolenceTime[insolenceTime.length - 1];
+    isStartTimerActive && 0 <= elapsedTime && elapsedTime <= insolenceEndTime;
 
   const isTrumpCardTimerActive =
-    isStartTimerActive &&
-    0 <= timeFromGameStart &&
-    timeFromGameStart < trumpCardTime;
+    isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
 
-  const isDetentionTimerActive = isStartTimerActive && startTime <= 0;
+  const isDetentionTimerActive =
+    isStartTimerActive && elapsedTime >= accelerateDecodingTime;
 
-  const insolenceValue: number =
-    timeFromGameStart <= insolenceTime[0]
-      ? (250 / insolenceTime[0]) * timeFromGameStart
-      : timeFromGameStart <= insolenceTime[1]
-      ? 250 +
-        (250 / (insolenceTime[1] - insolenceTime[0])) *
-          (timeFromGameStart - insolenceTime[0])
-      : timeFromGameStart <= insolenceTime[2]
-      ? 500 +
-        (250 / (insolenceTime[2] - insolenceTime[1])) *
-          (timeFromGameStart - insolenceTime[1])
-      : 750 +
-        (250 / (insolenceTime[3] - insolenceTime[2])) *
-          (timeFromGameStart - insolenceTime[2]);
+  let insolenceValue: number;
+  if (elapsedTime <= 0) {
+    insolenceValue = 0;
+  } else if (elapsedTime <= insolenceSwitchTime) {
+    insolenceValue = (presenceUnit / insolenceSwitchTime) * elapsedTime;
+  } else if (elapsedTime <= insolenceEndTime) {
+    insolenceValue =
+      presenceUnit +
+      (presenceUnit / insolenceStandardTime) *
+        (elapsedTime - insolenceSwitchTime);
+  } else {
+    insolenceValue = maxPresence;
+  }
+
+  let insolenceMeter: string;
+  if (insolenceValue < presenceUnit) {
+    insolenceMeter = "○○○○";
+  } else if (insolenceValue < presenceUnit * 2) {
+    insolenceMeter = "●○○○";
+  } else if (insolenceValue < presenceUnit * 3) {
+    insolenceMeter = "●●○○";
+  } else if (insolenceValue < presenceUnit * 4) {
+    insolenceMeter = "●●●○";
+  } else {
+    insolenceMeter = "●●●●";
+  }
 
   return (
     <section className={styles.persona}>
@@ -108,7 +119,13 @@ export const Persona = ({
             setHasPersona={setHasInsolence}
             isPersonaTimerActive={isInsolenceTimerActive}
           >
-            {isInsolenceTimerActive && <p>{Math.round(insolenceValue)}</p>}
+            {isInsolenceTimerActive && (
+              <p>
+                {Math.round(insolenceValue)}
+                <br />
+                <span>{insolenceMeter}</span>
+              </p>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 108.8 102.4"

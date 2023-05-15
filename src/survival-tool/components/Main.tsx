@@ -17,9 +17,7 @@ export const accelerateDecodingTime = 202;
 export const bloodyQueenId = 13;
 
 export const Main = () => {
-  const [startTime, setStartTime] = useState(
-    readyTime + accelerateDecodingTime
-  );
+  const [elapsedTime, setElapsedTime] = useState(-readyTime);
   const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
   const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
   const [blinkTime, setBlinkTime] = useState(blinkCoolTime);
@@ -184,8 +182,8 @@ export const Main = () => {
           isTeleportTimerActive={isTeleportTimerActive}
           isBlinkTimerActive={isBlinkTimerActive}
           isUltraLongTimerActive={isUltraLongTimerActive}
-          startTime={startTime}
-          setStartTime={setStartTime}
+          elapsedTime={elapsedTime}
+          setElapsedTime={setElapsedTime}
           isStartTimerActive={isStartTimerActive}
           setIsStartTimerActive={setIsStartTimerActive}
           patrollerTimerId={patrollerTimerId}
@@ -218,7 +216,7 @@ export const Main = () => {
         />
       </RowContainer>
       <SecondRow
-        startTime={startTime}
+        elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
         hasConfinedSpace={hasConfinedSpace}
         setHasConfinedSpace={setHasConfinedSpace}
@@ -276,7 +274,7 @@ export const Main = () => {
         isUltraLongTimerActive={isUltraLongTimerActive}
         setIsUltraLongTimerActive={setIsUltraLongTimerActive}
         setHasTrumpCard={setHasTrumpCard}
-        startTime={startTime}
+        elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
         isTrumpCardUsed={isTrumpCardUsed}
         setIsTrumpCardUsed={setIsTrumpCardUsed}

@@ -21,7 +21,7 @@ type Props = {
   isUltraLongTimerActive: boolean;
   setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
-  startTime: number;
+  elapsedTime: number;
   isStartTimerActive: boolean;
   isTrumpCardUsed: boolean;
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,7 +45,7 @@ export const FourthRow = ({
   isUltraLongTimerActive,
   setIsUltraLongTimerActive,
   setHasTrumpCard,
-  startTime,
+  elapsedTime,
   isStartTimerActive,
   isTrumpCardUsed,
   setIsTrumpCardUsed,
@@ -69,7 +69,7 @@ export const FourthRow = ({
           isBlinkTimerActive={isBlinkTimerActive}
           setIsBlinkTimerActive={setIsBlinkTimerActive}
           setHasTrumpCard={setHasTrumpCard}
-          startTime={startTime}
+          elapsedTime={elapsedTime}
           isStartTimerActive={isStartTimerActive}
           isTrumpCardUsed={isTrumpCardUsed}
           setIsTrumpCardUsed={setIsTrumpCardUsed}

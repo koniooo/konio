@@ -1,6 +1,5 @@
 import { patrollerCoolTime, teleportCoolTime, blinkCoolTime } from "./Main";
 import colors from "./Color.module.scss";
-import { accelerateDecodingTime } from "./Main";
 import styles from "./TrumpCardButton.module.scss";
 
 export const trumpCardTime = 120;
@@ -21,7 +20,7 @@ type Props = {
   isBlinkTimerActive: boolean;
   setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
-  startTime: number;
+  elapsedTime: number;
   isStartTimerActive: boolean;
   isTrumpCardUsed: boolean;
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,18 +42,15 @@ export const TrumpCardButton = ({
   isBlinkTimerActive,
   setIsBlinkTimerActive,
   setHasTrumpCard,
-  startTime,
+  elapsedTime,
   isStartTimerActive,
   isTrumpCardUsed,
   setIsTrumpCardUsed,
   isTrumpCardAlertOn,
   setIsTrumpCardAlertOn,
 }: Props) => {
-  const timeFromGameStart = accelerateDecodingTime - startTime;
   const isTrumpCardTimerActive =
-    isStartTimerActive &&
-    0 <= timeFromGameStart &&
-    timeFromGameStart < trumpCardTime;
+    isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
   const trumpCardFunc = (
     sourceTraitTime: number,
     sourceTraitCoolTime: number,
@@ -79,6 +75,7 @@ export const TrumpCardButton = ({
         if (isTrumpCardUsed) {
           return;
         }
+
         const activeTraitList = [
           isPatrollerTimerActive,
           isTeleportTimerActive,
@@ -161,7 +158,7 @@ export const TrumpCardButton = ({
 
       {!isTrumpCardAlertOn && isTrumpCardTimerActive && (
         <p className={`${styles.text} ${styles.timeText}`}>
-          {trumpCardTime - timeFromGameStart}
+          {trumpCardTime - elapsedTime}
         </p>
       )}
       <svg

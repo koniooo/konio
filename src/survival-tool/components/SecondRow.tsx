@@ -8,7 +8,7 @@ import { LanguageSwitch } from "src/survival-tool/components/LanguageSwitch";
 import { hunterData } from "src/survival-tool/lib/hunterData";
 
 export type Props = {
-  startTime: number;
+  elapsedTime: number;
   isStartTimerActive: boolean;
   hunterId: number;
   setHunterId: React.Dispatch<React.SetStateAction<number>>;
@@ -40,7 +40,7 @@ export type Props = {
 };
 
 export const SecondRow = ({
-  startTime,
+  elapsedTime,
   isStartTimerActive,
   hasConfinedSpace,
   setHasConfinedSpace,
@@ -74,7 +74,7 @@ export const SecondRow = ({
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
         <Persona
-          startTime={startTime}
+          elapsedTime={elapsedTime}
           isStartTimerActive={isStartTimerActive}
           hasConfinedSpace={hasConfinedSpace}
           setHasConfinedSpace={setHasConfinedSpace}
@@ -103,7 +103,19 @@ export const SecondRow = ({
                 setHunterId((t) => t - 1);
               }}
             >
-              &lt;
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 200 223.205"
+                fill="#292b2f"
+              >
+                <path
+                  d="M174.977,223.209c-4.242,0-8.539-1.081-12.477-3.354l-150-86.602C4.765,128.788,0,120.534,0,111.603
+		s4.765-17.185,12.5-21.651l150-86.602c11.958-6.903,27.248-2.806,34.151,9.15c6.903,11.958,2.807,27.247-9.151,34.15L75,111.603
+		l112.5,64.952c11.958,6.903,16.054,22.193,9.151,34.15C192.021,218.725,183.616,223.209,174.977,223.209z"
+                />
+              </svg>
             </button>
           </section>
           <section className={styles.hunterSelectSec}>
@@ -122,7 +134,20 @@ export const SecondRow = ({
                 setHunterId((t) => t + 1);
               }}
             >
-              &gt;
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 200.004 223.213"
+                fill="#292b2f"
+              >
+                <path
+                  d="M25.028,0c4.242,0,8.539,1.081,12.477,3.354l150,86.602c7.735,4.466,12.5,12.719,12.5,21.651s-4.765,17.185-12.5,21.651
+	l-150,86.602c-11.958,6.903-27.248,2.806-34.151-9.15c-6.903-11.958-2.807-27.247,9.151-34.15l112.5-64.952l-112.5-64.952
+	C0.547,39.751-3.55,24.462,3.353,12.504C7.984,4.484,16.388,0,25.028,0z"
+                />
+              </svg>
             </button>
           </section>
           <section className={styles.languageSwitch}>

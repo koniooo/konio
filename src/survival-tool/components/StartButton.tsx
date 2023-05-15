@@ -1,8 +1,6 @@
 import { useRef, useEffect } from "react";
 import colors from "./Color.module.scss";
 import { readyTime, accelerateDecodingTime, bloodyQueenId } from "./Main";
-import Image from "next/image";
-import TwitterIcon from "public/survival-tool/startButton/twitter.svg";
 import styles from "./StartButton.module.scss";
 
 const patrollerDefaultTime = 30;
@@ -13,12 +11,13 @@ const bloodyQueenDefaultTime = 8;
 
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
-const quenchingEffectEndTime = 55;
+const quenchingEffectDuration = 5;
 const claustrophobiaTime = 20; // 幽閉の恐怖
 const detentionTime = 120;
+
 type Props = {
-  startTime: number;
-  setStartTime: React.Dispatch<React.SetStateAction<number>>;
+  elapsedTime: number;
+  setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   isStartTimerActive: boolean;
   setIsStartTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   patrollerTimerId: React.MutableRefObject<number>;
@@ -58,8 +57,8 @@ export const StartButton = ({
   isTeleportTimerActive,
   isBlinkTimerActive,
   isUltraLongTimerActive,
-  startTime,
-  setStartTime,
+  elapsedTime,
+  setElapsedTime,
   isStartTimerActive,
   setIsStartTimerActive,
   patrollerTimerId,
@@ -114,12 +113,12 @@ export const StartButton = ({
 
   useEffect(() => {
     if (
-      startTime !== accelerateDecodingTime &&
-      startTime !== 0 &&
-      startTime !== -detentionTime
-    )
+      elapsedTime !== 0 &&
+      elapsedTime !== accelerateDecodingTime &&
+      elapsedTime !== accelerateDecodingTime + detentionTime
+    ) {
       return;
-    else if (startTime === accelerateDecodingTime) {
+    } else if (elapsedTime === 0) {
       if (hunterId === bloodyQueenId) {
         // 画面が回転してる間にハンターを特定している可能性があるため
         triggerTimer(
@@ -166,96 +165,131 @@ export const StartButton = ({
       clearInterval(startTimerId.current);
       setIsStartTimerActive(false);
     }
-  }, [startTime]);
+  }, [elapsedTime]);
 
-  const isFirstStatus =
-    startTime === readyTime + accelerateDecodingTime && !isStartTimerActive;
+  const isFirstStatus = elapsedTime === -readyTime && !isStartTimerActive;
   const isSecondStatus =
-    0 < startTime &&
-    startTime <= readyTime + accelerateDecodingTime &&
+    -readyTime <= elapsedTime &&
+    elapsedTime < accelerateDecodingTime &&
     isStartTimerActive;
-  const isThirdStatus = startTime === 0 && !isStartTimerActive;
+  const isThirdStatus =
+    elapsedTime === accelerateDecodingTime && !isStartTimerActive;
   const isFourthStatus =
-    -120 < startTime && startTime <= 0 && isStartTimerActive;
-  const isFifthStatus = startTime === -detentionTime && !isStartTimerActive;
-
-  const timeFromGameStart = accelerateDecodingTime - startTime;
+    accelerateDecodingTime <= elapsedTime &&
+    elapsedTime < accelerateDecodingTime + detentionTime &&
+    isStartTimerActive;
+  const isFifthStatus =
+    elapsedTime === accelerateDecodingTime + detentionTime &&
+    !isStartTimerActive;
 
   let content;
   if (isFirstStatus) {
     content = (
       <>
-        <p>START</p>
-        <br />
-        <p>※画面が割れて視点が回り始める瞬間にタップ</p>
+        <p className={styles.start}>START</p>
+        <p className={styles.description}>
+          ※画面が割れて視点が回り始める瞬間にタップ
+        </p>
       </>
     );
   } else if (isSecondStatus) {
-    if (timeFromGameStart < 0) {
-      content = <p>推理開始まで {-timeFromGameStart}</p>;
-    } else if (0 <= timeFromGameStart && timeFromGameStart < constrainTime) {
+    if (elapsedTime < 0) {
+      content = (
+        <p className={styles.readyTime}>
+          ゲーム開始まで <span>{-elapsedTime}</span>
+        </p>
+      );
+    } else if (0 <= elapsedTime && elapsedTime < constrainTime) {
       content = (
         <>
-          <p>【封鎖】解除まで {constrainTime - timeFromGameStart}</p>
-          <br />
-          <p>
+          <p className={styles.constrain}>
+            【封鎖】解除まで <span>{constrainTime - elapsedTime}</span>
+          </p>
+          <p className={styles.quenchingEffect}>
             【焼き入れ効果・フライホイール効果】まで{` `}
-            {quenchingEffectStartTime - timeFromGameStart}
+            <span>{quenchingEffectStartTime - elapsedTime}</span>
           </p>
         </>
       );
     } else if (
-      constrainTime <= timeFromGameStart &&
-      timeFromGameStart < quenchingEffectStartTime
+      constrainTime <= elapsedTime &&
+      elapsedTime < quenchingEffectStartTime
     ) {
       content = (
         <p>
           【焼き入れ効果・フライホイール効果】まで{` `}
-          {quenchingEffectStartTime - timeFromGameStart}
+          <span>{quenchingEffectStartTime - elapsedTime}</span>
         </p>
       );
     } else if (
-      quenchingEffectStartTime <= timeFromGameStart &&
-      timeFromGameStart < quenchingEffectEndTime
+      quenchingEffectStartTime <= elapsedTime &&
+      elapsedTime < quenchingEffectStartTime + quenchingEffectDuration
     ) {
       content = (
         <p>
-          【焼き入れ効果】終了まで {quenchingEffectEndTime - timeFromGameStart}
+          【焼き入れ効果】終了まで{" "}
+          <span>
+            {quenchingEffectStartTime + quenchingEffectDuration - elapsedTime}
+          </span>
         </p>
       );
     } else {
       content = (
-        <p>【解読加速】まで {accelerateDecodingTime - timeFromGameStart}</p>
+        <p>
+          【解読加速】まで <span>{accelerateDecodingTime - elapsedTime}</span>
+        </p>
       );
     }
   } else if (isThirdStatus) {
     content = <p>【通電】</p>;
   } else if (isFourthStatus) {
-    if (startTime > -20) {
-      content = <p>【幽閉の恐怖】解除まで {claustrophobiaTime + startTime}</p>;
+    if (elapsedTime < accelerateDecodingTime + claustrophobiaTime) {
+      content = (
+        <p>
+          【幽閉の恐怖】解除まで{" "}
+          <span>
+            {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
+          </span>
+        </p>
+      );
     } else {
-      content = <p>【引き留める】終了まで {detentionTime + startTime}</p>;
+      content = (
+        <p>
+          【引き留める】終了まで{" "}
+          <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
+        </p>
+      );
     }
   } else if (isFifthStatus) {
     content = (
-      <>
-        <p>developed by Konio</p>
+      <div className={styles.credit}>
+        <p>Developed by Konio</p>
         <a
           href="https://twitter.com/konio_tracy"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className={styles.svgContainer}>
-            <Image src={TwitterIcon} alt="twitter-icon" fill />
-          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 250 203.09887"
+            fill="#292b2f"
+          >
+            <path
+              d="M78.6,203.1c94.3,0,145.9-78.2,145.9-145.9,0-2.2,0-4.4-.1-6.6A107.41429,107.41429,0,0,0,250,24.1a104.26084,104.26084,0,0,1-29.5,8.1A51.248,51.248,0,0,0,243,3.8a100.89757,100.89757,0,0,1-32.6,12.4A51.33635,51.33635,0,0,0,123,63,145.84067,145.84067,0,0,1,17.4,9.4,51.20116,51.20116,0,0,0,33.3,77.8,50.268,50.268,0,0,1,10,71.4V72a51.36843,51.36843,0,0,0,41.2,50.3,50.571,50.571,0,0,1-23.2.9,51.307,51.307,0,0,0,47.9,35.6,102.985,102.985,0,0,1-63.7,22c-4.1,0-8.2-.3-12.2-.7a145.094,145.094,0,0,0,78.6,23"
+              transform="translate(0 -0.00114)"
+            />
+          </svg>
         </a>
-      </>
+      </div>
     );
   }
 
   return (
     <button
       type="button"
+      className={`${isStartTimerActive ? colors.yellow : colors.green} ${
+        isFifthStatus && styles.twitterColor
+      } ${styles.startButton}`}
       onClick={() => {
         if (isFirstStatus) {
           setIsPatrollerTimerActive(false);
@@ -278,25 +312,24 @@ export const StartButton = ({
           setIsTrumpCardAlertOn(false);
 
           const id = setInterval(() => {
-            setStartTime((t) => t - 1);
+            setElapsedTime((t) => t + 1);
           }, 1000);
           startTimerId.current = Number(id);
           setIsStartTimerActive(true);
         } else if (isSecondStatus) {
-          setStartTime(0); // useEffectにstartTimeが0になったときの処理は任せる
+          setElapsedTime(accelerateDecodingTime); // useEffectにelapsedTimeがaccelerateDecodingTimeになったときの処理は任せる
         } else if (isThirdStatus) {
           const id = setInterval(() => {
-            setStartTime((t) => t - 1);
+            setElapsedTime((t) => t + 1);
           }, 1000);
           startTimerId.current = Number(id);
           setIsStartTimerActive(true);
         } else if (isFourthStatus) {
-          setStartTime(-120); // 上に同じ
+          setElapsedTime(accelerateDecodingTime + detentionTime); // 上に同じ
         } else if (isFifthStatus) {
-          setStartTime(readyTime + accelerateDecodingTime);
+          setElapsedTime(-readyTime);
         }
       }}
-      className={isStartTimerActive ? colors.yellow : colors.green}
     >
       {content}
     </button>
