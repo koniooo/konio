@@ -216,10 +216,13 @@ export const StartButton = ({
       elapsedTime < quenchingEffectStartTime
     ) {
       content = (
-        <p>
-          【焼き入れ効果・フライホイール効果】まで{` `}
-          <span>{quenchingEffectStartTime - elapsedTime}</span>
-        </p>
+        <>
+          <p className={styles.constrain}>【封鎖】解除済み</p>
+          <p>
+            【焼き入れ効果・フライホイール効果】まで{` `}
+            <span>{quenchingEffectStartTime - elapsedTime}</span>
+          </p>
+        </>
       );
     } else if (
       quenchingEffectStartTime <= elapsedTime &&
@@ -245,12 +248,28 @@ export const StartButton = ({
   } else if (isFourthStatus) {
     if (elapsedTime < accelerateDecodingTime + claustrophobiaTime) {
       content = (
-        <p>
-          【幽閉の恐怖】解除まで{" "}
-          <span>
-            {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
-          </span>
-        </p>
+        <>
+          <p>
+            【幽閉の恐怖】解除まで{" "}
+            <span>
+              {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
+            </span>
+          </p>
+          <p>
+            【引き留める】終了まで{" "}
+            <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
+          </p>
+        </>
+      );
+    } else if (elapsedTime < accelerateDecodingTime + claustrophobiaTime + 10) {
+      content = (
+        <>
+          <p>【幽閉の恐怖】解除済み</p>
+          <p>
+            【引き留める】終了まで{" "}
+            <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
+          </p>
+        </>
       );
     } else {
       content = (
