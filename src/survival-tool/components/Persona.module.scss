@@ -40,20 +40,24 @@
     &.left {
       margin-right: var(--halfPadding);
       p {
-        margin-bottom: 1vh;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         font-size: var(--insolenceValueFontSize);
         line-height: 0.8;
-        span {
-          font-family: sans-serif;
-          font-size: 1.25vh;
+      }
+      .insolenceMeter {
+        top: 42.5%;
+        .hidden {
+          display: none;
         }
       }
-
-      svg {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: translate(0);
+      .insolenceIcon {
+        top: 75%;
+        &.center {
+          top: 50%;
+        }
       }
     }
   }
