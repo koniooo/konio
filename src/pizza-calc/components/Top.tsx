@@ -1,8 +1,8 @@
 import Head from "next/head";
-import { Header } from "pizza-calc/components/Header";
-import { Main } from "pizza-calc/components/Main";
-import { Footer } from "pizza-calc/components/Footer";
-import styles from "pizza-calc/components/Top.module.scss";
+import { Header } from "src/pizza-calc/components/Header";
+import { Main } from "src/pizza-calc/components/Main";
+import { Footer } from "src/pizza-calc/components/Footer";
+import styles from "src/pizza-calc/components/Top.module.scss";
 const Top = () => {
   return (
     <div className={styles.pizzaCalcTop}>

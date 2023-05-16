@@ -1,6 +1,6 @@
-import { pizzaData } from "pizza-calc/lib/pizzaData";
-import styles from "pizza-calc/components/DataSetButton.module.scss";
-import { DataSetButtonProps } from "pizza-calc/components/Main";
+import { pizzaData } from "src/pizza-calc/lib/pizzaData";
+import styles from "src/pizza-calc/components/DataSetButton.module.scss";
+import { DataSetButtonProps } from "src/pizza-calc/components/Main";
 
 export const DataSetButton = ({
   index,
