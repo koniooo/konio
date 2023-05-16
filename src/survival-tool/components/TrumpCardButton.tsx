@@ -1,12 +1,17 @@
-import { patrollerCoolTime, teleportCoolTime, blinkCoolTime } from "./Main";
+import {
+  trumpCardTime,
+  patrollerCoolTime,
+  teleportCoolTime,
+  blinkCoolTime,
+} from "./Main";
+
 import colors from "./Color.module.scss";
 import styles from "./TrumpCardButton.module.scss";
-
-export const trumpCardTime = 120;
 
 let id: NodeJS.Timeout;
 
 type Props = {
+  isTrumpCardTimerActive: boolean;
   patrollerTime: number;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
   isPatrollerTimerActive: boolean;
@@ -21,7 +26,6 @@ type Props = {
   setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
-  isStartTimerActive: boolean;
   isTrumpCardUsed: boolean;
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
   isTrumpCardAlertOn: boolean;
@@ -29,6 +33,7 @@ type Props = {
 };
 
 export const TrumpCardButton = ({
+  isTrumpCardTimerActive,
   patrollerTime,
   setPatrollerTime,
   isPatrollerTimerActive,
@@ -43,14 +48,11 @@ export const TrumpCardButton = ({
   setIsBlinkTimerActive,
   setHasTrumpCard,
   elapsedTime,
-  isStartTimerActive,
   isTrumpCardUsed,
   setIsTrumpCardUsed,
   isTrumpCardAlertOn,
   setIsTrumpCardAlertOn,
 }: Props) => {
-  const isTrumpCardTimerActive =
-    isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
   const trumpCardFunc = (
     sourceTraitTime: number,
     sourceTraitCoolTime: number,

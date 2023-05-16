@@ -8,6 +8,7 @@ import { LanguageSwitch } from "src/survival-tool/components/LanguageSwitch";
 import { hunterData } from "src/survival-tool/lib/hunterData";
 
 export type Props = {
+  isTrumpCardTimerActive: boolean;
   elapsedTime: number;
   isStartTimerActive: boolean;
   hunterId: number;
@@ -40,6 +41,7 @@ export type Props = {
 };
 
 export const SecondRow = ({
+  isTrumpCardTimerActive,
   elapsedTime,
   isStartTimerActive,
   hasConfinedSpace,
@@ -74,6 +76,7 @@ export const SecondRow = ({
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
         <Persona
+          isTrumpCardTimerActive={isTrumpCardTimerActive}
           elapsedTime={elapsedTime}
           isStartTimerActive={isStartTimerActive}
           hasConfinedSpace={hasConfinedSpace}

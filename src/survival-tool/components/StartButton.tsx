@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
+import { readyTime, bloodyQueenId } from "./Main";
 import colors from "./Color.module.scss";
-import { readyTime, accelerateDecodingTime, bloodyQueenId } from "./Main";
 import styles from "./StartButton.module.scss";
 
 const patrollerDefaultTime = 30;
@@ -12,8 +12,9 @@ const bloodyQueenDefaultTime = 8;
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
 const quenchingEffectDuration = 5;
+export const accelerateDecodingTime = 202;
 const claustrophobiaTime = 20; // 幽閉の恐怖
-const detentionTime = 120;
+export const detentionTime = 120;
 
 type Props = {
   elapsedTime: number;
@@ -115,7 +116,7 @@ export const StartButton = ({
     if (
       elapsedTime !== 0 &&
       elapsedTime !== accelerateDecodingTime &&
-      elapsedTime !== accelerateDecodingTime + detentionTime
+      elapsedTime !== accelerateDecodingTime + detentionTime + 10
     ) {
       return;
     } else if (elapsedTime === 0) {
@@ -176,10 +177,10 @@ export const StartButton = ({
     elapsedTime === accelerateDecodingTime && !isStartTimerActive;
   const isFourthStatus =
     accelerateDecodingTime <= elapsedTime &&
-    elapsedTime < accelerateDecodingTime + detentionTime &&
+    elapsedTime < accelerateDecodingTime + detentionTime + 10 &&
     isStartTimerActive;
   const isFifthStatus =
-    elapsedTime === accelerateDecodingTime + detentionTime &&
+    elapsedTime === accelerateDecodingTime + detentionTime + 10 &&
     !isStartTimerActive;
 
   let content;
@@ -199,11 +200,11 @@ export const StartButton = ({
           ゲーム開始まで <span>{-elapsedTime}</span>
         </p>
       );
-    } else if (0 <= elapsedTime && elapsedTime < constrainTime) {
+    } else if (elapsedTime < constrainTime) {
       content = (
         <>
           <p className={styles.firstLine}>
-            【封鎖】解除まで <span>{constrainTime - elapsedTime}</span>
+            【封鎖】発動中 <span>{constrainTime - elapsedTime}</span>
           </p>
           <p className={styles.secondLine}>
             【焼き入れ効果・フライホイール効果】まで{` `}
@@ -211,10 +212,7 @@ export const StartButton = ({
           </p>
         </>
       );
-    } else if (
-      constrainTime <= elapsedTime &&
-      elapsedTime < quenchingEffectStartTime
-    ) {
+    } else if (elapsedTime < quenchingEffectStartTime) {
       content = (
         <>
           <p className={styles.firstLine}>【封鎖】解除済み</p>
@@ -225,16 +223,28 @@ export const StartButton = ({
         </>
       );
     } else if (
-      quenchingEffectStartTime <= elapsedTime &&
-      elapsedTime < quenchingEffectStartTime + quenchingEffectDuration
+      elapsedTime <
+      quenchingEffectStartTime + quenchingEffectDuration
     ) {
       content = (
         <p>
-          【焼き入れ効果】終了まで{" "}
+          【焼き入れ効果】発動中{" "}
           <span>
             {quenchingEffectStartTime + quenchingEffectDuration - elapsedTime}
           </span>
         </p>
+      );
+    } else if (
+      elapsedTime <
+      quenchingEffectStartTime + quenchingEffectDuration + 10
+    ) {
+      content = (
+        <>
+          <p className={styles.firstLine}>【焼き入れ効果】発動済み</p>
+          <p className={styles.secondLine}>
+            【解読加速】まで <span>{accelerateDecodingTime - elapsedTime}</span>
+          </p>
+        </>
       );
     } else {
       content = (
@@ -244,19 +254,19 @@ export const StartButton = ({
       );
     }
   } else if (isThirdStatus) {
-    content = <p>【通電】</p>;
+    content = <p className={styles.gateOpen}>【通電】</p>;
   } else if (isFourthStatus) {
     if (elapsedTime < accelerateDecodingTime + claustrophobiaTime) {
       content = (
         <>
-          <p>
-            【幽閉の恐怖】解除まで{" "}
+          <p className={styles.firstLine}>
+            【幽閉の恐怖】発動中{" "}
             <span>
               {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
             </span>
           </p>
-          <p>
-            【引き留める】終了まで{" "}
+          <p className={styles.secondLine}>
+            【引き留める】発動中{" "}
             <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
           </p>
         </>
@@ -264,25 +274,27 @@ export const StartButton = ({
     } else if (elapsedTime < accelerateDecodingTime + claustrophobiaTime + 10) {
       content = (
         <>
-          <p>【幽閉の恐怖】解除済み</p>
-          <p>
-            【引き留める】終了まで{" "}
+          <p className={styles.firstLine}>【幽閉の恐怖】解除済み</p>
+          <p className={styles.secondLine}>
+            【引き留める】発動中{" "}
             <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
           </p>
         </>
       );
-    } else {
+    } else if (elapsedTime < accelerateDecodingTime + detentionTime) {
       content = (
         <p>
-          【引き留める】終了まで{" "}
+          【引き留める】発動中{" "}
           <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
         </p>
       );
+    } else {
+      content = <p>【引き留める】発動済み</p>;
     }
   } else if (isFifthStatus) {
     content = (
       <div className={styles.credit}>
-        <p>Developed by Konio</p>
+        <p className={styles.creditText}>Developed by Konio</p>
         <a
           href="https://twitter.com/konio_tracy"
           target="_blank"
@@ -344,7 +356,7 @@ export const StartButton = ({
           startTimerId.current = Number(id);
           setIsStartTimerActive(true);
         } else if (isFourthStatus) {
-          setElapsedTime(accelerateDecodingTime + detentionTime); // 上に同じ
+          setElapsedTime(accelerateDecodingTime + detentionTime + 10); // 上に同じ
         } else if (isFifthStatus) {
           setElapsedTime(-readyTime);
         }

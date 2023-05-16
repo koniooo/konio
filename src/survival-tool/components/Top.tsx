@@ -11,7 +11,7 @@ const Top = () => {
         <title>第五人格サバイバルツール</title>
         <meta
           name="description"
-          content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツール。焼き入れ効果や裏向きカードにも対応！"
+          content="ハンターの特質・スキルのクールタイム管理や人格メモ機能など、サバイバーに役立つ機能が揃ったツール。全ハンターに対応！"
         />
         <meta name="theme-color" content="#292b2f" />
         <meta property="og:url" content="https://koni.ooo/survival-tool" />
@@ -19,7 +19,7 @@ const Top = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:description"
-          content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツール。焼き入れ効果や裏向きカードにも対応！"
+          content="ハンターの特質・スキルのクールタイム管理や人格メモ機能など、サバイバーに役立つ機能が揃ったツール。全ハンターに対応！"
         />
         <meta
           property="og:image"

@@ -1,11 +1,10 @@
 .startButton {
-  p {
+  p:not(.creditText) {
     position: absolute;
     transform: translate(-50%, -50%);
-    line-height: 1.5;
-    font-size: 1.75vh;
     top: 50%;
     left: 50%;
+    font-size: 1.75vh;
     span {
       font-size: 3.5vh;
       vertical-align: sub;
@@ -22,6 +21,17 @@
       font-size: 1.25vh;
       line-height: 1.2;
     }
+    &.gateOpen {
+      font-size: 4.5vh;
+    }
+
+    &.firstLine {
+      top: 31%;
+    }
+
+    &.secondLine {
+      top: 69%;
+    }
   }
   .credit {
     position: absolute;
@@ -37,13 +47,10 @@
       margin-right: 0.5vh;
     }
     a {
-      //   background-color: aqua;
       display: inline-block;
       svg {
-        // width: 12.5vw;
-        // max-height: calc(var(--edgeHeight) / 2);
         height: calc(var(--edgeHeight) * 0.4);
-        max-width: 12.5vw;
+        max-width: 10vw;
       }
     }
   }
@@ -51,6 +58,6 @@
   &.twitterColor {
     background-color: rgb(29, 155, 240);
     // background-color: #fd79a8;
-    background-color: rgb(249, 24, 128);
+    // background-color: rgb(249, 24, 128);
   }
 }

@@ -1,10 +1,10 @@
 import { RowContainer } from "./RowContainer";
-import { TimerButton } from "./TimerButton";
 import styles from "./FourthRow.module.scss";
 import { TrumpCardButton } from "./TrumpCardButton";
 import { UltraLongTimer } from "src/survival-tool/components/UltraLongTimer";
 
 type Props = {
+  isTrumpCardTimerActive: boolean;
   patrollerTime: number;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
   isPatrollerTimerActive: boolean;
@@ -22,13 +22,13 @@ type Props = {
   setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
-  isStartTimerActive: boolean;
   isTrumpCardUsed: boolean;
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
   isTrumpCardAlertOn: boolean;
   setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const FourthRow = ({
+  isTrumpCardTimerActive,
   patrollerTime,
   setPatrollerTime,
   isPatrollerTimerActive,
@@ -46,7 +46,6 @@ export const FourthRow = ({
   setIsUltraLongTimerActive,
   setHasTrumpCard,
   elapsedTime,
-  isStartTimerActive,
   isTrumpCardUsed,
   setIsTrumpCardUsed,
   isTrumpCardAlertOn,
@@ -56,6 +55,7 @@ export const FourthRow = ({
     <RowContainer isEdgeRow={true}>
       <section className={styles.trump}>
         <TrumpCardButton
+          isTrumpCardTimerActive={isTrumpCardTimerActive}
           patrollerTime={patrollerTime}
           setPatrollerTime={setPatrollerTime}
           isPatrollerTimerActive={isPatrollerTimerActive}
@@ -70,7 +70,6 @@ export const FourthRow = ({
           setIsBlinkTimerActive={setIsBlinkTimerActive}
           setHasTrumpCard={setHasTrumpCard}
           elapsedTime={elapsedTime}
-          isStartTimerActive={isStartTimerActive}
           isTrumpCardUsed={isTrumpCardUsed}
           setIsTrumpCardUsed={setIsTrumpCardUsed}
           isTrumpCardAlertOn={isTrumpCardAlertOn}

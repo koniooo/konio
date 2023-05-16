@@ -1,7 +1,7 @@
 import styles from "./Persona.module.scss";
 import { PersonaButton } from "./PersonaButton";
-import { accelerateDecodingTime } from "./Main";
-import { trumpCardTime } from "./TrumpCardButton";
+import { accelerateDecodingTime } from "./StartButton";
+import { detentionTime } from "src/survival-tool/components/StartButton";
 
 const presenceUnit = 250;
 const maxPresence = 1000;
@@ -10,6 +10,7 @@ const insolenceStandardTime = 30;
 const insolenceEndTime = insolenceSwitchTime + insolenceStandardTime * 3;
 
 type Props = {
+  isTrumpCardTimerActive: boolean;
   elapsedTime: number;
   isStartTimerActive: boolean;
   hasConfinedSpace: boolean;
@@ -25,6 +26,7 @@ type Props = {
 };
 
 export const Persona = ({
+  isTrumpCardTimerActive,
   elapsedTime,
   isStartTimerActive,
   hasConfinedSpace,
@@ -41,11 +43,10 @@ export const Persona = ({
   const isInsolenceTimerActive =
     isStartTimerActive && 0 <= elapsedTime && elapsedTime <= insolenceEndTime;
 
-  const isTrumpCardTimerActive =
-    isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
-
   const isDetentionTimerActive =
-    isStartTimerActive && elapsedTime >= accelerateDecodingTime;
+    isStartTimerActive &&
+    accelerateDecodingTime <= elapsedTime &&
+    elapsedTime < accelerateDecodingTime + detentionTime;
 
   let insolenceValue: number;
   if (elapsedTime <= 0) {

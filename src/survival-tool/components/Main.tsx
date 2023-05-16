@@ -12,8 +12,9 @@ export const teleportCoolTime = 100;
 export const blinkCoolTime = 150;
 export const ultraLongCoolTime = 150;
 
+export const trumpCardTime = 120;
+
 export const readyTime = 5;
-export const accelerateDecodingTime = 202;
 export const bloodyQueenId = 13;
 
 export const Main = () => {
@@ -174,6 +175,9 @@ export const Main = () => {
     setTertiaryTime(tertiaryTotalCoolTime);
   }, [hunterId]);
 
+  const isTrumpCardTimerActive =
+    isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
+
   return (
     <main className={styles.main}>
       <RowContainer isEdgeRow={true}>
@@ -216,6 +220,7 @@ export const Main = () => {
         />
       </RowContainer>
       <SecondRow
+        isTrumpCardTimerActive={isTrumpCardTimerActive}
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
         hasConfinedSpace={hasConfinedSpace}
@@ -258,6 +263,7 @@ export const Main = () => {
         setIsBlinkTimerActive={setIsBlinkTimerActive}
       />
       <FourthRow
+        isTrumpCardTimerActive={isTrumpCardTimerActive}
         patrollerTime={patrollerTime}
         setPatrollerTime={setPatrollerTime}
         isPatrollerTimerActive={isPatrollerTimerActive}
@@ -275,7 +281,6 @@ export const Main = () => {
         setIsUltraLongTimerActive={setIsUltraLongTimerActive}
         setHasTrumpCard={setHasTrumpCard}
         elapsedTime={elapsedTime}
-        isStartTimerActive={isStartTimerActive}
         isTrumpCardUsed={isTrumpCardUsed}
         setIsTrumpCardUsed={setIsTrumpCardUsed}
         isTrumpCardAlertOn={isTrumpCardAlertOn}
