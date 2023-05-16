@@ -195,17 +195,17 @@ export const StartButton = ({
   } else if (isSecondStatus) {
     if (elapsedTime < 0) {
       content = (
-        <p className={styles.readyTime}>
+        <p>
           ゲーム開始まで <span>{-elapsedTime}</span>
         </p>
       );
     } else if (0 <= elapsedTime && elapsedTime < constrainTime) {
       content = (
         <>
-          <p className={styles.constrain}>
+          <p className={styles.firstLine}>
             【封鎖】解除まで <span>{constrainTime - elapsedTime}</span>
           </p>
-          <p className={styles.quenchingEffect}>
+          <p className={styles.secondLine}>
             【焼き入れ効果・フライホイール効果】まで{` `}
             <span>{quenchingEffectStartTime - elapsedTime}</span>
           </p>
@@ -217,8 +217,8 @@ export const StartButton = ({
     ) {
       content = (
         <>
-          <p className={styles.constrain}>【封鎖】解除済み</p>
-          <p>
+          <p className={styles.firstLine}>【封鎖】解除済み</p>
+          <p className={styles.secondLine}>
             【焼き入れ効果・フライホイール効果】まで{` `}
             <span>{quenchingEffectStartTime - elapsedTime}</span>
           </p>

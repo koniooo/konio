@@ -4,17 +4,21 @@
     transform: translate(-50%, -50%);
     line-height: 1.5;
     font-size: 1.75vh;
+    top: 50%;
+    left: 50%;
     span {
       font-size: 3.5vh;
       vertical-align: sub;
     }
 
     &.start {
+      top: 45%;
       font-size: 7.5vh;
       line-height: 1.2;
     }
 
     &.description {
+      top: 82.5%;
       font-size: 1.25vh;
       line-height: 1.2;
     }
