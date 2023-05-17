@@ -1,4 +1,4 @@
-import Top from "src/survival-tool/components/Top";
+import Top from "survival-tool/components/Top";
 
 const survivalTool = () => {
   return <Top />;

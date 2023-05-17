@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "src/survival-tool/components/Main.module.scss";
+import styles from "survival-tool/components/Main.module.scss";
 import { RowContainer } from "./RowContainer";
 import { StartButton } from "./StartButton";
 import { SecondRow } from "./SecondRow";
