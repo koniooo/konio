@@ -2,7 +2,7 @@ import "src/styles/reset.css";
 import "src/styles/global.css";
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
-import { usePageView, GoogleAnalytics } from "src/lib/gtag";
+import { usePageView, GoogleAnalytics } from "lib/gtag";
 
 function MyApp({ Component, pageProps }: AppProps) {
   usePageView();
