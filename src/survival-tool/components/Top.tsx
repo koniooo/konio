@@ -27,19 +27,13 @@ const Top = () => {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@konio_tracy" />
+
         <link
           rel="icon"
-          href="pizza-calc/favicon_32.png"
-          type="image/png"
-          sizes="32x32"
-        />
-        <link
-          rel="icon"
-          href="pizza-calc/pizza.svg"
+          href="survival-tool/favicon.svg"
           type="image/svg+xml"
           sizes="any"
         />
-        <link rel="apple-touch-icon" href="pizza-calc/apple_192.png" />
       </Head>
       <Main />
     </>
