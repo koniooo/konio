@@ -1,4 +1,4 @@
-import { hunterData } from "src/survival-tool/lib/hunterData";
+import { hunterData } from "survival-tool/lib/hunterData";
 import { OneThirdColumn } from "./OneThirdColumn";
 import { HunterSkillTimerButton } from "./HunterSkillTimerButton";
 import { DreamWitchSkillTimerButton } from "./DreamWitchSkillTimerButton";

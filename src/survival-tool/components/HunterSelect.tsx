@@ -1,5 +1,5 @@
 import styles from "./HunterSelect.module.scss";
-import { hunterData } from "src/survival-tool/lib/hunterData";
+import { hunterData } from "survival-tool/lib/hunterData";
 
 type Props = {
   hunterId: number;

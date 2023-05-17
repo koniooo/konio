@@ -1,7 +1,7 @@
 import styles from "./Persona.module.scss";
 import { PersonaButton } from "./PersonaButton";
 import { accelerateDecodingTime } from "./StartButton";
-import { detentionTime } from "src/survival-tool/components/StartButton";
+import { detentionTime } from "survival-tool/components/StartButton";
 import colors from "./Color.module.scss";
 
 const presenceUnit = 250;

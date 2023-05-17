@@ -1,6 +1,6 @@
 import { TimerButton } from "./TimerButton";
 import { DualStatusTimerButton } from "./DualStatusTimerButton";
-import { hunterData } from "src/survival-tool/lib/hunterData";
+import { hunterData } from "survival-tool/lib/hunterData";
 import styles from "./HunterSkillTimerButton.module.scss";
 
 type Props = {

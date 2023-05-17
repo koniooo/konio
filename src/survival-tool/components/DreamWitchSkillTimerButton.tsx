@@ -1,8 +1,8 @@
 import colors from "./Color.module.scss";
 import styles from "./DreamWitchSkillTimerButton.module.scss";
 import common from "./HunterSkillTimerButton.module.scss";
-import { hunterData } from "src/survival-tool/lib/hunterData";
-import { dreamWitchId } from "src/survival-tool/components/HunterSkillTimer";
+import { hunterData } from "survival-tool/lib/hunterData";
+import { dreamWitchId } from "survival-tool/components/HunterSkillTimer";
 type Props = {
   skill: "primary" | "secondary";
   time: number;

@@ -1,7 +1,7 @@
 import { RowContainer } from "./RowContainer";
 import styles from "./FourthRow.module.scss";
 import { TrumpCardButton } from "./TrumpCardButton";
-import { UltraLongTimer } from "src/survival-tool/components/UltraLongTimer";
+import { UltraLongTimer } from "survival-tool/components/UltraLongTimer";
 
 type Props = {
   isTrumpCardTimerActive: boolean;

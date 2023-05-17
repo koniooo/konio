@@ -1,4 +1,4 @@
-import { TimerButton } from "src/survival-tool/components/TimerButton";
+import { TimerButton } from "survival-tool/components/TimerButton";
 import styles from "./UltraLongTimer.module.scss";
 
 type Props = {

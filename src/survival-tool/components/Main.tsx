@@ -5,7 +5,7 @@ import { StartButton } from "./StartButton";
 import { SecondRow } from "./SecondRow";
 import { ThirdRow } from "./ThirdRow";
 import { FourthRow } from "./FourthRow";
-import { hunterData } from "src/survival-tool/lib/hunterData";
+import { hunterData } from "survival-tool/lib/hunterData";
 
 export const patrollerCoolTime = 90;
 export const teleportCoolTime = 100;
