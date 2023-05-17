@@ -2,6 +2,7 @@ import styles from "./Persona.module.scss";
 import { PersonaButton } from "./PersonaButton";
 import { accelerateDecodingTime } from "./StartButton";
 import { detentionTime } from "src/survival-tool/components/StartButton";
+import colors from "./Color.module.scss";
 
 const presenceUnit = 250;
 const maxPresence = 1000;
@@ -111,42 +112,48 @@ export const Persona = ({
               <>
                 <p>{Math.round(insolenceValue)}</p>
                 <svg
-                  version="1.1"
-                  id="&#x30EC;&#x30A4;&#x30E4;&#x30FC;_1"
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
                   y="0px"
                   viewBox="0 0 300 100"
-                  fill="#292B2F"
                   className={styles.insolenceMeter}
                 >
                   <path
-                    d="M250,0H50C22.386,0,0,22.386,0,50v0c0,27.614,22.386,50,50,50h200c27.614,0,50-22.386,50-50v0
-	C300,22.386,277.614,0,250,0z M71.25,70c0,8.284-6.716,15-15,15H50c-19.33,0-35-15.67-35-35v0c0-19.33,15.67-35,35-35h6.25
-	c8.284,0,15,6.716,15,15V70z M142.5,70c0,8.284-6.716,15-15,15h-26.25c-8.284,0-15-6.716-15-15V30c0-8.284,6.716-15,15-15h26.25
-	c8.284,0,15,6.716,15,15V70z M213.75,70c0,8.284-6.716,15-15,15H172.5c-8.284,0-15-6.716-15-15V30c0-8.284,6.716-15,15-15h26.25
-	c8.284,0,15,6.716,15,15V70z M285,50c0,19.33-15.67,35-35,35h-6.25c-8.284,0-15-6.716-15-15V30c0-8.284,6.716-15,15-15H250
-	C269.33,15,285,30.67,285,50L285,50z"
+                    fill="#292b2f"
+                    d="M250,100H50C22.386,100,0,77.614,0,50v0C0,22.386,22.386,0,50,0l200,0c27.614,0,50,22.386,50,50v0
+		C300,77.614,277.614,100,250,100z"
                   />
                   <path
-                    className={`${insolenceValue === 1000 && styles.hidden}`}
-                    d="M254.018,90h-14.286c-8.284,0-15-6.716-15-15l0-50c0-8.284,6.716-15,15-15l14.286,0
-	c19.33,0,35,15.67,35,35v10C289.018,74.33,273.348,90,254.018,90z"
+                    className={`${
+                      hasInsolence ? colors.filledRed : colors.filledYellow
+                    }
+                    ${insolenceValue < 250 && styles.none}`}
+                    d="M50,15l6.25,0c8.284,0,15,6.716,15,15l0,40c0,8.284-6.716,15-15,15H50c-19.33,0-35-15.67-35-35v0
+		C15,30.67,30.67,15,50,15z"
                   />
                   <path
-                    className={`${insolenceValue >= 750 && styles.hidden}`}
-                    d="M168.482,10h34.286c8.284,0,15,6.716,15,15v50c0,8.284-6.716,15-15,15h-34.286
-	c-8.284,0-15-6.716-15-15V25C153.482,16.716,160.198,10,168.482,10z"
+                    className={`${
+                      hasInsolence ? colors.filledRed : colors.filledYellow
+                    }
+                    ${insolenceValue < 500 && styles.none}`}
+                    d="M101.25,15h26.25c8.284,0,15,6.716,15,15v40c0,8.284-6.716,15-15,15h-26.25c-8.284,0-15-6.716-15-15
+		V30C86.25,21.716,92.966,15,101.25,15z"
                   />
                   <path
-                    className={`${insolenceValue >= 500 && styles.hidden}`}
-                    d="M97.232,10h34.286c8.284,0,15,6.716,15,15v50c0,8.284-6.716,15-15,15H97.232c-8.284,0-15-6.716-15-15
-	V25C82.232,16.716,88.948,10,97.232,10z"
+                    className={`${
+                      hasInsolence ? colors.filledRed : colors.filledYellow
+                    }
+                    ${insolenceValue < 750 && styles.none}`}
+                    d="M172.5,15h26.25c8.284,0,15,6.716,15,15v40c0,8.284-6.716,15-15,15H172.5c-8.284,0-15-6.716-15-15
+		V30C157.5,21.716,164.216,15,172.5,15z"
                   />
                   <path
-                    className={`${insolenceValue >= 250 && styles.hidden}`}
-                    d="M45.982,10l14.286,0c8.284,0,15,6.716,15,15l0,50c0,8.284-6.716,15-15,15l-14.286,0
-	c-19.33,0-35-15.67-35-35l0-10C10.982,25.67,26.652,10,45.982,10z"
+                    className={`${
+                      hasInsolence ? colors.filledRed : colors.filledYellow
+                    }
+                    ${insolenceValue < 1000 && styles.none}`}
+                    d="M250,85h-6.25c-8.284,0-15-6.716-15-15l0-40c0-8.284,6.716-15,15-15l6.25,0c19.33,0,35,15.67,35,35
+		v0C285,69.33,269.33,85,250,85z"
                   />
                 </svg>
               </>

@@ -10,6 +10,18 @@
   background-color: var(--myRed);
 }
 
+.filledGreen {
+  fill: var(--myGreen);
+}
+
+.filledYellow {
+  fill: var(--myYellow);
+}
+
+.filledRed {
+  fill: var(--myRed);
+}
+
 .greenText {
   p span {
     color: var(--myGreen);
