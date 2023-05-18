@@ -1,7 +1,7 @@
 .main {
   --myRed: #e74c3c;
   --myYellow: #f1c40f;
-  --myGreen: #2ecc71;
+  --myGreen: #3498db;
   --myGray: #292b2f;
 
   --padding: 1.5vh;
@@ -27,14 +27,12 @@
   --doubleSkillFontSize: calc(var(--vh, 1vh) * 1.8);
   --hunterSelectFontSize: 2vh;
   --hunterSelectFontSize: calc(var(--vh, 1vh) * 2);
-  --insolenceValueFontSize: 3vh;
-  --insolenceValueFontSize: calc(var(--vh, 1vh) * 3);
   --fourthRowFontSize: 6vh;
   --fourthRowFontSize: calc(var(--vh, 1vh) * 6);
-  // --traitFontSize: 7.5vh;
-  // --traitFontSize: calc(var(--vh, 1vh) * 15);
-
-  --traitFontSize: 16vmin;
+  --insolenceValueFontSize: 3vh;
+  --insolenceValueFontSize: calc(var(--vh, 1vh) * 3);
+  --insolenceValueFontSize: min(7vmin, 5vh);
+  --number-large: min(14vw, 12.5vh);
 
   padding: var(--padding);
   background-color: var(--myGray);
@@ -48,7 +46,8 @@
   * {
     color: var(--myGray);
     font-weight: 900;
-    font-family: "Impact", sans-serif;
+    font-family: "Futura", "Segoe UI", "Hiragino Kaku Gothic ProN",
+      "Hiragino Sans", "Yu Gothic", sans-serif;
   }
 
   button {

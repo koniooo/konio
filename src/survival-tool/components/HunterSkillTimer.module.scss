@@ -30,7 +30,7 @@
   width: 100%;
   display: flex;
   p {
-    font-size: var(--traitFontSize);
+    font-size: var(--number-large);
     span {
       font-size: var(--doubleSkillFontSize);
     }
@@ -40,7 +40,7 @@
 .single {
   width: 100%;
   p {
-    font-size: var(--traitFontSize);
+    font-size: var(--number-large);
     span {
       font-size: var(--hunterSelectFontSize);
     }
