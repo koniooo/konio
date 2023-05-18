@@ -18,9 +18,6 @@
 
       button {
         background-color: var(--myGreen);
-        font-size: 3vh;
-        // border-color: var(--myGreen);
-        // border-style: solid;
         svg {
           position: absolute;
           top: 50%;
@@ -36,14 +33,12 @@
       margin-right: calc(var(--halfPadding) / 2);
       button {
         border-radius: var(--padding) 0 0 var(--padding);
-        // border-width: var(--halfPadding) 0 var(--halfPadding) var(--halfPadding);
       }
     }
     .plusHunterId {
       margin-right: var(--padding);
       button {
         border-radius: 0 var(--padding) var(--padding) 0;
-        // border-width: var(--halfPadding) var(--halfPadding) var(--halfPadding) 0;
       }
     }
 
