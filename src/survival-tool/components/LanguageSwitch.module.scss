@@ -2,19 +2,17 @@
   display: block;
   position: relative;
   height: 100%;
+  width: 100%;
   background-color: var(--myGreen);
   border-radius: var(--padding);
   text-decoration: none;
   color: var(--myGray);
-  &:active {
-    color: var(--myGray);
-  }
   &:focus {
     outline: none;
   }
   svg {
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
