@@ -31,8 +31,10 @@
   --insolenceValueFontSize: calc(var(--vh, 1vh) * 3);
   --fourthRowFontSize: 6vh;
   --fourthRowFontSize: calc(var(--vh, 1vh) * 6);
-  --traitFontSize: 7.5vh;
-  --traitFontSize: calc(var(--vh, 1vh) * 7.5);
+  // --traitFontSize: 7.5vh;
+  // --traitFontSize: calc(var(--vh, 1vh) * 15);
+
+  --traitFontSize: 16vmin;
 
   padding: var(--padding);
   background-color: var(--myGray);
@@ -43,10 +45,10 @@
   height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   text-align: center;
-
   * {
     color: var(--myGray);
     font-weight: 900;
+    font-family: "Impact", sans-serif;
   }
 
   button {
