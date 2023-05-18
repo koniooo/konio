@@ -1,5 +1,5 @@
 .description {
-  font-size: 1.25vh;
+  font-size: var(--descriptionFontSize);
   position: absolute;
   transform: translate(-50%, -50%);
   top: 94%;

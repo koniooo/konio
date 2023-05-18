@@ -1,24 +1,24 @@
 .startButton {
-  p:not(.creditText) {
+  p {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    font-size: 1.75vh;
+    font-size: var(--doubleSkillFontSize);
     span {
-      font-size: 3.5vh;
+      font-size: var(--insolenceValueFontSize);
       vertical-align: sub;
     }
 
     &.start {
       top: 42.5%;
-      font-size: 7.5vh;
+      font-size: var(--traitFontSize);
       line-height: 1.2;
     }
 
     &.description {
       top: 80%;
-      font-size: 1.25vh;
+      font-size: var(--descriptionFontSize);
       line-height: 1.2;
     }
     &.gateOpen {
@@ -32,32 +32,5 @@
     &.secondLine {
       top: 69%;
     }
-  }
-  .credit {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    p {
-      font-size: 1.5vh;
-      margin-right: 0.5vh;
-    }
-    a {
-      display: inline-block;
-      svg {
-        height: calc(var(--edgeHeight) * 0.4);
-        max-width: 10vw;
-      }
-    }
-  }
-
-  &.twitterColor {
-    background-color: rgb(29, 155, 240);
-    // background-color: #fd79a8;
-    // background-color: rgb(249, 24, 128);
   }
 }

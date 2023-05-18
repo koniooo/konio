@@ -5,8 +5,10 @@
   --myGray: #292b2f;
 
   --padding: 1.25vh;
+  --padding: calc(var(--vh, 1vh) * 1.25);
   --halfPadding: calc(var(--padding) / 2);
   --edgeHeight: calc((100vh - var(--padding) * 5) / 6);
+  --edgeHeight: calc((calc(var(--vh, 1vh) * 100) - var(--padding) * 5) / 6);
   --middleHeight: calc(var(--edgeHeight) * 2);
   --oneThirdWidth: calc((100vw - var(--padding) * 4) / 3);
 
@@ -19,11 +21,18 @@
   --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPadding)) / 3);
   --languageSwitchWidth: calc((var(--oneThirdWidth) - var(--padding)) / 2);
 
-  --insolenceValueFontSize: 3vh;
+  --descriptionFontSize: 1.25vh;
+  --descriptionFontSize: calc(var(--vh, 1vh) * 1.25);
+  --doubleSkillFontSize: 1.8vh;
+  --doubleSkillFontSize: calc(var(--vh, 1vh) * 1.8);
   --hunterSelectFontSize: 2vh;
-  --doubleSkillFontSize: 1.75vh;
-  --traitFontSize: 7.5vh;
+  --hunterSelectFontSize: calc(var(--vh, 1vh) * 2);
+  --insolenceValueFontSize: 3vh;
+  --insolenceValueFontSize: calc(var(--vh, 1vh) * 3);
   --fourthRowFontSize: 6vh;
+  --fourthRowFontSize: calc(var(--vh, 1vh) * 6);
+  --traitFontSize: 7.5vh;
+  --traitFontSize: calc(var(--vh, 1vh) * 7.5);
 
   padding: var(--padding);
   background-color: var(--myGray);
@@ -31,6 +40,7 @@
   white-space: nowrap;
   margin: 0 auto;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   text-align: center;
 
