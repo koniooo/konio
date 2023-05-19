@@ -1,7 +1,7 @@
 .main {
   --myRed: #e74c3c;
   --myYellow: #f1c40f;
-  --myGreen: #3498db;
+  --myGreen: #45aaf2;
   --myGray: #292b2f;
 
   --padding: 1.5vh;
@@ -21,18 +21,14 @@
   --wantedOrderWidth: calc((var(--oneThirdWidth) - var(--halfPadding)) / 3);
   --languageSwitchWidth: calc((var(--oneThirdWidth) - var(--padding)) / 2);
 
-  --descriptionFontSize: 1.25vh;
-  --descriptionFontSize: calc(var(--vh, 1vh) * 1.25);
-  --doubleSkillFontSize: 1.8vh;
-  --doubleSkillFontSize: calc(var(--vh, 1vh) * 1.8);
-  --hunterSelectFontSize: 2vh;
-  --hunterSelectFontSize: calc(var(--vh, 1vh) * 2);
-  --fourthRowFontSize: 6vh;
-  --fourthRowFontSize: calc(var(--vh, 1vh) * 6);
-  --insolenceValueFontSize: 3vh;
-  --insolenceValueFontSize: calc(var(--vh, 1vh) * 3);
-  --insolenceValueFontSize: min(7vmin, 5vh);
-  --number-large: min(14vw, 12.5vh);
+  --text-x-small: 2.75vmin; // dream witch description
+  --text-small: 3vmin; // start button description
+  --text-middle: 4vmin; // start button, skill timer text
+  --text-large: 4.5vmin; // hunter select
+
+  --number-small: 6vmin; // insolence value, start button timer
+  --number-middle: 10vmin; // trumpCard, ultraLong, triple skill timer
+  --number-large: 13.5vmin; // trait, skill timer
 
   padding: var(--padding);
   background-color: var(--myGray);

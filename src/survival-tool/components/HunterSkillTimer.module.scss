@@ -6,6 +6,7 @@
     span {
       display: block;
       line-height: 1.4;
+      font-size: var(--text-middle);
     }
   }
 }
@@ -19,10 +20,7 @@
   }
 
   p {
-    font-size: var(--fourthRowFontSize);
-    span {
-      font-size: var(--doubleSkillFontSize);
-    }
+    font-size: var(--number-middle);
   }
 }
 
@@ -31,9 +29,6 @@
   display: flex;
   p {
     font-size: var(--number-large);
-    span {
-      font-size: var(--doubleSkillFontSize);
-    }
   }
 }
 
@@ -41,8 +36,5 @@
   width: 100%;
   p {
     font-size: var(--number-large);
-    span {
-      font-size: var(--hunterSelectFontSize);
-    }
   }
 }

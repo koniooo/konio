@@ -4,10 +4,10 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    font-size: var(--doubleSkillFontSize);
+    font-size: var(--text-middle);
     span {
-      font-size: var(--insolenceValueFontSize);
-      vertical-align: sub;
+      font-size: var(--number-small);
+      // vertical-align:baseline;
     }
 
     &.start {
@@ -18,7 +18,7 @@
 
     &.description {
       top: 80%;
-      font-size: var(--descriptionFontSize);
+      font-size: var(--text-small);
       line-height: 1.2;
     }
     &.gateOpen {
