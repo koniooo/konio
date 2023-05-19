@@ -74,7 +74,7 @@ export const hunterData: readonly hunterDatum[] = [
     primaryCoolTime: [30],
     secondaryNameJa: "吸魂",
     secondaryNameEn: "Siphon Soul",
-    secondaryCoolTime: [20],
+    secondaryCoolTime: [5, 20],
     tertiaryNameJa: "揺魄",
     tertiaryNameEn: "Wavering Soul",
     tertiaryCoolTime: [15],
