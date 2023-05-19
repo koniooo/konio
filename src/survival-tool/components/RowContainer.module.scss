@@ -1,7 +1,7 @@
 .row {
   margin-bottom: var(--padding);
   display: flex;
-
+  width: calc(100vw - var(--padding) * 2);
   &.edgeRow {
     height: var(--edgeHeight);
   }
