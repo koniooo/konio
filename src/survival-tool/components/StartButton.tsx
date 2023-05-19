@@ -328,7 +328,16 @@ export const StartButton = ({
           startTimerId.current = Number(id);
           setIsStartTimerActive(true);
         } else if (isSecondStatus) {
-          setElapsedTime(accelerateDecodingTime); // elapsedTimeがaccelerateDecodingTimeになったときの処理はuseEffectに任せる
+          if (elapsedTime < 0) {
+            clearInterval(startTimerId.current);
+            setElapsedTime(0);
+            const id = setInterval(() => {
+              setElapsedTime((t) => t + 1);
+            }, 1000);
+            startTimerId.current = Number(id);
+          } else {
+            setElapsedTime(accelerateDecodingTime); // elapsedTimeがaccelerateDecodingTimeになったときの処理はuseEffectに任せる
+          }
         } else if (isThirdStatus) {
           const id = setInterval(() => {
             setElapsedTime((t) => t + 1);
