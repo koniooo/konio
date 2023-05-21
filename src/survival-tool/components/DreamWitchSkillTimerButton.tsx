@@ -31,7 +31,7 @@ export const DreamWitchSkillTimerButton = ({
       }
       onClick={() => {
         if (isTimerActive) {
-          const nextTime = Math.round(time * ((100 - 40) / 100));
+          const nextTime = Math.floor(time * 0.6);
           setTime(nextTime);
         } else {
           setIsTimerActive(true);
