@@ -60,7 +60,7 @@ export const TrumpCardButton = ({
     setTargetTraitTime: React.Dispatch<React.SetStateAction<number>>,
     setIsTargetTraitTimerActive: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
-    const targetTraitTime = Math.round(
+    const targetTraitTime = Math.floor(
       targetTraitCoolTime * (sourceTraitTime / sourceTraitCoolTime)
     );
     setTargetTraitTime(targetTraitTime);
@@ -151,10 +151,15 @@ export const TrumpCardButton = ({
       }}
     >
       {isTrumpCardAlertOn && (
+        // <p className={`${styles.text} ${styles.alertText}`}>
+        //   ※一つの特質だけを
+        //   <br />
+        //   カウント時にタップ
+        // </p>
         <p className={`${styles.text} ${styles.alertText}`}>
-          ※一つの特質だけを
+          ※カウント中の特質が
           <br />
-          カウント時にタップ
+          一つだけの時にタップ
         </p>
       )}
 
