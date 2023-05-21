@@ -27,7 +27,7 @@
   --text-large: 4.25vmin; // hunter select
 
   --number-x-small: 5vmin; // insolence value
-  --number-small: 6vmin; // start button timer
+  --number-small: 6.5vmin; // start button timer
   --number-middle: 10vmin; // trumpCard, ultraLong, triple skill timer
   --number-large: 13.5vmin; // trait, skill timer
 
@@ -44,7 +44,7 @@
     color: var(--myGray);
     font-weight: 900;
     font-family: "Futura", "Segoe UI", "Hiragino Kaku Gothic ProN",
-      "Hiragino Sans", "Yu Gothic", sans-serif;
+      "Hiragino Sans", "Yu Gothic", Verdana, "Roboto", "Droid Sans", sans-serif;
   }
 
   button {

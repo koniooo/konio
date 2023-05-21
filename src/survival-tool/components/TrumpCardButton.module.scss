@@ -18,11 +18,20 @@
   }
 
   svg {
-    height: 66.7%;
-    max-width: 50%;
     position: absolute;
-    left: 75%;
-    top: 52%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+
+    &.trumpCardIcon {
+      top: 52%;
+      height: 66.7%;
+      max-width: 50%;
+      right: 2.5vw;
+    }
+    &.twitterIcon {
+      top: 50%;
+      height: 40%;
+      max-width: 35%;
+      right: 5vw;
+    }
   }
 }

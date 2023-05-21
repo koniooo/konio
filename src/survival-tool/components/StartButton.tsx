@@ -185,115 +185,157 @@ export const StartButton = ({
     elapsedTime < accelerateDecodingTime + detentionTime + 10 &&
     isStartTimerActive;
 
-  let content;
-  if (isFirstStatus) {
-    content = (
-      <>
-        <p className={styles.start}>START</p>
-        <p className={styles.description}>
-          ※画面が割れて視点が回り始める瞬間にタップ
-        </p>
-      </>
-    );
-  } else if (isSecondStatus) {
-    if (elapsedTime < 0) {
-      content = (
-        <p>
-          ゲーム開始まで <span>{-elapsedTime}</span>
-        </p>
-      );
-    } else if (elapsedTime < constrainTime) {
-      content = (
+  const renderContent = () => {
+    if (isFirstStatus) {
+      return (
         <>
-          <p className={styles.firstLine}>
-            【封鎖】発動中 <span>{constrainTime - elapsedTime}</span>
-          </p>
-          <p className={styles.secondLine}>
-            【焼き入れ効果・フライホイール効果】まで{` `}
-            <span>{quenchingEffectStartTime - elapsedTime}</span>
-          </p>
+          <div className={`${styles.flexContainer} ${styles.start}`}>
+            <p>START</p>
+          </div>
+          <div className={`${styles.flexContainer} ${styles.description}`}>
+            <p>※画面が割れて視点が回り始める瞬間にタップ</p>
+          </div>
         </>
       );
-    } else if (elapsedTime < quenchingEffectStartTime) {
-      content = (
-        <>
-          <p className={styles.firstLine}>【封鎖】解除済み</p>
-          <p className={styles.secondLine}>
-            【焼き入れ効果・フライホイール効果】まで{` `}
-            <span>{quenchingEffectStartTime - elapsedTime}</span>
-          </p>
-        </>
+    } else if (isSecondStatus) {
+      if (elapsedTime < 0) {
+        return (
+          <div className={styles.flexContainer}>
+            <p className={styles.text}>ゲーム開始まで</p>
+            <p className={styles.time}>{-elapsedTime}</p>
+          </div>
+        );
+      } else if (elapsedTime < constrainTime) {
+        return (
+          <>
+            <div className={`${styles.flexContainer} ${styles.firstLine}`}>
+              <p className={styles.text}>【封鎖】発動中</p>
+              <p className={styles.time}>{constrainTime - elapsedTime}</p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.secondLine}`}>
+              <p className={styles.text}>
+                【焼き入れ効果・フライホイール効果】まで
+              </p>
+              <p className={styles.time}>
+                {quenchingEffectStartTime - elapsedTime}
+              </p>
+            </div>
+          </>
+        );
+      } else if (elapsedTime < quenchingEffectStartTime) {
+        return (
+          <>
+            <div className={`${styles.flexContainer} ${styles.firstLine}`}>
+              <p className={styles.text}>【封鎖】解除済み</p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.secondLine}`}>
+              <p className={styles.text}>
+                【焼き入れ効果・フライホイール効果】まで
+              </p>
+              <p className={styles.time}>
+                {quenchingEffectStartTime - elapsedTime}
+              </p>
+            </div>
+          </>
+        );
+      } else if (
+        elapsedTime <
+        quenchingEffectStartTime + quenchingEffectDuration
+      ) {
+        return (
+          <div className={styles.flexContainer}>
+            <p className={styles.text}>【焼き入れ効果】発動中</p>
+            <p className={styles.time}>
+              {quenchingEffectStartTime + quenchingEffectDuration - elapsedTime}
+            </p>
+          </div>
+        );
+      } else if (
+        elapsedTime <
+        quenchingEffectStartTime + quenchingEffectDuration + 10
+      ) {
+        return (
+          <>
+            <div className={`${styles.flexContainer} ${styles.firstLine}`}>
+              <p className={styles.text}>【焼き入れ効果】発動済み</p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.secondLine}`}>
+              <p className={styles.text}>【解読加速】まで</p>
+              <p className={styles.time}>
+                {accelerateDecodingTime - elapsedTime}
+              </p>
+            </div>
+          </>
+        );
+      } else {
+        return (
+          <div className={styles.flexContainer}>
+            <p className={styles.text}>【解読加速】まで</p>
+            <p className={styles.time}>
+              {accelerateDecodingTime - elapsedTime}
+            </p>
+          </div>
+        );
+      }
+    } else if (isThirdStatus) {
+      return (
+        <div className={`${styles.flexContainer} ${styles.gateOpen}`}>
+          <p>通電</p>
+        </div>
       );
-    } else if (
-      elapsedTime <
-      quenchingEffectStartTime + quenchingEffectDuration
-    ) {
-      content = (
-        <p>
-          【焼き入れ効果】発動中{" "}
-          <span>
-            {quenchingEffectStartTime + quenchingEffectDuration - elapsedTime}
-          </span>
-        </p>
-      );
-    } else if (
-      elapsedTime <
-      quenchingEffectStartTime + quenchingEffectDuration + 10
-    ) {
-      content = (
-        <>
-          <p className={styles.firstLine}>【焼き入れ効果】発動済み</p>
-          <p className={styles.secondLine}>
-            【解読加速】まで <span>{accelerateDecodingTime - elapsedTime}</span>
-          </p>
-        </>
-      );
-    } else {
-      content = (
-        <p>
-          【解読加速】まで <span>{accelerateDecodingTime - elapsedTime}</span>
-        </p>
-      );
+    } else if (isFourthStatus) {
+      if (elapsedTime < accelerateDecodingTime + claustrophobiaTime) {
+        return (
+          <>
+            <div className={`${styles.flexContainer} ${styles.firstLine}`}>
+              <p className={styles.text}>【幽閉の恐怖】発動中</p>
+              <p className={styles.time}>
+                {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
+              </p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.secondLine}`}>
+              <p className={styles.text}>【引き留める】発動中</p>
+              <p className={styles.time}>
+                {accelerateDecodingTime + detentionTime - elapsedTime}
+              </p>
+            </div>
+          </>
+        );
+      } else if (
+        elapsedTime <
+        accelerateDecodingTime + claustrophobiaTime + 10
+      ) {
+        return (
+          <>
+            <div className={`${styles.flexContainer} ${styles.firstLine}`}>
+              <p className={styles.text}>【幽閉の恐怖】解除済み</p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.secondLine}`}>
+              <p className={styles.text}>【引き留める】発動中</p>
+              <p className={styles.time}>
+                {accelerateDecodingTime + detentionTime - elapsedTime}
+              </p>
+            </div>
+          </>
+        );
+      } else if (elapsedTime < accelerateDecodingTime + detentionTime) {
+        return (
+          <div className={styles.flexContainer}>
+            <p className={styles.text}>【引き留める】発動中</p>
+            <p className={styles.time}>
+              {accelerateDecodingTime + detentionTime - elapsedTime}
+            </p>
+          </div>
+        );
+      } else {
+        return (
+          <div className={styles.flexContainer}>
+            <p className={styles.text}>【引き留める】解除済み</p>
+          </div>
+        );
+      }
     }
-  } else if (isThirdStatus) {
-    content = <p className={styles.gateOpen}>通電</p>;
-  } else if (isFourthStatus) {
-    if (elapsedTime < accelerateDecodingTime + claustrophobiaTime) {
-      content = (
-        <>
-          <p className={styles.firstLine}>
-            【幽閉の恐怖】発動中{" "}
-            <span>
-              {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
-            </span>
-          </p>
-          <p className={styles.secondLine}>
-            【引き留める】発動中{" "}
-            <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
-          </p>
-        </>
-      );
-    } else if (elapsedTime < accelerateDecodingTime + claustrophobiaTime + 10) {
-      content = (
-        <>
-          <p className={styles.firstLine}>【幽閉の恐怖】解除済み</p>
-          <p className={styles.secondLine}>
-            【引き留める】発動中{" "}
-            <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
-          </p>
-        </>
-      );
-    } else if (elapsedTime < accelerateDecodingTime + detentionTime) {
-      content = (
-        <p>
-          【引き留める】発動中{" "}
-          <span>{accelerateDecodingTime + detentionTime - elapsedTime}</span>
-        </p>
-      );
-    } else {
-      content = <p>【引き留める】解除済み</p>;
-    }
-  }
+  };
 
   return (
     <button
@@ -349,7 +391,7 @@ export const StartButton = ({
         }
       }}
     >
-      {content}
+      {renderContent()}
     </button>
   );
 };
