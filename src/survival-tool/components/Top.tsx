@@ -23,7 +23,7 @@ const Top = () => {
         />
         <meta
           property="og:image"
-          content="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/card.png"
+          content="https://raw.githubusercontent.com/koniooo/konio/main/public/survival-tool/ogp_card.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@konio_tracy" />
